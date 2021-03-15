@@ -81,6 +81,8 @@ myRevealingModule.getName();
 
 myRevealingModule.greeting;
 ```
+note :
+
 - Có thể thay đổi từ public sang private và ngược lại bằng cách thay đổi chỉ một dòng trong return statement
     
 - Object trả về không bao gồm các định nghĩa function, tất cả các right-hand side expression đều được định nghĩa bên trong IIFE
