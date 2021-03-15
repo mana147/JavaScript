@@ -6,8 +6,7 @@
 - Có thể tái sử dụng module trong các project khác vì bản chất của module là tách biệt, không phụ thuộc vào các phần code khác.
     
 note : 
-
-    Không giống như những ngôn ngữ lập trình khác, JavaScript không có các phương thức để định nghĩa biến public, private (hay còn gọi là access modifier).Vậy nên Module Pattern được sử dụng để giả lập tính chất đóng gói của hướng đối tượng.
+Không giống như những ngôn ngữ lập trình khác, JavaScript không có các phương thức để định nghĩa biến public, private (hay còn gọi là access modifier).Vậy nên Module Pattern được sử dụng để giả lập tính chất đóng gói của hướng đối tượng.
     
 Module Pattern trong JS dựa trên: 
 - Closure
