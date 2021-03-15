@@ -13,4 +13,4 @@ https://codelearn.io/sharing/bat-dong-bo-trong-javascript-phan-1
 
 http://arduino.vn/bai-viet/543-xu-ly-nhieu-tien-trinh-cung-mot-luc-tren-arduino-co-hay-khong
 
-
+https://addyosmani.com/resources/essentialjsdesignpatterns/book/#jquerypluginpatterns

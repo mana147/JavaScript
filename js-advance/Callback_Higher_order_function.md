@@ -59,4 +59,19 @@ $.ajax({
 
 ## Vấn đề gặp phải khi sử dụng Callback
 
+### Vấn đề với con trỏ "this"
+- Khi một hàm được kích hoạt, bản thân nó sẽ có một giá trị tham chiếu tới đối tượng vừa gọi nó, giá trị nó nằm ở con trỏ this.
+- Ta có thể truyền hàm callback đi bất kì đâu ta muốn, tức là đối tượng kích hoạt hàm callback này chính là hàm higher-order chứa nó.
+- Tuy nhiên, trong nhiều trường hợp khi thiết kế hàm callback, người dùng mong muốn con trỏ this của hàm callback là 1 đối tượng cụ thể nào khác chứ không phải là hàm higher-order.
 
+```js
+var obj = {
+    method: function() {
+        console.log(this);
+    }
+};
+var a = obj.method;
+a(); // this là window
+$('#button').click(obj.method); // this đã tham chiếu đến button chứ không phải window
+```
+note :  tìm hiểu về hàm bind, call, apply và arrow function thì có thể hoàn toàn kiểm soát được contex của con trỏ this .
