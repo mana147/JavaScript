@@ -1,4 +1,6 @@
 $(document).ready(function () {
+    // $('h2').hello();
+
     let config = {
         text: 'pham trung hieu',
         color: 'red',
@@ -8,6 +10,7 @@ $(document).ready(function () {
         }
     }
 
-    $('a').setColorPlugin(config);
+    $('a').setColorPlugin(config).run();
+
 
 });

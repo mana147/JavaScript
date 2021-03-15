@@ -8,8 +8,8 @@ class Animal {
     }
     eat() {
         console.log(` ${this.name} đăng ăn ... `);
-        // console.log(this);
-        // return this;
+        console.log(this);
+        return this;
     }
 }
 
@@ -17,16 +17,16 @@ class Animal {
 class Bird extends Animal {
     fly() {
         console.log(` ${this.name} đang bay ... `);
-        // console.log(this);
-        // return this;
+        console.log(this);
+        return this;
     }
 }
 
 let qua = new Bird('quạ');
-qua.eat();
-qua.fly();
+// qua.eat();
+// qua.fly();
 
-// qua.eat().fly();
+qua.eat().fly();
 
 
 // tạo class vẹt kế thưa lớp bird 

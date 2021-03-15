@@ -3,9 +3,11 @@
 // ================================================
 // ================================================
 
+
 let mouse = {
     name: "chuột cống",
-    sayHi: function () {
+    sayHi: () => {
+        console.log(this);
         console.log('hi my name is', this.name);
     }
 };
@@ -45,13 +47,9 @@ let a = {
     old: 112,
     run: function () {
         console.log(`>>> func run : ${this.name} `);
-        
         var run2 = function () {
-            
             console.log(`>>> func run2 : ${this.name} `);
-
         }.bind(this);
-
         run2();
     },
 }

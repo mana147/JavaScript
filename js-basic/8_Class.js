@@ -21,6 +21,7 @@ class MEO {
     constructor(name) {
         this.name = name;
     };
+    
     run() {
         console.log (`${this.name} đang đuổi chuột ! `)
     }

@@ -25,6 +25,10 @@ b ("Expression");
 // Biểu thức hàm chạy ngay lập tức
 // Trong nhiều trường hợp, chúng ta khai báo biểu thức hàm rồi dùng chỉ một lần.
 // IIFE (biểu thức hàm chạy luôn - Immediately Invokable Function Expression)
+// biến bên trong không ảnh hưởng 
+
+// ý nghĩa của IIFE : trong quá khứ chỉ có mỗi biến var , mà var có khả năng ảnh hưởng toàn cục 
+// nên để giới hạn nó , người ta nghĩ ra cách bọc nó lại  
 
 (function (a, b, c) {
     var tong = a + b + c;

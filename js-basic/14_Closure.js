@@ -18,6 +18,7 @@ function sum(a, b) {
     //  việc làm như vậy sẽ tạo ra một closure có thể truy cập được biến nằm ngoài scope của nó 
 
     const x = a + b;
+    
     return function (str) {
         console.log(`${str} = ${x}`);
     };

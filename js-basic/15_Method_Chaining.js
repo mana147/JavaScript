@@ -95,11 +95,11 @@ Animal.prototype.setGender = function (gender) {
 Animal.prototype.save = function () {
     console.log(` Animal : ${this.name} ${this.color} ${this.gender} `);
     console.log(this);
+    return this;
 };
 
 let cat = new Animal();
-cat.setName('cat').setColor('black').setGender('male');
-cat.save();
+cat.setName('cat').setColor('black').setGender('male').save();
 
 // >  Animal : Bob black male 
 
