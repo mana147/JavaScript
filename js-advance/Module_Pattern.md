@@ -6,7 +6,9 @@ _note:_
     
 _ý nghĩa :_ 
 
-    Không giống như những ngôn ngữ lập trình khác, JavaScript không có các phương thức để định nghĩa biến public, private (hay còn gọi là access modifier).Vậy nên Module Pattern được sử dụng để giả lập tính chất đóng gói của hướng đối tượng.
+    Không giống như những ngôn ngữ lập trình khác, 
+    JavaScript không có các phương thức để định nghĩa biến public, private (hay còn gọi là access modifier).
+    Vậy nên Module Pattern được sử dụng để giả lập tính chất đóng gói của hướng đối tượng.
     
 ## Module Pattern trong JS dựa trên: 
 
