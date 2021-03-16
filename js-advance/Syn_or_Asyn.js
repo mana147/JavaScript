@@ -1,0 +1,1 @@
+// Synchronous or asynchronous

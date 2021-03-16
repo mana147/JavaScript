@@ -1,4 +1,3 @@
-
 # Singleton Pattern : 
 _note:_
 -   Một class chỉ có thể là một đối tượng.

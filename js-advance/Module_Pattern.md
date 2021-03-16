@@ -1,14 +1,15 @@
 # Module Pattern :
+_note:_ 
+-   Module là một đoạn code độc lập mà chúng ta có thể chỉnh sửa mà không làm ảnh hưởng đến các phần khác của code. 
+-   Module cũng cho phép chúng ta tránh lạm dụng namespace bằng cách cho phép tạo các scope riêng biệt cho các biến. 
+-   Có thể tái sử dụng module trong các project khác vì bản chất của module là tách biệt, không phụ thuộc vào các phần code khác.
+    
+_ý nghĩa :_ 
 
-Ý nghĩa : 
-- Module là một đoạn code độc lập mà chúng ta có thể chỉnh sửa mà không làm ảnh hưởng đến các phần khác của code. 
-- Module cũng cho phép chúng ta tránh lạm dụng namespace bằng cách cho phép tạo các scope riêng biệt cho các biến. 
-- Có thể tái sử dụng module trong các project khác vì bản chất của module là tách biệt, không phụ thuộc vào các phần code khác.
+    Không giống như những ngôn ngữ lập trình khác, JavaScript không có các phương thức để định nghĩa biến public, private (hay còn gọi là access modifier).Vậy nên Module Pattern được sử dụng để giả lập tính chất đóng gói của hướng đối tượng.
     
-note : 
-Không giống như những ngôn ngữ lập trình khác, JavaScript không có các phương thức để định nghĩa biến public, private (hay còn gọi là access modifier).Vậy nên Module Pattern được sử dụng để giả lập tính chất đóng gói của hướng đối tượng.
-    
-Module Pattern trong JS dựa trên: 
+## Module Pattern trong JS dựa trên: 
+
 - Closure
 - Higher order function 
 - IIFE
@@ -44,7 +45,7 @@ myModulePattern.publicFunc();
 ```
 Nhờ có closure, object trả về vẫn có thể truy cập vào các hàm và biến được định nghĩa bên trong IIFE ngay cả khi IIFE đã thực thi xong.
 
-# Revealing Module Pattern :
+## Revealing Module Pattern :
 note : có thể coi là phiên bản cải tiến của Module Pattern, trong modulet pattern chúng ta phải tạo các public function chỉ để gọi tới các private function và variable.
 
 giải pháp : chúng ta map các thuộc tính của object và trả về các private function mà chúng ta muốn public
