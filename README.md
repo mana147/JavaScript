@@ -1,5 +1,6 @@
-# JavaScript
-Tổng hợp kiến thức và demo liên quan đến JavaScript 
+# JavaScript Reference :
+
+> Tổng hợp kiến thức và demo liên quan đến JavaScript 
 
 keyword : các bài toán xử lý bất đồng bộ
 
