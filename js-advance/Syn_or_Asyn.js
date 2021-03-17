@@ -32,22 +32,23 @@ function task_5() {
     console.log('T5 > render > end');
 }
 
-task_1(function () { });
-task_2(function () { });
-task_3(function () { });
-task_4(function () { });
-task_5(function () { });
+// task_1(function () { });
+// task_2(function () { });
+// task_3(function () { });
+// task_4(function () { });
+// task_5(function () { });
 
-
-// function main() {
-//     task_1(function () {
-//         task_2(function () {
-//             task_3(function () {
-//                 task_4(function () {
-//                     task_5();
-//                 })
-//             });
-//         });
-//     });
-// }
-// main();
+//  callback hell
+function main() {
+    
+    task_1(function () {
+        task_2(function () {
+            task_3(function () {
+                task_4(function () {
+                    task_5();
+                })
+            });
+        });
+    });
+}
+main();
