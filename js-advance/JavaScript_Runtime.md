@@ -1,7 +1,7 @@
 # JavaScript Engine : 
 V8 JS Engine bao gồm hai thành phần chính :
 
-![](v8-engine.png)
+![v8-engine.png](/JavaScript/js-advance/img/v8-engine.png)
 
 - Memory Heap: cấp phát , quản lý , giải phóng bộ nhớ.
 - Call Stack: ngăn xếp nơi chứa các lời gọi hàm khi code được thực thi.
