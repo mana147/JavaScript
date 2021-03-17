@@ -1,7 +1,7 @@
 # JavaScript Engine : 
 V8 JS Engine bao gồm hai thành phần chính :
 
-![v8-engine.png](/JavaScript/js-advance/img/v8-engine.png)
+![v8-engine.png](https://github.com/mana147/JavaScript/blob/main/js-advance/img/v8-engine.png?raw=true)
 
 - Memory Heap: cấp phát , quản lý , giải phóng bộ nhớ.
 - Call Stack: ngăn xếp nơi chứa các lời gọi hàm khi code được thực thi.
@@ -15,7 +15,7 @@ Question :
 # JavaScript Runtime :
 JS Runtime là browser's JS runtime environment , ở đây chúng ta chỉ tìm hiểu trên browser :
 
-![](js-runtime-big-picture.png)
+![js-runtime-big-picture](https://github.com/mana147/JavaScript/blob/main/js-advance/img/js-runtime-big-picture.png?raw=true)
 
 - Các webAPIs như AJAX, setTimeout hay DOM không nằm trong JS Engine.
 - Sử dụng Event Loop, Callback queue, WebAPIs  để xử lý bất đồng bộ.
