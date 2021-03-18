@@ -1,4 +1,5 @@
-// Synchronous or asynchronous
+// Synchronous
+
 
 // Asynchronous
 

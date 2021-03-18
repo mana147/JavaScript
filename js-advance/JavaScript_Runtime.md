@@ -22,7 +22,7 @@ JS Runtime là browser's JS runtime environment , ở đây chúng ta chỉ tìm
 ![js-runtime-big-picture](https://github.com/mana147/JavaScript/blob/main/js-advance/img/js-runtime-big-picture.png?raw=true)
 
 - Các webAPIs như AJAX, setTimeout hay DOM không nằm trong JS Engine.
-- Sử dụng Event Loop, Callback queue, WebAPIs  để xử lý bất đồng bộ. Chúng chạy trên các thread riêng và được browser bảo trợ về concurrency.
+- Sử dụng Event Loop, Callback queue, WebAPIs  để xử lý bất đồng bộ, chúng chạy trên các thread riêng và được browser bảo trợ về concurrency.
 
 
 xét ví dụ sau :
@@ -62,3 +62,13 @@ chú ý :
 UI được browser render một cách mượt mà nhất với con số lý tưởng là 60 fps , tức là cứ khoảng 16.6ms thì vẽ lại màn hình một lần. Nhưng thực tế vì nhiều nguyên nhân khác nhau, render bị ảnh hưởng bởi việc chạy code JavaScript. Browser không thể gọi render() nếu có code JS cần chạy trong CallStack, nó phải đợi cho CS rỗng mới chạy được. Chỉ khác một chút là render() được ưu tiên hơn so với các callback thông thường. Cứ mỗi 16ms, một lời gọi render() sẽ được đưa vào hàng đợi và đến khi CS rỗng thì mới được thực thi.
 
 Suy ra, nếu bạn block CS quá lâu thì UI sẽ bị đơ, user chẳng thể click lên button hay edit text được nữa.
+
+
+## References 
+
+- https://blogchanhday.com/p/javascript-tong-quan-ve-engine-runtime-call-stack-va-event-loop/
+- https://2014.jsconf.eu/speakers/philip-roberts-what-the-heck-is-the-event-loop-anyway.html#transcript
+- https://giaphiep.com/blog/tim-hieu-ve-vong-lap-callback-promise-va-asyncawait-trong-javascript-27865
+- https://www.youtube.com/watch?v=KDhgDyMQzME&list=PLmSai9ZRK6uyZ7L8k10pOSvQRhZbg1W4w&index=8
+- https://www.youtube.com/watch?v=8aGhZQkoFbQ
+
