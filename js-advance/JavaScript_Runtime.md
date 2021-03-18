@@ -71,4 +71,3 @@ Suy ra, nếu bạn block CS quá lâu thì UI sẽ bị đơ, user chẳng th�
 - https://giaphiep.com/blog/tim-hieu-ve-vong-lap-callback-promise-va-asyncawait-trong-javascript-27865
 - https://www.youtube.com/watch?v=KDhgDyMQzME&list=PLmSai9ZRK6uyZ7L8k10pOSvQRhZbg1W4w&index=8
 - https://www.youtube.com/watch?v=8aGhZQkoFbQ
-
