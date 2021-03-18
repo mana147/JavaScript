@@ -1,4 +1,41 @@
-// Synchronous
+# Quá trình đồng bộ (Synchronous): 
+
+giải thích : 
+    
+    Về cơ bản thì quá trình này gồm các câu lệnh được thực hiện theo thứ tự lần lần lượt, câu lệnh thứ nhất phải hoàn thành thì mới có thể thực hiện câu lệnh thứ hai , ...
+
+
+Code JavaScript không sử dụng bất kỳ API Web không đồng bộ nào sẽ thực thi theo cách đồng bộ — tuần tự từng dòng code một. Điều này được chứng minh bằng đoạn code trong ví dụ sau:
+
+```js
+// Define three example functions
+function first() {
+    console.log(1)
+}
+
+function second() {
+    console.log(2)
+}
+
+function third() {
+    console.log(3)
+}
+
+// Execute the functions
+first()
+second()
+third()
+
+// Output:
+// 1
+// 2
+// 3
+```
+
+
+
+
+
 
 
 // Asynchronous
