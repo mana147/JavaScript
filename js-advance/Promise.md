@@ -134,6 +134,17 @@ Promise.all([task_1, task_2, task_3, task_4, task_5])
         console.log(err);
     })
 ```
+console.log :  
+```log
+[
+  'T1 > begin > read cookie',
+  'T2 get data from server 1 ',
+  'T3 get data from server 2',
+  'T4 get data from server 3',
+  'T5 > render > end'
+]
+Execution Time: 1010.151m
+```
 
 Phương thức này nhận vào một mảng các promises và chỉ resolve khi tất cả các promises này hoàn thành, hoặc reject khi một trong số chúng xảy ra lỗi.
 
