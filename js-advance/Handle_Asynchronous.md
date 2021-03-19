@@ -131,7 +131,8 @@ Các task đã trả về kết quả đúng thứ tự , nhưng thời gian x�
 
 # Sử dụng Promise (ES6):
 
-    Giải thích : hiểu đơn giản , Promise nghĩa là "lời hứa" đại diện cho giá trị chưa tồn tại và giá trị đó sẽ được trả về vào một thời gian trong tương lai.
+    Giải thích : hiểu đơn giản , Promise nghĩa là "lời hứa" đại diện cho giá trị chưa tồn tại 
+    và giá trị đó sẽ được trả về vào một thời gian trong tương lai.
 
 ví dụ : Chức năng lấy data từ server , tôi "hứa" sẽ lấy đc data từ server, trường hợp lấy đc data thành công tôi "thực hiện lời hứa" , nếu đứt mạng hoặc server hỏng ... tôi "thất hữa" . 
 
