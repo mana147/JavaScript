@@ -173,4 +173,4 @@ giải thích :
 
 Phương thức này nhận vào một mảng các promises và sẽ resolve/reject ngay khi một trong số các promises này hoàn thành/xảy ra lỗi.
 
-![Promiserace]()
+![Promiserace](https://github.com/mana147/JavaScript/blob/main/js-advance/img/Promiserace.jpg?raw=true)
