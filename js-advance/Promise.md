@@ -137,4 +137,4 @@ Promise.all([task_1, task_2, task_3, task_4, task_5])
 
 Phương thức này nhận vào một mảng các promises và chỉ resolve khi tất cả các promises này hoàn thành, hoặc reject khi một trong số chúng xảy ra lỗi.
 
-![Promiseall]()
+![Promiseall](https://github.com/mana147/JavaScript/blob/main/js-advance/img/Promiseall.jpg?raw=true)
