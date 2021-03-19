@@ -60,23 +60,33 @@ hua_lay_du_lieu
 
 ## Promise chaining : 
 
-So sánh 2 ví dụ sau : dùng callback và dùng promise 
+xem ví dụ sau 
 
 ```js
- // Dùng callback hell
-Đi_mua_xe(function(xe) {
-    chở_gái_đi_chơi(xe, function(gái) {
-        chở_gái_vào_hotel(hotel, function(z) { 
-            // Làm gì đó, ai biết
-        });
-    });
+
+let hai_ngay = 2000;
+
+let di_rut_tien = new Promise(function (thanh_cong, that_bai) {
+    setTimeout(function () {
+        let sotien = 100;
+        thanh_cong(sotien);
+    }, hai_ngay );
 });
 
-// Dùng promise, code gọn nhẹ dễ đọc
-Đi_mua_xe
-  .then(chở_gái_đi_chơi)
-  .then(chở_gái_vào_hotel)
-  .then(function() { /*Làm gì đó, ai biết*/ });
+di_rut_tien.then( function(so_tien ){
+    console.log(`số tiền rút đc là : ${so_tien} vnd`);
+    return so_tien;
+}).then(function (so_tien_hien_co) {
+    let so_tien_mua_xe = 30;
+    let so_tien_con_lai = so_tien_hien_co - so_tien_mua_xe;
+    console.log( `số tiền còn lại sau khi mua xe : ${so_tien_con_lai}` );
+    return so_tien_con_lai;
+}).then(function (so_tien_hien_co ) {
+    let so_tien_mua_nha = 50;
+    let so_tien_con_lai = so_tien_hien_co - so_tien_mua_nha ;
+    console.log(`số tiền còn lại sau khi mua nhà : ${so_tien_con_lai}`);
+    return so_tien_con_lai;
+})
 ```
 
 ## Xử lý bất đồng bộ với Promise: 

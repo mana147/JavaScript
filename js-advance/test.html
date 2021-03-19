@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <h1>The script element</h1>
+
+    <p id="demo"></p>
+
+    <script>
+
+
+
+        // const hua_lay_du_lieu = new Promise(function (thuc_hien_loi_hua, that_hua) {
+        //     //  chỉ một trong 2 trường hợp thuc_hien_loi_hua hoặc that_hua đc thực hiện 
+
+        //     //  giả sử chương trình lấy data mất 2s
+
+        //     //  đây là webAPIs bất đồng bộ
+
+        //     setTimeout(function () {
+        //         // sau khi lấy đc thì trả về kết quả 
+        //         let data = 'data la 123456 ';
+        //         // chuyền data vào thưc hien lơi hua
+        //         thuc_hien_loi_hua(data);
+        //     }, 2000);
+
+
+        //     // that_hua('err');
+        // });
+
+
+        // hua_lay_du_lieu
+        //     //then(): Dùng để xử lý sau khi "hứa" được thực hiện thành công (khi thuc_hien_loi_hua có data ).
+        //     .then(function (ket_qua) {
+        //         console.log("ket qua: ", ket_qua);
+        //     })
+        //     // catch(): Dùng để xử lý sau khi "Hứa" có bất kỳ lỗi nào đó (khi that_hua được gọi).
+        //     .catch(function (err) {
+        //         console.log("Error: ", err);
+        //     })
+        //     // .finally(): Dùng để xử lý cuối cùng dù có data hay lỗi 
+        //     .finally(function () {
+        //         console.log(" xử lý cuối cùng dù có ket_qua hay có err ");
+        //     })
+
+        // ====================================================================
+        //  tất cả các task thực hiện cùng lúc, 
+
+        console.time('Execution Time');
+
+        let task_1 = new Promise(function (thanh_cong, that_bai) {
+            let data = 'T1 > begin > read cookie';
+            thanh_cong(data);
+        });
+
+        let task_2 = new Promise(function (thanh_cong, that_bai) {
+            setTimeout(function () {
+                let data = 1;
+                thanh_cong(data);
+            }, 1000);
+        });
+
+        let task_3 = new Promise(function (thanh_cong, that_bai) {
+            setTimeout(function () {
+                let data = 'T3 get data from server 2';
+                thanh_cong(data);
+            }, 2000);
+        });
+
+        let task_4 = new Promise(function (thanh_cong, that_bai) {
+            setTimeout(function () {
+                let data = 'T4 get data from server 3';
+                thanh_cong(data);
+            }, 1000);
+        })
+
+        let task_5 = new Promise(function (thanh_cong, that_bai) {
+            let data = 'T5 > render > end';
+            thanh_cong(data);
+        })
+
+        Promise.resolve()
+                .then(task_1)
+                .then(task_2)
+                .then(task_3)
+
+// Promise.all([task_1, task_2, task_3, task_4, task_5])
+//     .then(function (ket_qua) {
+//         console.log(ket_qua);
+//         console.timeEnd('Execution Time');
+//     })
+//     .catch(function (err) {
+//         console.log(err);
+//     })
+
+
+// Promise.race([task_1, task_2, task_3, task_4, task_5])
+//     .then(function (ket_qua) {
+//         console.log(ket_qua);
+//         console.timeEnd('Execution Time');
+//     })
+//     .catch(function (err) {
+//         console.log(err);
+//     })
+
+
+// var p2 = new Promise(function (resolve, reject) {
+//     resolve(1);
+// });
+
+// console.log(p2.then( function(value) { console.log (value) }));
+
+// p2.then(function (value) {
+//     console.log(`t1 : ${value}`); 
+//     return value + 1;
+// }).then(function (value) {
+//     console.log(value + ' - A synchronous value works');
+//     return value;
+// }).then(function (value) {
+//     console.log(`t2 : ${value}`); 
+// });
+
+
+        // let hai_ngay = 2000;
+
+        // let di_rut_tien = new Promise(function (thanh_cong, that_bai) {
+        //     setTimeout(function () {
+        //         let sotien = 100;
+        //         thanh_cong(sotien);
+        //     }, hai_ngay );
+        // });
+
+        // di_rut_tien.then( function(so_tien ){
+        //     console.log(`số tiền rút đc là : ${so_tien} vnd`);
+        //     return so_tien;
+        // }).then(function (so_tien_hien_co) {
+        //     let so_tien_mua_xe = 30;
+        //     let so_tien_con_lai = so_tien_hien_co - so_tien_mua_xe;
+        //     console.log( `số tiền còn lại sau khi mua xe : ${so_tien_con_lai}` );
+        //     return so_tien_con_lai;
+        // }).then(function (so_tien_hien_co ) {
+        //     let so_tien_mua_nha = 50;
+        //     let so_tien_con_lai = so_tien_hien_co - so_tien_mua_nha ;
+        //     console.log(`số tiền còn lại sau khi mua nhà : ${so_tien_con_lai}`);   
+        // })
+
+
+    </script>
+
+</body>
+
+</html>
