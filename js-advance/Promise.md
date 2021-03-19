@@ -151,3 +151,26 @@ Phương thức này nhận vào một mảng các promises và chỉ resolve kh
 
 ![Promiseall](https://github.com/mana147/JavaScript/blob/main/js-advance/img/Promiseall.jpg?raw=true)
 
+
+> Sử dụng phương thức Promise.race([promise1, promise2, ...])
+```js
+Promise.race([task_1, task_2, task_3, task_4, task_5])
+    .then(function (ket_qua) {
+        console.log(ket_qua);
+        console.timeEnd('Execution Time');
+    })
+    .catch(function (err) {
+        console.log(err);
+    })
+```
+console.log :
+```log
+// nó chỉ chạy mỗi task 1 vì nó chạy xong đầu tiên 
+T1 > begin > read cookie
+Execution Time: 10.219ms
+```
+giải thích :
+
+Phương thức này nhận vào một mảng các promises và sẽ resolve/reject ngay khi một trong số các promises này hoàn thành/xảy ra lỗi.
+
+![Promiserace]()

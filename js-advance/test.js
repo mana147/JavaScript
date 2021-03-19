@@ -66,7 +66,17 @@ let task_5 = new Promise( function (thanh_cong, that_bai) {
     thanh_cong (data);
 })
 
-Promise.all([task_1, task_2, task_3, task_4, task_5])
+// Promise.all([task_1, task_2, task_3, task_4, task_5])
+//     .then(function (ket_qua) {
+//         console.log(ket_qua);
+//         console.timeEnd('Execution Time');
+//     })
+//     .catch(function (err) {
+//         console.log(err);
+//     })
+
+
+Promise.race([task_1, task_2, task_3, task_4, task_5])
     .then(function (ket_qua) {
         console.log(ket_qua);
         console.timeEnd('Execution Time');
