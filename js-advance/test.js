@@ -26,3 +26,7 @@ hua_lay_du_lieu
     .catch(function (err) {
         console.log("Error: ", err);
     })
+    // .finally(): Dùng để xử lý cuối cùng dù có data hay lỗi 
+    .finally(function () {
+        console.log(" xử lý cuối cùng dù có ket_qua hay có err ");
+    })
