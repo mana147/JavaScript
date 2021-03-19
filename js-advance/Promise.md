@@ -121,7 +121,7 @@ let task_5 = new Promise( function (thanh_cong, that_bai) {
 
 ```
 
-Sử dụng phương thức Promise.all([promise1, promise2, ...]).
+> Sử dụng phương thức Promise.all([promise1, promise2, ...]).
 
 ```js
 // cac task trả kết quả theo đúng thứ tự 
@@ -145,7 +145,9 @@ console.log :
 ]
 Execution Time: 1010.151m
 ```
+Giải thích :
 
 Phương thức này nhận vào một mảng các promises và chỉ resolve khi tất cả các promises này hoàn thành, hoặc reject khi một trong số chúng xảy ra lỗi.
 
 ![Promiseall](https://github.com/mana147/JavaScript/blob/main/js-advance/img/Promiseall.jpg?raw=true)
+
