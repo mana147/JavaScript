@@ -87,6 +87,20 @@ di_rut_tien.then( function(so_tien ){
     console.log(`số tiền còn lại sau khi mua nhà : ${so_tien_con_lai}`);
     return so_tien_con_lai;
 })
+
+
+//  tương tự bài toán trên 
+// Fetch a user from the GitHub API
+fetch('https://api.github.com/users/octocat')
+    .then((response) => {
+        return response.json();
+    })
+    .then((data) => {
+        console.log(data)
+    })
+    .catch((error) => {
+        console.error(error)
+    })
 ```
 
 ## Xử lý bất đồng bộ với Promise: 
