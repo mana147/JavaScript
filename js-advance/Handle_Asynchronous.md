@@ -60,7 +60,7 @@ Question :
 - vv...
 
 *Vậy trong JavaScript chúng ta có các cách xử lý bất đồng bộ như sau :*
-- Callback
+- Callback 
 - Promise
 - Async / Await
 
@@ -129,13 +129,65 @@ console.log
 ```
 Các task đã trả về kết quả đúng thứ tự , nhưng thời gian xử lý tăng lên , các câu lệnh lồng vào nhau chúng ta gọi là callback hell .
 
-# Sử dụng Promise (ES6)
+# Sử dụng Promise (ES6):
+
+    Giải thích : hiểu đơn giản , Promise nghĩa là "lời hứa" đại diện cho giá trị chưa tồn tại và giá trị đó sẽ được trả về vào một thời gian trong tương lai.
+
+ví dụ : Chức năng lấy data từ server , tôi "hứa" sẽ lấy đc data từ server, trường hợp lấy đc data thành công tôi "thực hiện lời hứa" , nếu đứt mạng hoặc server hỏng ... tôi "thất hữa" . 
+
+code hóa chức năng trên bằng promise : 
 
 ```js
-$.get("http://orderpcb.vn/getcf/all", function(data, status){
-      console.log(data);
+
+// Hàm này trả ra lời hứa chứ không phải data
+
+const hua_lay_du_lieu = new Promise(function (thuc_hien_loi_hua, that_hua) {
+    //  chỉ một trong 2 trường hợp thuc_hien_loi_hua hoặc that_hua đc thực hiện 
+
+    //  giả sử chương trình lấy data mất 2s
+
+    //  đây là webAPIs bất đồng bộ
+
+    setTimeout(function () {
+        // sau khi lấy đc thì trả về kết quả 
+        let data = 'data la 123456 ';
+        // chuyền data vào thưc hien lơi hua
+        thuc_hien_loi_hua(data);
+    }, 2000);
+
+
+    // that_hua('err');
 });
+
+//  Lời hứa bây giờ đang là thực hiện 
+
+//  .then() nếu nó giữ lời thì nó sẽ trả ra data
+
+//  .catch() nếu nó xù thất hữa , thì trả ra err
+
+//  .finally() cuối cùng thì dù nó có giữ lời hứa hay thất hứa thì cũng thực hiện 
+
+hua_lay_du_lieu
+    //then(): Dùng để xử lý sau khi "hứa" được thực hiện thành công (khi thuc_hien_loi_hua có data ).
+    .then(function (ket_qua) {
+        console.log("ket qua: ", ket_qua);
+    })
+    // catch(): Dùng để xử lý sau khi "Hứa" có bất kỳ lỗi nào đó (khi that_hua được gọi).
+    .catch(function (err) {
+        console.log("Error: ", err);
+    })
 ```
 
 
-git add -A && git commit -m "update" && git push
+     
+    
+Ví dụ : để dễ hiểu chúng ta có chương trình " pha cà phê " như sau : 
+- xay cà phê = 3 phút
+- cho cà phê vào phin = 5 phút 
+- lấy sữa = 2 phút
+- pha chế = 1 phút
+
+giải sử theo tuần tự chúng ta có : xay cà phê > cho cà phê vào phin > lấy sữa > pha chế > done, nhưng chúng ta muốn tất cả chạy cùng 1 lúc để đỡn tốn thời gian . 
+
+
+
