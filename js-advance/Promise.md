@@ -62,6 +62,7 @@ hua_lay_du_lieu
 
     Giá trị trả về của hàm then là 1 promise khác. 
     Do vậy ta có thể dùng promise gọi liên tiếp các hàm bất đồng bộ.
+    
 xem ví dụ sau 
 
 ```js
