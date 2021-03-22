@@ -62,6 +62,8 @@ hua_lay_du_lieu
 
     Giá trị trả về của hàm then là 1 promise khác. 
     Do vậy ta có thể dùng promise gọi liên tiếp các hàm bất đồng bộ.
+
+![promise](https://github.com/mana147/JavaScript/blob/main/js-advance/img/promises.png?raw=true)
     
 xem ví dụ sau 
 
