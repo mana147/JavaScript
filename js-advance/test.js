@@ -84,57 +84,83 @@
 
 //  sử dụng promise
 
-//  hàm này trả về một Promise 
-//  giả lập việc get data đc  
-function getData(key) {
-    return new Promise(function (resolve, reject) {
-        // cho data = 'data 123 !@#';
-        let data = 'data 123 !@#';
-        let err = 'erro';
+// //  hàm này trả về một Promise 
+// //  giả lập việc get data đc  
+// function getData(key) {
+//     return new Promise(function (resolve, reject) {
+//         // cho data = 'data 123 !@#';
+//         let data = 'data 123 !@#';
+//         let err = 'erro';
 
-        if (key == 'ok') {
-            //  truyền data vào resolve
-            resolve(data);
-        } else if (key == 'null') {
-            // 
-            reject(err);
-        }
+//         if (key == 'ok') {
+//             //  truyền data vào resolve
+//             resolve(data);
+//         } else if (key == 'null') {
+//             // 
+//             reject(err);
+//         }
 
+//     });
+// }
+
+
+// getData("ok")
+//     .then(function (value) { console.log(value) })
+//     .catch(function (err) { console.log(err) });
+
+
+// getData("null")
+//     .then(function (value) { console.log(value) })
+//     .catch(function (err) { console.log(err) });
+
+
+
+// // sử dụng Async / Await viết lại hàm trên
+
+// async function asyn_promise(key) {
+//     let data = 'data 123 !@#';
+//     let err = 'erro';
+
+//     if (key == 'ok') {
+//         return data;
+//     } else if (key == 'null') {
+//         throw err;
+//     }
+// }
+
+// console.log(asyn_promise);
+
+// asyn_promise("ok")
+//     .then(function (value) { console.log(value) })
+//     .catch(function (err) { console.log(err) });
+
+// asyn_promise("null")
+//     .then(function (value) { console.log(value) })
+//     .catch(function (err) { console.log(err) });
+
+// function delay(time) {
+//     let promise;
+
+//     promise = new Promise(function (resolve, err) {
+//         setTimeout(function () {
+//             resolve(time);
+//         }, time)
+//     });
+
+//     return promise;
+// }
+
+function getData () {
+    let promise;
+    let data = "123 !@# vcc"
+    
+    promise = new Promise(function (res, rej) {
+        setTimeout(function () {
+            res(data);
+        }, 2000)
     });
+
+    return promise;
 }
 
-
-getData("ok")
-    .then(function (value) { console.log(value) })
-    .catch(function (err) { console.log(err) });
-
-
-getData("null")
-    .then(function (value) { console.log(value) })
-    .catch(function (err) { console.log(err) });
-
-
-
-// sử dụng Async / Await viết lại hàm trên
-
-async function asyn_promise(key) {
-    let data = 'data 123 !@#';
-    let err = 'erro';
-
-    if (key == 'ok') {
-        return data;
-    } else if (key == 'null') {
-        throw err;
-    }
-}
-
-console.log(asyn_promise);
-
-asyn_promise("ok")
-    .then(function (value) { console.log(value) })
-    .catch(function (err) { console.log(err) });
-
-asyn_promise("null")
-    .then(function (value) { console.log(value) })
-    .catch(function (err) { console.log(err) });
-
+getData();
