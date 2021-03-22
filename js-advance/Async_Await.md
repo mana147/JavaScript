@@ -69,5 +69,7 @@ asyn_promise("null")
 
 ```
 
-## Await : làm một hàm đợi Promise thực thi
-> Bên trong hàm async ta có thể sử dụng thêm từ khóa là await, và chỉ có thể sử dụng await trong hàm async, nó sẽ cho phép ta chỉ định một tác vụ phải "đợi tao chạy xong". 
+## Await : nó sẽ cho phép ta chỉ định một tác vụ phải "đợi tao chạy xong".
+
+giải thích : hiểu đơn giản là dừng việc thực thi hàm cho đến khi thằng Promise được giải quyết xong .
+

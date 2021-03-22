@@ -171,25 +171,22 @@
 //     .catch(function (err) { console.log(err) });
 
 
-
-async function main() {
-    
-    console.log("1");
-
-    new Promise(function (res, rej) {
-        let data = "ok";
-        setTimeout(function () {
-            res(data);
-        }, 2000)
-    }).then(function (data) { console.log(data); return data });
-
-    console.log("2");
-
-    return "r";
+async function Asyn(str) {
+    return str;
 }
 
-console.log(main().then(r=>console.log(r)));
-// // 
+// Asyn("hello").then(data => console.log(data));
+
+async function main() {
+    let A = await Asyn("A");
+    let B = await Asyn("B");
+    let C = await Asyn("C");
+
+    return A,B,C
+}
+
+console.log(main().the)
+
 
 // function wait(numb , str) {
 //     let prmise 
