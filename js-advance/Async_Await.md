@@ -6,7 +6,10 @@
 
 ## Async : làm một hàm trả về một Promise.
 
-> Async function là một cách để chúng ta định nghĩa một hàm trả về 1 Promise đã được resolve 
+có nghĩa là : cứ khai báo async trước 1 hàm nào , thì nó tự động 
+- đẩy [ return value ] của hàm đó vào Promise.resolve( value ) 
+- đẩy [ throw error ] của hàm đó vào Promise.reject( error )
+- đưa thêm context để xử dụng [ await ] 
 
 ví dụ : sử dụng promise 
 ```js
@@ -67,4 +70,4 @@ asyn_promise("null")
 ```
 
 ## Await : làm một hàm đợi Promise thực thi
-> Bên trong hàm async ta có thể sử dụng thêm từ khóa là await, và chỉ có thể sử dụng await trong hàm async, nó sẽ cho phép ta chỉ định một tác vụ phải "đợi tao chạy xong".
+> Bên trong hàm async ta có thể sử dụng thêm từ khóa là await, và chỉ có thể sử dụng await trong hàm async, nó sẽ cho phép ta chỉ định một tác vụ phải "đợi tao chạy xong". 

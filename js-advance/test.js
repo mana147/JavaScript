@@ -150,17 +150,56 @@
 //     return promise;
 // }
 
-function getData () {
-    let promise;
-    let data = "123 !@# vcc"
+
+// // //  giải lập get data từ server , sau 2s 
+// // sủ dung promise
+// function getData () {
+//     let promise;
+//     let data = "123 !@# vcc"
     
-    promise = new Promise(function (res, rej) {
+//     promise = new Promise(function (res, rej) {
+//         setTimeout(function () {
+//             res(data);
+//         }, 2000)
+//     });
+
+//     return promise;
+// }
+
+// getData()
+//     .then(function (data) { console.log(data) })
+//     .catch(function (err) { console.log(err) });
+
+
+
+async function main() {
+    
+    console.log("1");
+
+    new Promise(function (res, rej) {
+        let data = "ok";
         setTimeout(function () {
             res(data);
         }, 2000)
-    });
+    }).then(function (data) { console.log(data); return data });
 
-    return promise;
+    console.log("2");
+
+    return "r";
 }
 
-getData();
+console.log(main().then(r=>console.log(r)));
+// // 
+
+// function wait(numb , str) {
+//     let prmise 
+
+//     return delay
+// }
+
+// async function main() {
+//     console.log("1");
+//     // viết hàm đợi 1 s mới đc in ra số 2
+//     console.log("3");
+// };
+// main();
