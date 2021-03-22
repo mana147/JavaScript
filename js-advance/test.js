@@ -60,31 +60,81 @@
 //    })
 // }
 
-// main();
-const fetch = require('node-fetch');
+// // main();
+// const fetch = require('node-fetch');
 
-async function showAvatar() {
+// function getJson() {
+//     let dataJson;
 
-    // read our JSON
-    let response = await fetch('/article/promise-chaining/user.json');
-    let user = await response.json();
+//     dataJson = new Promise(function (data, err) {
+//         const response = fetch('https://api.github.com/users/octoscat');
+//         data(response);
+//     });
 
-    // read github user
-    let githubResponse = await fetch(`https://api.github.com/users/${user.name}`);
-    let githubUser = await githubResponse.json();
+//     return dataJson;
+// }
 
-    // show the avatar
-    let img = document.createElement('img');
-    img.src = githubUser.avatar_url;
-    img.className = "promise-avatar-example";
-    document.body.append(img);
+// function main() {
+//     getJson()
+//         .then(function (value) {
+//             console.log(value);
+//         })
+// }
 
-    // wait 3 seconds
-    await new Promise((resolve, reject) => setTimeout(resolve, 3000));
 
-    img.remove();
+//  sử dụng promise
 
-    return githubUser;
+//  hàm này trả về một Promise 
+//  giả lập việc get data đc  
+function getData(key) {
+    return new Promise(function (resolve, reject) {
+        // cho data = 'data 123 !@#';
+        let data = 'data 123 !@#';
+        let err = 'erro';
+
+        if (key == 'ok') {
+            //  truyền data vào resolve
+            resolve(data);
+        } else if (key == 'null') {
+            // 
+            reject(err);
+        }
+
+    });
 }
 
-showAvatar();
+
+getData("ok")
+    .then(function (value) { console.log(value) })
+    .catch(function (err) { console.log(err) });
+
+
+getData("null")
+    .then(function (value) { console.log(value) })
+    .catch(function (err) { console.log(err) });
+
+
+
+// sử dụng Async / Await viết lại hàm trên
+
+async function asyn_promise(key) {
+    let data = 'data 123 !@#';
+    let err = 'erro';
+
+    if (key == 'ok') {
+        return data;
+    } else if (key == 'null') {
+        throw err;
+    }
+}
+
+console.log(asyn_promise);
+
+asyn_promise("ok")
+    .then(function (value) { console.log(value) })
+    .catch(function (err) { console.log(err) });
+
+asyn_promise("null")
+    .then(function (value) { console.log(value) })
+    .catch(function (err) { console.log(err) });
+

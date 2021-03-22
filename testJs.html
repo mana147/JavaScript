@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <h2>My Heading</h2>
+
+    <p>Play around with the code and click on the "Run" button to view the result.</p>
+
+    <p id="demo"></p>
+
+    <script>
+        fetch('https://api.github.com/users/octocat')
+                .then((response) => {
+                    return response.json()
+                })
+                .then((data) => {
+                    console.log(data)
+                })
+                .catch((error) => {
+                    console.error(error)
+                })
+
+    </script>
+
+</body>
+
+</html>
