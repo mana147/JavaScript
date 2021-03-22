@@ -69,7 +69,7 @@ asyn_promise("null")
 
 ```
 
-## Await : đợi cho đến khi Promise đó pending xong và trả về resolve hoặc reject .
+## Await : đợi cho đến khi Promise đó "xong" và trả về resolve hoặc reject .
 
 giải thích : hiểu đơn giản là dừng việc thực thi hàm cho đến khi thằng Promise được giải quyết xong .
 
