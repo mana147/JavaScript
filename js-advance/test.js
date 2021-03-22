@@ -171,21 +171,21 @@
 //     .catch(function (err) { console.log(err) });
 
 
-async function Asyn(str) {
-    return str;
-}
+// async function Asyn(str) {
+//     return str; 
+// }
 
 // Asyn("hello").then(data => console.log(data));
 
-async function main() {
-    let A = await Asyn("A");
-    let B = await Asyn("B");
-    let C = await Asyn("C");
+// async function main() {
+//     let A = await Asyn("A");
+//     let B = await Asyn("B");
+//     let C = await Asyn("C");
+//     console.log(A, B, C);
+//     return [A, B, C];
+// }
 
-    return A,B,C
-}
-
-console.log(main().the)
+// console.log(main())
 
 
 // function wait(numb , str) {
@@ -200,3 +200,82 @@ console.log(main().the)
 //     console.log("3");
 // };
 // main();
+
+// const { PerformanceObserver, performance } = require('perf_hooks');
+
+// let promise = (numb, str) => new Promise(function (res, rej) {
+    
+//     setTimeout(function () {
+//         res(str);
+//     }, numb);
+// });
+
+// async function main() {
+//     let t0 = performance.now();
+
+//     let p1 = promise(1000, "1/2").then(val => console.log(val));
+//     let p2 = promise(1000, "2/3").then(val => console.log(val));
+
+//     console.log('1');
+//     await p1;
+//     console.log('2');
+//     await p2;
+
+//     let t1 = performance.now();
+//     let timeExecute = t1 - t0;
+//     if (timeExecute < 6100 ) {
+//         return `Time Execute = ${timeExecute}`;
+//     } else {
+//         throw `Time Execute = ${timeExecute}`;
+//     }
+
+// }
+
+// // main();
+
+// async function tryCath() {
+//     try {
+//         await main().then(function (val) { console.log(val) });
+//         console.log('chạy không lỗi')
+//     } catch (e) {
+//         console.log(` error ${e} `)
+//     }
+// }
+
+// tryCath();
+
+//  khai báo hàm wait truyền tham số ms 
+// trả về một promise chạy api setTimeout
+function wait(ms) {
+    return new Promise(r => setTimeout(r, ms))
+}
+
+async function main() {
+
+    console.time('time0')
+    await wait(1000)
+    await wait(2000)
+    console.timeEnd('time0')
+
+    console.time('time1')
+    let w1 = wait(1000)
+    let w2 = wait(2000)
+    await w1
+    await w2
+    console.timeEnd('time1')
+
+    console.time('time2')
+    await Promise.all([wait(1000), wait(2000)])
+    console.timeEnd('time2')
+}
+
+// // viết hàm asyn 
+// async function main() {
+//     console.time('time')
+
+//     await Promise.all([wait(1000), wait(2000)])
+    
+//     console.timeEnd('time')
+// }
+
+main();
