@@ -269,7 +269,7 @@ function readFilePromise(path) {
 async function run() {
     console.log("time Start");
     
-    let song1 = readFilePromise('./song 1.txt');
+    let song1 = readFilePromise('./song1.txt');
     let song2 = readFilePromise('./song2.txt');
     let song3 = readFilePromise('./song3.txt');
 
