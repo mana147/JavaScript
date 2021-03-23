@@ -244,30 +244,30 @@
 
 // tryCath();
 
-//  khai báo hàm wait truyền tham số ms 
-// trả về một promise chạy api setTimeout
-function wait(ms) {
-    return new Promise(r => setTimeout(r, ms))
-}
+// //  khai báo hàm wait truyền tham số ms 
+// // trả về một promise chạy api setTimeout
+// function wait(ms) {
+//     return new Promise(r => setTimeout(r, ms))
+// }
 
-async function main() {
+// async function main() {
 
-    console.time('time0')
-    await wait(1000)
-    await wait(2000)
-    console.timeEnd('time0')
+//     console.time('time0')
+//     await wait(1000)
+//     await wait(2000)
+//     console.timeEnd('time0')
 
-    console.time('time1')
-    let w1 = wait(1000)
-    let w2 = wait(2000)
-    await w1
-    await w2
-    console.timeEnd('time1')
+//     console.time('time1')
+//     let w1 = wait(1000)
+//     let w2 = wait(2000)
+//     await w1
+//     await w2
+//     console.timeEnd('time1')
 
-    console.time('time2')
-    await Promise.all([wait(1000), wait(2000)])
-    console.timeEnd('time2')
-}
+//     console.time('time2')
+//     await Promise.all([wait(1000), wait(2000)])
+//     console.timeEnd('time2')
+// }
 
 // // viết hàm asyn 
 // async function main() {
@@ -278,4 +278,35 @@ async function main() {
 //     console.timeEnd('time')
 // }
 
-main();
+// main();
+
+let fs = require('fs');
+
+function readFilePromise(path) {
+    return new Promise(function (resovle, reject) {
+        fs.readFile(path, 'utf8', function (err, data) {
+            if (err) {
+                reject(err);
+            } else {
+                resovle(data);
+            }
+        });
+    });
+}
+
+async function run() {
+    console.log("time Start");
+    
+    let song1 = readFilePromise('./song1.txt');
+    let song2 = readFilePromise('./song2.txt');
+    let song3 = readFilePromise('./song3.txt');
+
+    await song1.then(data => console.log(data)).catch(err => console.log(err));
+    await song2.then(data => console.log(data)).catch(err => console.log(err));
+    await song3.then(data => console.log(data)).catch(err => console.log(err));
+
+    console.log("time End");
+    
+    return [song1, song2, song3 ];
+}
+run();

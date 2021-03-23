@@ -249,3 +249,37 @@ async/await cũng có một số bất cập mà các bạn cần phải lưu ý
 - Không chạy được trên các trình duyệt cũ. Nếu dự án yêu cầu phải chạy trên các trình duyệt cũ, bạn sẽ phải dùng Babel để transpiler code ra ES5 để chạy.
 - Khi ta await một promise bị reject, JavaScript sẽ throw một Exception. Do đó, nếu dùng async await mà quên try catch thì lâu lâu chúng ta sẽ bị… nuốt lỗi hoặc code ngừng chạy.
 - async và await bắt buộc phải đi kèm với nhau! await chỉ dùng được trong hàm async, nếu không sẽ bị syntax error. Do đó, async/await sẽ lan dần ra toàn bộ các hàm trong code của bạn.
+
+demo : đọc file sử dụng async / await
+```js
+let fs = require('fs');
+
+function readFilePromise(path) {
+    return new Promise(function (resovle, reject) {
+        fs.readFile(path, 'utf8', function (err, data) {
+            if (err) {
+                reject(err);
+            } else {
+                resovle(data);
+            }
+        });
+    });
+}
+
+async function run() {
+    console.log("time Start");
+    
+    let song1 = readFilePromise('./song1.txt');
+    let song2 = readFilePromise('./song2.txt');
+    let song3 = readFilePromise('./song3.txt');
+
+    await song1.then(data => console.log(data)).catch(err => console.log(err));
+    await song2.then(data => console.log(data)).catch(err => console.log(err));
+    await song3.then(data => console.log(data)).catch(err => console.log(err));
+
+    console.log("time End");
+    
+    return [song1, song2, song3 ];
+}
+run();
+```
