@@ -306,3 +306,140 @@
 //     return [song1, song2, song3 ];
 // }
 // run();
+
+// // Hàm này trả ra lời hứa chứ không phải data
+
+// const hua_lay_du_lieu = new Promise(function (thuc_hien_loi_hua, that_hua) {
+
+//     //  chỉ một trong 2 trường hợp thuc_hien_loi_hua hoặc that_hua đc thực hiện 
+
+//     //  giả sử chương trình lấy data mất 2s
+
+//     //  đây là webAPIs bất đồng bộ
+
+//     setTimeout(function () {
+
+//         // sau khi lấy đc thì trả về kết quả 
+
+//         let data = 'data la 123456 ';
+
+//         // chuyền data vào thưc hien lơi hua
+
+//         thuc_hien_loi_hua(data);
+
+//     }, 1000);
+
+//     // that_hua('err');
+// });
+
+// //  Lời hứa bây giờ đang là thực hiện 
+
+// //  .then() sau đó nó giữ lời thì nó sẽ trả ra data
+
+// //  .catch() bắt lỗi nó nếu nó thất hữa , thì trả ra err
+
+// //  .finally() cuối cùng thì dù nó có giữ lời hứa hay thất hứa thì cũng làm gì đó ...
+
+// hua_lay_du_lieu
+//     //then(): Dùng để xử lý sau khi "hứa" được thực hiện thành công (khi thuc_hien_loi_hua có data ).
+//     .then(function (ket_qua) {
+//         console.log("ket qua: ", ket_qua);
+//     })
+//     // catch(): Dùng để xử lý sau khi "Hứa" có bất kỳ lỗi nào đó (khi that_hua được gọi).
+//     .catch(function (err) {
+//         console.log("Error: ", err);
+//     })
+//     // .finally(): Dùng để xử lý cuối cùng dù có data hay lỗi 
+//     .finally(function () {
+//         console.log(" xử lý cuối cùng dù có ket_qua hay có err ");
+//     })\
+
+//  viết lại các task theo Promise
+
+// console.time('Execution Time');  // check time
+
+// let task_1 = new Promise(function (thanh_cong, that_bai) {
+//     let data = 'T1 > begin > read cookie';
+//     thanh_cong(data);
+// });
+
+// let task_2 = new Promise(function (thanh_cong, that_bai) {
+//     setTimeout(function () {
+//         let data = 'T2 get data from server 1 ';
+//         thanh_cong(data);
+//     }, 1000);
+// });
+
+// let task_3 = new Promise(function (thanh_cong, that_bai) {
+//     setTimeout(function () {
+//         let data = 'T3 get data from server 2';
+//         thanh_cong(data);
+//     }, 2000);
+// });
+
+// let task_4 = new Promise(function (thanh_cong, that_bai) {
+//     setTimeout(function () {
+//         let data = 'T4 get data from server 3';
+//         thanh_cong(data);
+//     }, 500);
+// })
+
+// let task_5 = new Promise(function (thanh_cong, that_bai) {
+//     let data = 'T5 > render > end';
+//     thanh_cong(data);
+// })
+
+// Promise.race([task_2, task_3, task_4])
+//     .then(function (ket_qua) {
+//         console.log(ket_qua);
+//         console.timeEnd('Execution Time');
+//     })
+//     .catch(function (err) {
+//         console.log(err);
+
+// viết 1 hàm promise đợi trong một khoảng thơi gian 
+
+// khai báo biến promise = hàm vô danh có 2 tham số (numb,str) và hàm này trả về một Promise  
+const { PerformanceObserver, performance } = require('perf_hooks');
+
+let promise = (numb, str) => new Promise(function (res, rej) {
+
+    setTimeout(function () {
+        res(str);
+    }, numb);
+});
+
+async function main() {
+    let t0 = performance.now();
+
+    // chạy bất tuần tự 2 promise này
+    let p1 = promise(1000, "1/2").then(val => console.log(val));
+    let p2 = promise(7000, "2/3").then(val => console.log(val));
+
+
+    // đợi khi cả 2 promise trên chạy xong và được resolve
+    console.log('1');
+    await p1;
+    console.log('2');
+    await p2;
+
+    let t1 = performance.now();
+    let timeExecute = t1 - t0;
+    if (timeExecute < 6100) {
+        return `Time Execute = ${timeExecute}`;
+    } else {
+        throw `Time Execute = ${timeExecute}`;
+    }
+
+}
+
+async function tryCath() {
+    try {
+        await main().then(function (val) { console.log(val) });
+        console.log('chạy không lỗi')
+    } catch (e) {
+        console.log(` error ${e} `)
+    }
+}
+
+tryCath();
