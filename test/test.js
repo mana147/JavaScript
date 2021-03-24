@@ -278,35 +278,31 @@
 //     console.timeEnd('time')
 // }
 
-// main();
+// // main();
 
-let fs = require('fs');
+// let fs = require('fs');
 
-function readFilePromise(path) {
-    return new Promise(function (resovle, reject) {
-        fs.readFile(path, 'utf8', function (err, data) {
-            if (err) {
-                reject(err);
-            } else {
-                resovle(data);
-            }
-        });
-    });
-}
+// function readFilePromise(path) {
+//     return new Promise(function (resovle, reject) {
+//         fs.readFile(path, 'utf8', function (err, data) {
+//             if (err) {
+//                 reject(err);
+//             } else {
+//                 resovle(data);
+//             }
+//         });
+//     });
+// }
 
-async function run() {
-    console.log("time Start");
-    
-    let song1 = readFilePromise('./song1.txt');
-    let song2 = readFilePromise('./song2.txt');
-    let song3 = readFilePromise('./song3.txt');
-
-    await song1.then(data => console.log(data)).catch(err => console.log(err));
-    await song2.then(data => console.log(data)).catch(err => console.log(err));
-    await song3.then(data => console.log(data)).catch(err => console.log(err));
-
-    console.log("time End");
-    
-    return [song1, song2, song3 ];
-}
-run();
+// async function run() {
+//     console.log("time Start");
+//     let song1 = readFilePromise('./song1.txt');
+//     let song2 = readFilePromise('./song2.txt');
+//     let song3 = readFilePromise('./song3.txt');
+//     await song1.then(data => console.log(data)).catch(err => console.log(err));
+//     await song2.then(data => console.log(data)).catch(err => console.log(err));
+//     await song3.then(data => console.log(data)).catch(err => console.log(err));
+//     console.log("time End");
+//     return [song1, song2, song3 ];
+// }
+// run();
