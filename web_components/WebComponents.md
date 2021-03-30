@@ -6,6 +6,17 @@ ví dụ :
 
 ![webComponent](https://github.com/mana147/JavaScript/blob/main/web_components/img/webComponent.png?raw=true)
 
+
+ngoài ra chúng ta có ví dụ điển hình cho **Web components** là tag HTLM < video > , một tag ngắn đơn giản :
+
+```html
+  <video id="video1" style="width:600px;max-width:100%;" controls>
+    <source src="mov_bbb.mp4" type="video/mp4">
+    <source src="mov_bbb.ogg" type="video/ogg">
+    Your browser does not support HTML5 video.
+  </video>
+```
+
 Để làm được việc này, **Web components** bao gồm 3 công nghệ chính , có thể đc sử dụng cùng nhau để tạo các phần tử tùy chỉnh linh hoạt, với chức năng được đóng gói và sử dụng ở bất cứ đâu mà không sơ conflict :
 
 - Custom Elements : các thành phần có thể tùy chỉnh đc
@@ -20,14 +31,18 @@ ví dụ :
 
 HTMLElement đại diện cho mọi phần tử HTML. Một vài phần tử sử dụng trực tiếp interface này, một vài phần tử khác lại sử dụng nó thông qua các lớp khác kế thừa nó.
 
-![HTMLElement_inherits]()
+![HTMLElement_inherits](https://github.com/mana147/JavaScript/blob/main/web_components/img/HTMLElement_inherits.png?raw=true)
 
-> Phần tử HTML tùy chỉnh ( Custom HTML elements )
+> Phần tử HTML tùy chỉnh ( Custom HTML elements ) là gì :
 
+Hiểu đơn giản là chúng ta có thể tự tạo một HTML_Elements và đặt_tên theo cách của riêng mình .
 
+Custom HTML elements là một trong những tính năng chính của **Web components** , nó có thể tạo các phần tử HTML tùy chỉnh, được mô tả bởi class của chúng , với các phương thức và thuộc tính, sự kiện riêng, v.v..
 
-
-  Một trong những tính năng chính của **Web components** có khả năng tạo các Custom Elements đóng gói chức năng của nó trên một trang HTML, thay vì phải thực hiện với một loạt các elements dài và lồng vào nhau.
+ví dụ :
+```html
+<phamhieu-time date=datetime="2019-12-01"> ngày 01 tháng 12 năm 2019 </phamhieu-time>
+```
 
 Để đăng ký một Custom Element, chúng ta sử dụng function define được cung cấp bởi CustomElementRegistry có sẵn thông qua window.customElements:
 
