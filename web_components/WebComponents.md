@@ -14,9 +14,18 @@ ví dụ :
 
 ## Custom elements :
 
-Phần tử HTML (HTML element) là gì :
+> Phần tử HTML (HTML element) là gì :
 
-![HTMLelements]()
+![HTMLelements](https://github.com/mana147/JavaScript/blob/main/web_components/img/HTMLelements.png?raw=true)
+
+HTMLElement đại diện cho mọi phần tử HTML. Một vài phần tử sử dụng trực tiếp interface này, một vài phần tử khác lại sử dụng nó thông qua các lớp khác kế thừa nó.
+
+![HTMLElement_inherits]()
+
+> Phần tử HTML tùy chỉnh ( Custom HTML elements )
+
+
+
 
   Một trong những tính năng chính của **Web components** có khả năng tạo các Custom Elements đóng gói chức năng của nó trên một trang HTML, thay vì phải thực hiện với một loạt các elements dài và lồng vào nhau.
 
