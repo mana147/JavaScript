@@ -1,21 +1,26 @@
-# Build Components in JavaScript Without a Framework .
+# Web components .
 
 Định nghĩa : **Web components**, là tập hợp các Web APIs cho phép chúng ta tạo ra một thẻ HTML riêng, mang các đặc tính riêng, đóng gói, có thể tái sử dụng. **Web components** được xây dựng trên chuẩn web hiện tại, vì thế đang (và sẽ) có thể hoạt động trên tất cả các trình duyệt, có thể tương thích với tất cả các library và framework Javascript có thể làm việc với HTML.
 
 ví dụ :
 
-![webComponent]()
+![webComponent](https://github.com/mana147/JavaScript/blob/main/web_components/img/webComponent.png?raw=true)
 
-Để làm được việc này, **Web components** bao gồm 3 công nghệ chính , có thể đc sử dụng cùng nhau để tạo các phần tử tùy chỉnh linh hoạt, với chức năng được đóng gói , có thể sử dụng ở bất cứ đâu mà không sơ conflict :
+Để làm được việc này, **Web components** bao gồm 3 công nghệ chính , có thể đc sử dụng cùng nhau để tạo các phần tử tùy chỉnh linh hoạt, với chức năng được đóng gói và sử dụng ở bất cứ đâu mà không sơ conflict :
 
-- Custom Elements 
-- Shadow DOM 
-- HTML templates 
-
+- Custom Elements : các thành phần có thể tùy chỉnh đc
+- Shadow DOM : cây DOM ẩn 
+- HTML templates : bao gồm 2 element < template > và < slot >
 
 ## Custom elements :
 
-note : Để đăng ký một custom element, chúng ta sử dụng function define được cung cấp bởi CustomElementRegistry có sẵn thông qua window.customElements .
+Phần tử HTML (HTML element) là gì :
+
+![HTMLelements]()
+
+  Một trong những tính năng chính của **Web components** có khả năng tạo các Custom Elements đóng gói chức năng của nó trên một trang HTML, thay vì phải thực hiện với một loạt các elements dài và lồng vào nhau.
+
+Để đăng ký một Custom Element, chúng ta sử dụng function define được cung cấp bởi CustomElementRegistry có sẵn thông qua window.customElements:
 
 ví dụ : code js
 ```js
