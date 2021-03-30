@@ -6,22 +6,20 @@ ví dụ :
 
 ![webComponent](https://github.com/mana147/JavaScript/blob/main/web_components/img/webComponent.png?raw=true)
 
+Ngoài ra chúng ta có ví dụ điển hình cho **Web components** là tag HTLM < video >
 
-ngoài ra chúng ta có ví dụ điển hình cho **Web components** là tag HTLM < video > , một tag ngắn đơn giản :
+![tagVideoHtml](https://github.com/mana147/JavaScript/blob/main/web_components/img/tagVideoHtml.png?raw=true)
 
-```html
-  <video id="video1" style="width:600px;max-width:100%;" controls>
-    <source src="mov_bbb.mp4" type="video/mp4">
-    <source src="mov_bbb.ogg" type="video/ogg">
-    Your browser does not support HTML5 video.
-  </video>
-```
+shadow DOM của tag < video >
+
+![tagVideoHtmlDOM](https://github.com/mana147/JavaScript/blob/main/web_components/img/tagVideoHtmlDOM.png?raw=true)
+
 
 Để làm được việc này, **Web components** bao gồm 3 công nghệ chính , có thể đc sử dụng cùng nhau để tạo các phần tử tùy chỉnh linh hoạt, với chức năng được đóng gói và sử dụng ở bất cứ đâu mà không sơ conflict :
 
-- Custom Elements : các thành phần có thể tùy chỉnh đc
-- Shadow DOM : cây DOM ẩn 
-- HTML templates : bao gồm 2 element < template > và < slot >
+- **Custom Elements** : các thành phần có thể tùy chỉnh đc
+- **Shadow DOM** : cây DOM ẩn 
+- **HTML templates** : bao gồm 2 element < template > và < slot >
 
 ## Custom elements :
 
