@@ -41,13 +41,77 @@ ví dụ :
 <phamhieu-time date=datetime="2019-12-01"> ngày 01 tháng 12 năm 2019 </phamhieu-time>
 ```
 
-### * Cách tạo Custom HTML Elements :
+### * Cách tạo ( Custom HTML Elements ) :
 _note_ : có 2 loại custom elements 
-- Customized built-in elements 
-
-
-
+- Autonomous custom elements : "all-new" elements , mở dộng từ lớp HTMLElement 
 - Customized built-in elements : đây là loại kế thừa từ các phần tử HTML cơ bản
+
+Cấu trúc Custom_HTML_Elements :
+
+1 : Tạo một class MyElement kế thừa từ lớp HTMLElement
+```js
+class MyElement extends HTMLElement {
+  constructor() {
+    //  kế thừa toàn bộ thuộc tính của HTMLElement
+    super(); 
+    // element created
+  }
+
+  //  các phương thức bên trong 
+
+  connectedCallback() {
+    // trình duyệt gọi phương thức này khi phần tử được thêm vào tài liệu 
+    // (có thể được gọi nhiều lần nếu một phần tử được thêm / bớt nhiều lần)
+  }
+
+  disconnectedCallback() {
+    // trình duyệt gọi phương thức này khi phần tử bị xóa khỏi tài liệu 
+    // (có thể được gọi nhiều lần nếu một phần tử được thêm / bớt nhiều lần)
+  }
+
+  static get observedAttributes() {
+    return [/* mảng tên thuộc tính để theo dõi các thay đổi */];
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    // được gọi khi một trong các thuộc tính được liệt kê ở trên được sửa đổi
+  }
+
+  adoptedCallback() {
+    // được gọi khi phần tử được chuyển sang new document 
+    // (xảy ra trong document.adoptNode, rất hiếm khi được sử dụng)
+  }
+
+  // có thể có các phương thức và thuộc tính phần tử khác
+}
+```
+2 : Sau đó, chúng ta cần đăng ký phần tử:
+```js
+// báo cho browser biết rằng <my-element> được cung cấp bởi class mới
+customElements.define("my-element", MyElement);
+```
+3 : Bây giờ đối với bất kỳ element HTML nào có thẻ < my-element >, thì một phiên bản của MyElement được tạo và các phương thức nói trên được gọi
+```html
+<my-element> context </my-element>
+```
+
+### Autonomous custom elements :
+_note_ : Tên phần tử HTLM mới do mình tạo ra phải có dấu gạch ngang ( - ) ví dụ :```  my-element , phamhieu-element ```. Tên không hợp lệ ``` myelements ``` .
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ví dụ : chúng ta muôn viết 1 elements kế thừa từ html tiêu chuẩn < p > 
   
@@ -71,54 +135,5 @@ customElements.define('word-count', WordCount, { extends: 'p' });
 sử dụng trong HTML
 ```html
 <p is="word-count"></p>
-```
-
-
-
-ví dụ : code js
-```js
-class MyElement extends HTMLElement {
-  constructor() {
-    super();
-    // element created
-  }
-
-  connectedCallback() {
-    // browser calls this method when the element is added to the document
-    // (can be called many times if an element is repeatedly added/removed)
-  }
-
-  disconnectedCallback() {
-    // browser calls this method when the element is removed from the document
-    // (can be called many times if an element is repeatedly added/removed)
-  }
-
-  static get observedAttributes() {
-    return [/* array of attribute names to monitor for changes */];
-  }
-
-  attributeChangedCallback(name, oldValue, newValue) {
-    // called when one of attributes listed above is modified
-  }
-
-  adoptedCallback() {
-    // called when the element is moved to a new document
-    // (happens in document.adoptNode, very rarely used)
-  }
-
-  // there can be other element methods and properties
-}
-```
-ví dụ : gọi ra trong html
-```html
-<!DOCTYPE html>
- <html>
-  <head>
-   <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head>
-  <body>
-   <my-element> <h1>This is my element</h1> </my-element>
-  </body>
-</html>
 ```
 
