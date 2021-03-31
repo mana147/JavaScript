@@ -23,7 +23,7 @@ shadow DOM của tag < video >
 
 ## Custom elements :
 
-### * Tìm hiểu phần tử HTML (HTML element) là gì :
+### * Phần tử HTML (HTML element) là gì :
 
 ![HTMLelements](https://github.com/mana147/JavaScript/blob/main/web_components/img/HTMLelements.png?raw=true)
 
@@ -32,7 +32,7 @@ HTMLElement đại diện cho mọi phần tử HTML. Một vài phần tử s�
 ![HTMLElement_inherits](https://github.com/mana147/JavaScript/blob/main/web_components/img/HTMLElement_inherits.png?raw=true)
 
 
-### * Tìm hiểu phần tử HTML tùy chỉnh ( Custom HTML elements ) là gì :
+### * Phần tử HTML tùy chỉnh ( Custom HTML elements ) là gì :
 
 Hiểu đơn giản là chúng ta có thể tự tạo một HTML_Elements sau đó viết tính năng và đặt tên theo cách của riêng mình, với các mô tả bởi class của chúng, các phương thức và thuộc tính, sự kiện riêng, v.v..
 
@@ -60,7 +60,7 @@ class MyElement extends HTMLElement {
   //  các phương thức bên trong 
 
   connectedCallback() {
-    // trình duyệt gọi phương thức này khi phần tử được thêm vào tài liệu 
+    // trình duyệt gọi phương thức này khi phần tử được thêm vào 
     // (có thể được gọi nhiều lần nếu một phần tử được thêm / bớt nhiều lần)
   }
 
