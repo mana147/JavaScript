@@ -141,7 +141,7 @@ class TimeFormat extends HTMLElement { // (1)
             this.innerHTML = date;
 
         } else {
-          
+
             let dateNow = Date.now();
     
             let date = new Date(dateNow);
@@ -161,7 +161,9 @@ customElements.define("time-format", TimeFormat); // (2)
 ```html
 <time-format datetime="2019-12-01"> </time-format>
 ```
+4: hiển thị 
 
+![tagTime.png]()
 
 
 
