@@ -4,15 +4,15 @@
 
 ví dụ :
 
-![webComponent](https://github.com/mana147/JavaScript/blob/main/web_components/img/webComponent.png?raw=true)
+![webComponent](https://github.com/mana147/JavaScript/blob/main/web-components/img/webComponent.png?raw=true)
 
 Ngoài ra chúng ta có ví dụ điển hình cho **Web components** là tag HTLM < video >
 
-![tagVideoHtml](https://github.com/mana147/JavaScript/blob/main/web_components/img/tagVideoHtml.png?raw=true)
+![tagVideoHtml](https://github.com/mana147/JavaScript/blob/main/web-components/img/tagVideoHtml.png?raw=true)
 
 shadow DOM của tag < video >
 
-![tagVideoHtmlDOM](https://github.com/mana147/JavaScript/blob/main/web_components/img/tagVideoHtmlDOM.png?raw=true)
+![tagVideoHtmlDOM](https://github.com/mana147/JavaScript/blob/main/web-components/img/tagVideoHtmlDOM.png?raw=true)
 
 
 Để làm được việc này, **Web components** bao gồm 3 công nghệ chính , có thể đc sử dụng cùng nhau để tạo các phần tử linh hoạt , với tính năng được đóng gói và sử dụng ở bất cứ đâu mà không sơ conflict :
@@ -25,11 +25,11 @@ shadow DOM của tag < video >
 
 ### * Phần tử HTML (HTML element) là gì :
 
-![HTMLelements](https://github.com/mana147/JavaScript/blob/main/web_components/img/HTMLelements.png?raw=true)
+![HTMLelements](https://github.com/mana147/JavaScript/blob/main/web-components/img/HTMLelements.png?raw=true)
 
 HTMLElement đại diện cho mọi phần tử HTML. Một vài phần tử sử dụng trực tiếp interface này, một vài phần tử khác lại sử dụng nó thông qua các lớp khác kế thừa nó.
 
-![HTMLElement_inherits](https://github.com/mana147/JavaScript/blob/main/web_components/img/HTMLElement_inherits.png?raw=true)
+![HTMLElement_inherits](https://github.com/mana147/JavaScript/blob/main/web-components/img/HTMLElement_inherits.png?raw=true)
 
 
 ### * Phần tử HTML tùy chỉnh ( Custom HTML elements ) là gì :
