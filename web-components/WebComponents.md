@@ -101,7 +101,7 @@ customElements.define("my-element", MyElement);
 
 ### 1.1 Autonomous custom elements :
 
-demo : xét trường hợp cơ bản sau, chúng ta có một thẻ < time > thường dùng để đánh dấu những phần văn bản là: thời gian, ngày tháng, ngày lễ, ....
+**DEMO 1** : xét trường hợp cơ bản sau, chúng ta có một thẻ < time > thường dùng để đánh dấu những phần văn bản là: thời gian, ngày tháng, ngày lễ, ....
 
 ```html
 <p>Quán chúng tôi sẽ được khai trương vào lúc <time>11:00</time> ngày <time datetime="2017-03-08">Quốc tế Phụ nữ</time></p>
@@ -118,6 +118,7 @@ class TimeFormat extends HTMLElement { // (1)
     constructor() {
         //  kế thừa toàn bộ thuộc tính của HTMLElement
         super();
+
     }; 
 
     // trình duyệt gọi phương thức này khi phần tử được thêm vào document
@@ -163,11 +164,43 @@ customElements.define("time-format", TimeFormat); // (2)
 ```
 4: hiển thị 
 
-![tagTime.png]()
+![tagTime.png](https://github.com/mana147/JavaScript/blob/main/web-components/img/tagTime.png?raw=true)
 
+**DEMO 2** : 
+xét lại bài toán hiển thị thời gian trên , ngoài việc hiển thị chúng ta muốn thời gian đc tự động cập nhật và thay đổi 
 
+ví dụ : làm theo cách cũ sử dụng thẻ body onload gọi hàm startTime 
+```js
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function startTime() {
+  var today = new Date();
+  var h = today.getHours();
+  var m = today.getMinutes();
+  var s = today.getSeconds();
+  m = checkTime(m);
+  s = checkTime(s);
+  document.getElementById('txt').innerHTML =
+  h + ":" + m + ":" + s;
+  var t = setTimeout(startTime, 500);
+}
+function checkTime(i) {
+  if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+  return i;
+}
+</script>
+</head>
 
+<body onload="startTime()">
 
+<div id="txt"></div>
+
+</body>
+</html>
+
+```
 
 
 
