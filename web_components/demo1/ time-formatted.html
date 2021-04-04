@@ -1,44 +1,58 @@
 <!doctype html>
 <html>
+
 <head>
     <title>Page Title</title>
     <script>
 
-        class TimeFormatted extends HTMLElement { // (1)
+        // khởi tạo class kế thừa từ HTML Element 
 
+        class TimeFormat extends HTMLElement { // (1)
+            constructor() {
+                //  kế thừa toàn bộ thuộc tính của HTMLElement
+                super();
+                // element created
+
+            }; 
+
+            // trình duyệt gọi phương thức này khi phần tử được thêm vào document
             connectedCallback() {
-                let date = new Date(this.getAttribute('datetime') || Date.now());
 
-                this.innerHTML = new Intl.DateTimeFormat("default", {
-                    year: this.getAttribute('year') || undefined,
-                    month: this.getAttribute('month') || undefined,
-                    day: this.getAttribute('day') || undefined,
-                    hour: this.getAttribute('hour') || undefined,
-                    minute: this.getAttribute('minute') || undefined,
-                    second: this.getAttribute('second') || undefined,
-                    timeZoneName: this.getAttribute('time-zone-name') || undefined,
-                }).format(date);
-            }
+                console.log(this);
 
-        }
+                // lấy giá trị thuộc tính của tag datetime 
+                let datetime = this.getAttribute('datetime');
 
-        customElements.define("time-formatted", TimeFormatted); // (2)
+                // kiểm tra xem datatime có giá trị hay không
+                if (datetime) {
+
+                    let date = new Date(datetime);
+
+                    console.log(`thời gian setup : ${date} `);
+                    
+                    this.innerHTML = date;
+
+                } else {
+                    let dateNow = Date.now();
+            
+                    let date = new Date(dateNow);
+
+                    this.innerHTML = `chưa có thời gian được setup , 
+                                      lấy thời gian hiện tại : ${date} `;
+                }
+            };
+        };
+
+        // báo cho browser biết rằng <time-formatted> được cung cấp bởi class mới
+        customElements.define("time-format", TimeFormat); // (2)
     </script>
 
 </head>
 
 <body>
 
-    <time-formatted 
-        datetime="2019-12-01" 
-        year="numeric" 
-        month="long" 
-        day="numeric" 
-        hour="numeric" 
-        minute="numeric"
-        second="numeric" 
-        time-zone-name="short"> 
-    </time-formatted>
+
+    <time-format datetime="2019-12-01"> </time-format>
 </body>
 
 </html>

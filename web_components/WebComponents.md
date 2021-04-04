@@ -17,11 +17,11 @@ shadow DOM của tag < video >
 
 Để làm được việc này, **Web components** bao gồm 3 công nghệ chính , có thể đc sử dụng cùng nhau để tạo các phần tử linh hoạt , với tính năng được đóng gói và sử dụng ở bất cứ đâu mà không sơ conflict :
 
-- **Custom Elements** : các thành phần có thể tùy chỉnh đc
-- **Shadow DOM** : cây DOM ẩn 
-- **HTML templates** : bao gồm 2 element < template > và < slot >
+- **1 : Custom Elements** : các thành phần có thể tùy chỉnh đc
+- **2 : Shadow DOM** : cây DOM ẩn 
+- **3 : HTML templates** : bao gồm 2 element < template > và < slot >
 
-## Custom elements :
+## 1 : Custom elements :
 
 ### * Phần tử HTML (HTML element) là gì :
 
@@ -60,12 +60,12 @@ class MyElement extends HTMLElement {
   //  các phương thức bên trong 
 
   connectedCallback() {
-    // trình duyệt gọi phương thức này khi phần tử được thêm vào 
+    // trình duyệt gọi phương thức này khi phần tử được thêm vào HTML document
     // (có thể được gọi nhiều lần nếu một phần tử được thêm / bớt nhiều lần)
   }
 
   disconnectedCallback() {
-    // trình duyệt gọi phương thức này khi phần tử bị xóa khỏi tài liệu 
+    // trình duyệt gọi phương thức này khi phần tử bị xóa khỏi HTML document
     // (có thể được gọi nhiều lần nếu một phần tử được thêm / bớt nhiều lần)
   }
 
@@ -92,15 +92,75 @@ customElements.define("my-element", MyElement);
 ```
 3 : Bây giờ đối với bất kỳ element HTML nào có thẻ < my-element >, thì một phiên bản của MyElement được tạo và các phương thức nói trên được gọi
 ```html
-<my-element> context </my-element>
+<my-element> context </my-element> 
 ```
-
-### Autonomous custom elements :
-_note_ : Tên phần tử HTLM mới do mình tạo ra phải có dấu gạch ngang ( - ) ví dụ :```  my-element , phamhieu-element ```. Tên không hợp lệ ``` myelements ``` .
-
-
+    _note_ : Tên phần tử HTLM mới do mình tạo ra phải có dấu gạch ngang ( - )
+             Tên hợp lệ : ```  my-element , phamhieu-element ```. 
+             Tên không hợp lệ : ``` myelements ```
 
 
+### 1.1 Autonomous custom elements :
+
+demo : xét trường hợp cơ bản sau, chúng ta có một thẻ < time > thường dùng để đánh dấu những phần văn bản là: thời gian, ngày tháng, ngày lễ, ....
+
+```html
+<p>Quán chúng tôi sẽ được khai trương vào lúc <time>11:00</time> ngày <time datetime="2017-03-08">Quốc tế Phụ nữ</time></p>
+```
+_note : Thuộc tính datetime dùng để đại diện cho thời gian của phần tử < time >_
+
+Tuy nhiên thẻ < time > không có hiển thị gì đặc biệt lên màn hình
+
+**Bài toán đặt ra** : chúng ta viết một thẻ mới như thẻ time nhưng hiển thị đầy đủ thông tin thời gian 
+
+1 : Khởi tạo class
+```js
+class TimeFormat extends HTMLElement { // (1)
+    constructor() {
+        //  kế thừa toàn bộ thuộc tính của HTMLElement
+        super();
+    }; 
+
+    // trình duyệt gọi phương thức này khi phần tử được thêm vào document
+    connectedCallback() {
+
+        let date ;
+
+        // hiển thị this để hiểu rõ this ở đây là gì 
+        console.log(this);
+
+        // lấy giá trị thuộc tính của tag datetime 
+        let datetime = this.getAttribute('datetime');
+
+        // kiểm tra xem datatime có giá trị hay không
+        if (datetime) {
+
+            let date = new Date(datetime);
+
+            console.log(`thời gian setup : ${date} `);
+            
+            this.innerHTML = date;
+
+        } else {
+          
+            let dateNow = Date.now();
+    
+            let date = new Date(dateNow);
+
+            this.innerHTML = `chưa có thời gian được setup , 
+                              lấy thời gian hiện tại : ${date} `;
+        }
+    };
+};
+```
+2 : khao báo
+```js
+// báo cho browser biết rằng <time-formatted> được cung cấp bởi class mới
+customElements.define("time-format", TimeFormat); // (2)
+```
+3 : sử dụng trong HTML
+```html
+<time-format datetime="2019-12-01"> </time-format>
+```
 
 
 
