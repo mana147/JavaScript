@@ -233,7 +233,7 @@ tính năng này đếm số lượng từ trong thẻ < p > < /p >
 ```js
 customElements.define('word-count', WordCount, { extends: 'p' });
 ```
-3 : viết class WordCount 
+3 : viết class WordCount x`
 ```js        
 // tạo class WordCount mở rộng từ HTMLParagraphElement
 class WordCount extends HTMLParagraphElement {
