@@ -198,8 +198,7 @@ customElements.define("time-formatted", TimeFormatted);
 
 Nhưng chúng ta vẫn muốn viết thêm và mở rộng các tính năng của các phần tử đó. 
 
-**DEMO 1**: giả sử chúng ta muôn viết thêm tính năng cho thẻ < p > vì google.search đọc đc thẻ < p >,
-tính năng này đếm số lượng từ trong thẻ < p > < /p >
+**DEMO 1**: giả sử chúng ta muôn viết thêm tính năng đọc số lượng từ cho thẻ < p > vì google.search đọc đc thẻ này.
 
 1 : trong html : tạo thẻ < p > trong đó thêm is="word-count", word-count là tên chức năng chúng ta sẽ viết cho thẻ
 ```html
