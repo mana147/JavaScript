@@ -119,33 +119,21 @@ class TimeFormat extends HTMLElement { // (1)
         //  kế thừa toàn bộ thuộc tính của HTMLElement
         super();
     }; 
-
     // trình duyệt gọi phương thức này khi phần tử được thêm vào document
     connectedCallback() {
-
         let date ;
-
         // hiển thị this để hiểu rõ this ở đây là gì 
         console.log(this);
-
         // lấy giá trị thuộc tính của tag datetime 
         let datetime = this.getAttribute('datetime');
-
         // kiểm tra xem datatime có giá trị hay không
         if (datetime) {
-
             let date = new Date(datetime);
-
             console.log(`thời gian setup : ${date} `);
-            
             this.innerHTML = date;
-
         } else {
-
             let dateNow = Date.now();
-    
             let date = new Date(dateNow);
-
             this.innerHTML = `chưa có thời gian được setup , 
                               lấy thời gian hiện tại : ${date} `;
         }
@@ -183,7 +171,6 @@ let tagTime = document.getElementsByTagName("time-formatted");
 console.log(tagTime);
 // sau 1 s thực hiện hàm sau 
 setInterval( function () {
-    // trong document lấy phần tử theo id elem 
     // sau đó thêm thuộc tính currenttime với giá trị = new Date()
     let value = new Date();
     // console.log(value);
