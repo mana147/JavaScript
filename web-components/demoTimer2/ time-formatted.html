@@ -1,58 +1,33 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-
 <head>
-    <title>Page Title</title>
     <script>
+        function startTime() {
+            var today = new Date();
+            var h = today.getHours();
+            var m = today.getMinutes();
+            var s = today.getSeconds();
+            m = checkTime(m);
+            s = checkTime(s);
+            document.getElementById('txt').innerHTML =
+                h + ":" + m + ":" + s;
+            var t = setTimeout(startTime, 1000);
+        }
 
-        // khởi tạo class kế thừa từ HTML Element 
+        function checkTime(i) {
+            if (i < 10) {
+                 i = "0" + i 
+            };  // add zero in front of numbers < 10
+            return i;
+        }
 
-        class TimeFormat extends HTMLElement { // (1)
-            constructor() {
-                //  kế thừa toàn bộ thuộc tính của HTMLElement
-                super();
-                // element created
-
-            }; 
-
-            // trình duyệt gọi phương thức này khi phần tử được thêm vào document
-            connectedCallback() {
-
-                console.log(this);
-
-                // lấy giá trị thuộc tính của tag datetime 
-                let datetime = this.getAttribute('datetime');
-
-                // kiểm tra xem datatime có giá trị hay không
-                if (datetime) {
-
-                    let date = new Date(datetime);
-
-                    console.log(`thời gian setup : ${date} `);
-                    
-                    this.innerHTML = date;
-
-                } else {
-                    let dateNow = Date.now();
-            
-                    let date = new Date(dateNow);
-
-                    this.innerHTML = `chưa có thời gian được setup , 
-                                      lấy thời gian hiện tại : ${date} `;
-                }
-            };
-        };
-
-        // báo cho browser biết rằng <time-formatted> được cung cấp bởi class mới
-        customElements.define("time-format", TimeFormat); // (2)
     </script>
-
 </head>
 
-<body>
+<body onload="startTime()">
 
+    <div id="txt"></div>
 
-    <time-format datetime="2019-12-01"> </time-format>
 </body>
 
 </html>

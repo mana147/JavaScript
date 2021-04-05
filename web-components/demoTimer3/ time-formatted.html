@@ -1,0 +1,58 @@
+<!doctype html>
+
+<body>
+    <script>
+        class TimeFormatted extends HTMLElement {
+
+            constructor() {
+                super();
+            };
+
+            render(name, oldValue, newValue) { 
+                // let datetime = this.getAttribute('currenttime');
+                this.innerHTML = newValue;
+
+            };
+            
+            // trình duyệt gọi phương thức này khi phần tử được thêm vào document
+            connectedCallback() {
+
+            };
+
+            // mảng tên các thuộc tính ( Attribute ) để theo dõi các thay đổi 
+            // đưa currenttime vào danh sách các attribute cần theo dõi
+            static get observedAttributes() { 
+                return ['currenttime'];
+            };
+
+            // currenttime có giá trị thay đổi thì kích hoạt attributeChangedCallback
+            attributeChangedCallback(name, oldValue, newValue) {
+               
+                console.log(`
+                >>> ${name}
+                >>> ${oldValue}
+                >>> ${newValue}
+                `);
+
+                this.render(name, oldValue, newValue);
+            };
+
+        }
+
+        customElements.define("time-formatted", TimeFormatted);
+    </script>
+
+    <time-formatted id="elem" datetime="2019-12-01"> </time-formatted>
+
+    <script>
+        // sau 1 s thực hiện hàm sau 
+        setInterval( function () {
+            // trong document lấy phần tử theo id elem 
+            // sau đó thêm thuộc tính datetime với giá trị = new Date()
+            let value = new Date();
+            // console.log(value);
+            document.getElementById("elem").setAttribute('currenttime', value);
+        } , 1000); // (5)
+
+    </script>
+</body>

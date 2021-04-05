@@ -108,7 +108,7 @@ customElements.define("my-element", MyElement);
 ```
 _note : Thuộc tính datetime dùng để đại diện cho thời gian của phần tử < time >_
 
-Tuy nhiên thẻ < time > không có hiển thị gì đặc biệt lên màn hình
+Tuy nhiên thẻ < time > không có hiển thị gì đặc biệt lên màn hình , chỉ mang nhiệm vụ đánh dấu 
 
 **Bài toán đặt ra** : chúng ta viết một thẻ mới như thẻ time nhưng hiển thị đầy đủ thông tin thời gian 
 
@@ -118,7 +118,6 @@ class TimeFormat extends HTMLElement { // (1)
     constructor() {
         //  kế thừa toàn bộ thuộc tính của HTMLElement
         super();
-
     }; 
 
     // trình duyệt gọi phương thức này khi phần tử được thêm vào document
@@ -167,41 +166,63 @@ customElements.define("time-format", TimeFormat); // (2)
 ![tagTime.png](https://github.com/mana147/JavaScript/blob/main/web-components/img/tagTime.png?raw=true)
 
 **DEMO 2** : 
-xét lại bài toán hiển thị thời gian trên , ngoài việc hiển thị chúng ta muốn thời gian đc tự động cập nhật và thay đổi 
+xét lại bài toán hiển thị thời gian trên, ngoài việc hiển thị chúng ta muốn thời gian đc tự động cập nhật và thay đổi 
 
-ví dụ : làm theo cách cũ sử dụng thẻ body onload gọi hàm startTime 
-```js
-<!DOCTYPE html>
-<html>
-<head>
-<script>
-function startTime() {
-  var today = new Date();
-  var h = today.getHours();
-  var m = today.getMinutes();
-  var s = today.getSeconds();
-  m = checkTime(m);
-  s = checkTime(s);
-  document.getElementById('txt').innerHTML =
-  h + ":" + m + ":" + s;
-  var t = setTimeout(startTime, 500);
-}
-function checkTime(i) {
-  if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
-  return i;
-}
-</script>
-</head>
+Thực hiện ý tưởng :
 
-<body onload="startTime()">
-
-<div id="txt"></div>
-
-</body>
-</html>
-
+1 : chúng ta viết 1 thẻ element mới trong html 
+  - thêm thuộc tính id="elem" để dễ tìm 
+  - giữ nguyên thuộc tính datetime="2019-12-01" đã viết bên trên để làm ví dụ so sánh cách hoạt động 
+```html
+<time-formatted id="elem" datetime="2019-12-01" ></time-formatted> 
 ```
+2 : viết một hàm js có nhiệm vụ như sau
+  - cứ sau 1s nó lấy thời gian thực new Date() = Mon Apr 05 2021 15:26:00 GMT+0700 (Giờ Đông Dương) 
+  - sau đó tìm đến thẻ time-formatted rồi đặt thêm thuộc tính currenttime="Mon Apr 05 2021 15:26:00 GMT+0700 (Giờ Đông Dương)" vào
+```js
+setInterval( function () {
+    let value = new Date();
+    document.getElementById("elem").setAttribute('currenttime', value);
+} , 1000);
+```
+3 : bắt đầu viết chức năng cho element html đã tạo ra phía trên :
+- khai báo tên các thuộc tính có giá trị thay đổi vào phương thưc static get observedAttributes() 
+- nếu các thuộc tính đc khai báo bên trên có giá trị thay đổi thì kích hoạt attributeChangedCallback()
+- sau đó truyền các tham số vào hàm rander đã tạo bên trên để hiển thị.
+```js
+ class TimeFormatted extends HTMLElement {
+  constructor() {
+      super();
+  };
 
+  render(name, oldValue, newValue) { 
+      // let datetime = this.getAttribute('currenttime');
+      this.innerHTML = newValue;
+  };
+
+  // trình duyệt gọi phương thức này khi phần tử được thêm vào document
+  connectedCallback() {
+
+  };
+
+  // mảng tên các thuộc tính ( Attribute ) để theo dõi các thay đổi 
+  // đưa currenttime vào danh sách các attribute cần theo dõi
+  static get observedAttributes() { 
+      return ['currenttime'];
+  };
+
+  // currenttime có giá trị thay đổi thì kích hoạt attributeChangedCallback
+  attributeChangedCallback(name, oldValue, newValue) {
+      console.log(`
+          >>> ${name}
+          >>> ${oldValue}
+          >>> ${newValue}
+      `);
+      this.render(name, oldValue, newValue);
+  };
+}
+customElements.define("time-formatted", TimeFormatted);
+```
 
 
 
