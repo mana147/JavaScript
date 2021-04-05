@@ -99,7 +99,7 @@ customElements.define("my-element", MyElement);
              Tên không hợp lệ : ``` myelements ```
 
 
-### 1.1 Autonomous custom elements :
+## 1.1 Autonomous custom elements :
 
 **DEMO 1** : xét trường hợp cơ bản sau, chúng ta có một thẻ < time > thường dùng để đánh dấu những phần văn bản là: thời gian, ngày tháng, ngày lễ, ....
 
@@ -216,32 +216,44 @@ setInterval( function () {
 customElements.define("time-formatted", TimeFormatted);
 ```
 
-### 1.2 Autonomous custom elements :
+## 1.2 Customized built-in elements :
+ý nghĩa : các phần tử element mới tạo bên trên có một nhược điểm là, các công cụ tìm kiếm không biết đến vì chúng là do mình tạo lên và định nghĩa.
 
+Nhưng chúng ta vẫn muốn viết thêm và mở rộng các tính năng của các phần tử đó. 
 
+**DEMO 1**: giả sử chúng ta muôn viết thêm tính năng cho thẻ < p > vì google.search đọc đc thẻ < p >,
+tính năng này đếm số lượng từ trong thẻ < p > < /p >
 
-
-ví dụ : chúng ta muôn viết 1 elements kế thừa từ html tiêu chuẩn < p > 
-  
-tạo một class định nghĩa các chức năng và mở rộng HTMLParagraphElement 
-```js
-class WordCount extends HTMLParagraphElement {
-  constructor() {
-    // Always call super first in constructor
-    super();
-    // Element functionality written in here
-    ...
-  }
-}
+1 : trong html 
+- tạo thẻ < p > trong đó thêm is="word-count", word-count là tên chức năng chúng ta sẽ viết cho thẻ
+```html
+ <p is="word-count"></p>
 ```
-Đăng kí custom element bằng phương thức CustomElementRegistry.define() 
-
-Phần tử được gọi word-count, đối tượng lớp của nó là WordCount, và nó mở rộng < p > phần tử.
+2 : khai báo cho browser biết rằng word-count có tên class WordCount là tính năng mới đc kế thừa từ thẻ < p >
 ```js
 customElements.define('word-count', WordCount, { extends: 'p' });
 ```
-sử dụng trong HTML
-```html
-<p is="word-count"></p>
-```
+3 : viết class WordCount 
 
+```js        
+// tạo class WordCount mở rộng từ HTMLParagraphElement
+class WordCount extends HTMLParagraphElement {
+    constructor() {
+        super();
+    }
+    connectedCallback() {
+
+        // .parentNode : tham chiếu đến nút cha của nút hiện tại,
+        // .innerText : nhận vặn bản bên trong một phần tử 
+        let text = this.parentNode.innerText;
+        console.log(text);
+
+        // .split() : sẽ phân tách một chuỗi thành một mảng dữ liệu dựa vào các kí tự phân cách trong chuỗi.
+        let count = text.split(/\s+/g).length;
+        console.log(count);
+
+        this.innerHTML = `số lượng từ ${count}`;
+    }
+}
+
+```

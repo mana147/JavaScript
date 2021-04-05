@@ -1,0 +1,35 @@
+<!doctype html>
+
+<body>
+    <script>
+        // tạo class WordCount mở rộng từ HTMLParagraphElement
+        class WordCount extends HTMLParagraphElement {
+            constructor() {
+                super();
+            }
+
+            connectedCallback() {
+                // .parentNode : tham chiếu đến nút cha của nút hiện tại,
+                // .innerText : nhận vặn bản bên trong một phần tử 
+                let text = this.parentNode.innerText;
+                console.log(text);
+
+                // .split() : sẽ phân tách một chuỗi thành một mảng dữ liệu dựa vào các kí tự phân cách trong chuỗi.
+                let count = text.split(/\s+/g).length;
+                console.log(count);
+
+                this.innerHTML = `số lượng từ ${count}`;
+            }
+        }
+
+        //  khai báo cho browser 
+        customElements.define('word-count', WordCount, { extends: 'p' });
+    </script>
+
+    <p> cộng hòa xã hội chủ nghĩa việt nam  </p>
+    <p> cộng hòa xã hội chủ nghĩa việt nam </p>
+    <p> cộng hòa xã hội chủ nghĩa việt nam </p>
+    
+    <p is="word-count"> </p>
+
+</body>
