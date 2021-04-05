@@ -42,16 +42,19 @@
         customElements.define("time-formatted", TimeFormatted);
     </script>
 
-    <time-formatted id="elem" datetime="2019-12-01"> </time-formatted>
+    <time-formatted datetime="2019-12-01"> </time-formatted>
 
     <script>
+
+        let tagTime = document.getElementsByTagName("time-formatted");
+        console.log(tagTime);
         // sau 1 s thực hiện hàm sau 
         setInterval( function () {
             // trong document lấy phần tử theo id elem 
-            // sau đó thêm thuộc tính datetime với giá trị = new Date()
+            // sau đó thêm thuộc tính currenttime với giá trị = new Date()
             let value = new Date();
             // console.log(value);
-            document.getElementById("elem").setAttribute('currenttime', value);
+            tagTime[0].setAttribute('currenttime', value);
         } , 1000); // (5)
 
     </script>

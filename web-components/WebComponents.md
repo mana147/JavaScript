@@ -171,18 +171,23 @@ xét lại bài toán hiển thị thời gian trên, ngoài việc hiển thị
 Thực hiện ý tưởng :
 
 1 : chúng ta viết 1 thẻ element mới trong html 
-  - thêm thuộc tính id="elem" để dễ tìm 
   - giữ nguyên thuộc tính datetime="2019-12-01" đã viết bên trên để làm ví dụ so sánh cách hoạt động 
 ```html
-<time-formatted id="elem" datetime="2019-12-01" ></time-formatted> 
+<time-formatted datetime="2019-12-01" ></time-formatted> 
 ```
 2 : viết một hàm js có nhiệm vụ như sau
   - cứ sau 1s nó lấy thời gian thực new Date() = Mon Apr 05 2021 15:26:00 GMT+0700 (Giờ Đông Dương) 
   - sau đó tìm đến thẻ time-formatted rồi đặt thêm thuộc tính currenttime="Mon Apr 05 2021 15:26:00 GMT+0700 (Giờ Đông Dương)" vào
 ```js
+let tagTime = document.getElementsByTagName("time-formatted");
+console.log(tagTime);
+// sau 1 s thực hiện hàm sau 
 setInterval( function () {
+    // trong document lấy phần tử theo id elem 
+    // sau đó thêm thuộc tính currenttime với giá trị = new Date()
     let value = new Date();
-    document.getElementById("elem").setAttribute('currenttime', value);
+    // console.log(value);
+    tagTime[0].setAttribute('currenttime', value);
 } , 1000);
 ```
 3 : bắt đầu viết chức năng cho element html đã tạo ra phía trên :
@@ -224,7 +229,7 @@ setInterval( function () {
 customElements.define("time-formatted", TimeFormatted);
 ```
 
-
+### 1.2 Autonomous custom elements :
 
 
 
