@@ -224,17 +224,16 @@ Nhưng chúng ta vẫn muốn viết thêm và mở rộng các tính năng củ
 **DEMO 1**: giả sử chúng ta muôn viết thêm tính năng cho thẻ < p > vì google.search đọc đc thẻ < p >,
 tính năng này đếm số lượng từ trong thẻ < p > < /p >
 
-1 : trong html 
-- tạo thẻ < p > trong đó thêm is="word-count", word-count là tên chức năng chúng ta sẽ viết cho thẻ
+1 : trong html : tạo thẻ < p > trong đó thêm is="word-count", word-count là tên chức năng chúng ta sẽ viết cho thẻ
 ```html
- <p is="word-count"></p>
+<p> cộng hòa xã hội chủ nghĩa việt nam  </p>
+<p is="word-count"></p>
 ```
 2 : khai báo cho browser biết rằng word-count có tên class WordCount là tính năng mới đc kế thừa từ thẻ < p >
 ```js
 customElements.define('word-count', WordCount, { extends: 'p' });
 ```
 3 : viết class WordCount 
-
 ```js        
 // tạo class WordCount mở rộng từ HTMLParagraphElement
 class WordCount extends HTMLParagraphElement {
