@@ -1,6 +1,6 @@
-## 2 : Shadow DOM :
+# 2 : Shadow DOM :
 
-### Định nghĩa DOM 
+## Định nghĩa DOM 
 DOM : là viết tắt của chữ Document Object Model ( mô hình các đối tượng trong tài liệu HTML)
 là một chuẩn được định nghĩa bởi W3C dùng để truy xuất và thao tác trên các tài liệu có cấu trúc dạng HTML hay XML bằng các ngôn ngữ lập trình thông dịch (scripting language) như Javascript .
 
@@ -8,9 +8,10 @@ Ngoài ra, DOM giúp thao tác dữ liệu theo mô hình hướng đối tượ
 
 Bên cạnh đó, bạn cũng có thể thêm bớt các phần tử tùy thích, giúp cho nội dung và cấu trúc của trang web luôn cập nhật động.
 
-### Cây cấu trúc DOM
+## Cây cấu trúc DOM
 
-Nút
+### Nút
+
 Đối với HTML DOM, mọi thành phần đều được xem là 1 nút (node), được biểu diễn trên 1 cây cấu trúc dạng cây gọi là DOM Tree. Các phần tử khác nhau sẽ được phân loại nút khác nhau nhưng quan trọng nhất là 3 loại: nút gốc (document node), nút phần tử (element node), nút văn bản (text node).
 
 - Nút gốc: chính là tài liệu HTML, thường được biểu diễn bởi thẻ ```<html>```.
@@ -20,7 +21,7 @@ Nút
 
 ![nodeDOM](https://github.com/mana147/JavaScript/blob/main/web-components/img/nodeDOM.png?raw=true)
 
-Quan hệ giữa các nút
+### Quan hệ giữa các nút
 
 - Nút gốc (document) luôn là nút đầu tiên.
 - Tất cả các nút không phải là nút gốc đều chỉ có 1 nút cha (parent).
@@ -35,4 +36,6 @@ Ta hãy cùng xem ví dụ cây cấu trúc DOM bên dưới:
 - Nút ```<body>``` có 3 con, trong đó ```<h1>``` là con cả và thẻ ```<p>``` thứ 2 là con út.
 - Nút phần tử ```<a>``` có 2 con, trong đó có 1 nút văn bản và 1 nút thuộc tính.
 
-![TP-Phan-cap-DOM-Tree.png]()
+![TP-Phan-cap-DOM-Tree.png](https://github.com/mana147/JavaScript/blob/main/web-components/img/TP-Phan-cap-DOM-Tree.png?raw=true)
+
+### Thao tác với DOM
