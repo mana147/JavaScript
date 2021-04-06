@@ -13,4 +13,9 @@ Bên cạnh đó, bạn cũng có thể thêm bớt các phần tử tùy thích
 Nút
 Đối với HTML DOM, mọi thành phần đều được xem là 1 nút (node), được biểu diễn trên 1 cây cấu trúc dạng cây gọi là DOM Tree. Các phần tử khác nhau sẽ được phân loại nút khác nhau nhưng quan trọng nhất là 3 loại: nút gốc (document node), nút phần tử (element node), nút văn bản (text node).
 
+- Nút gốc: chính là tài liệu HTML, thường được biểu diễn bởi thẻ <html>.
+- Nút phần tử: biểu diễn cho 1 phần tử HTML.
+- Nút văn bản: mỗi đoạn kí tự trong tài liệu HTML, bên trong 1 thẻ HTML đều là 1 nút văn bản. Đó có thể là tên trang web trong thẻ <title>, tên đề mục trong thẻ <h1>, hay một đoạn văn trong thẻ <p>.
+- Ngoài ra còn có nút thuộc tính (attribute node) và nút chú thích (comment node).
 
+![nodeDOM]()
