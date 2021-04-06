@@ -13,9 +13,26 @@ Bên cạnh đó, bạn cũng có thể thêm bớt các phần tử tùy thích
 Nút
 Đối với HTML DOM, mọi thành phần đều được xem là 1 nút (node), được biểu diễn trên 1 cây cấu trúc dạng cây gọi là DOM Tree. Các phần tử khác nhau sẽ được phân loại nút khác nhau nhưng quan trọng nhất là 3 loại: nút gốc (document node), nút phần tử (element node), nút văn bản (text node).
 
-- Nút gốc: chính là tài liệu HTML, thường được biểu diễn bởi thẻ <html>.
+- Nút gốc: chính là tài liệu HTML, thường được biểu diễn bởi thẻ ```<html>```.
 - Nút phần tử: biểu diễn cho 1 phần tử HTML.
-- Nút văn bản: mỗi đoạn kí tự trong tài liệu HTML, bên trong 1 thẻ HTML đều là 1 nút văn bản. Đó có thể là tên trang web trong thẻ <title>, tên đề mục trong thẻ <h1>, hay một đoạn văn trong thẻ <p>.
+- Nút văn bản: mỗi đoạn kí tự trong tài liệu HTML, bên trong 1 thẻ HTML đều là 1 nút văn bản. Đó có thể là tên trang web trong thẻ ```<title>```, tên đề mục trong thẻ ```<h1>```, hay một đoạn văn trong thẻ ```<p>```.
 - Ngoài ra còn có nút thuộc tính (attribute node) và nút chú thích (comment node).
 
-![nodeDOM]()
+![nodeDOM](https://github.com/mana147/JavaScript/blob/main/web-components/img/nodeDOM.png?raw=true)
+
+Quan hệ giữa các nút
+
+- Nút gốc (document) luôn là nút đầu tiên.
+- Tất cả các nút không phải là nút gốc đều chỉ có 1 nút cha (parent).
+- Một nút có thể có một hoặc nhiều con, nhưng cũng có thể không có con nào.
+- Những nút có cùng nút cha được gọi là các nút anh em (siblings).
+- Trong các nút anh em, nút đầu tiên được gọi là con cả (firstChild) và nút cuối cùng là con út (lastChild).
+
+Ta hãy cùng xem ví dụ cây cấu trúc DOM bên dưới:
+
+- Nút gốc là ```<html>```
+- 2 nút anh em ```<head>``` và ```<body>``` là anh em vì đều là nút con của ```<html>``` .
+- Nút ```<body>``` có 3 con, trong đó ```<h1>``` là con cả và thẻ ```<p>``` thứ 2 là con út.
+- Nút phần tử ```<a>``` có 2 con, trong đó có 1 nút văn bản và 1 nút thuộc tính.
+
+![TP-Phan-cap-DOM-Tree.png]()
