@@ -1,6 +1,6 @@
-## 1 : Custom elements :
+# Custom elements :
 
-### * Phần tử HTML (HTML element) là gì :
+## * Phần tử HTML (HTML element) là gì :
 
 ![HTMLelements](https://github.com/mana147/JavaScript/blob/main/web-components/img/HTMLelements.png?raw=true)
 
@@ -9,7 +9,7 @@ HTMLElement đại diện cho mọi phần tử HTML. Một vài phần tử s�
 ![HTMLElement_inherits](https://github.com/mana147/JavaScript/blob/main/web-components/img/HTMLElement_inherits.png?raw=true)
 
 
-### * Phần tử HTML tùy chỉnh ( Custom HTML elements ) là gì :
+## * Phần tử HTML tùy chỉnh ( Custom HTML elements ) là gì :
 
 Hiểu đơn giản là chúng ta có thể tự tạo một HTML_Elements sau đó viết tính năng và đặt tên theo cách của riêng mình, với các mô tả bởi class của chúng, các phương thức và thuộc tính, sự kiện riêng, v.v..
 
@@ -18,7 +18,7 @@ ví dụ :
 <phamhieu-time date=datetime="2019-12-01"> ngày 01 tháng 12 năm 2019 </phamhieu-time>
 ```
 
-### * Cách tạo ( Custom HTML Elements ) :
+## * Cách tạo ( Custom HTML Elements ) :
 _note_ : có 2 loại custom elements 
 - Autonomous custom elements : "all-new" elements , mở dộng từ lớp HTMLElement 
 - Customized built-in elements : đây là loại kế thừa từ các phần tử HTML cơ bản

@@ -1,4 +1,4 @@
-# 2 : Shadow DOM :
+# Shadow DOM :
 
 ## Định nghĩa DOM 
 DOM : là viết tắt của chữ Document Object Model ( mô hình các đối tượng trong tài liệu HTML)
