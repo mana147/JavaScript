@@ -90,5 +90,14 @@ Mỗi nút trên cây DOM đều có 6 thuộc tính quan hệ để giúp bạn
 - **Node.lastChild**: tham chiếu đến nút con cuối cùng của nút hiện tại, và tương đương với việc gọi ```Node.childNodes[Element.childNodes.length-1]```.
 - **Node.nextSibling**: tham chiếu đến nút anh em nằm liền kề sau với nút hiện tại.
 - **Node.previousSibling**: tham chiếu đến nút anh em nằm liền kề trước với nút hiện tại.
-![tp_dom_tree_traversal.png]()
+![tp_dom_tree_traversal.png](https://github.com/mana147/JavaScript/blob/main/web-components/img/tp_dom_tree_traversal.png?raw=true)
 
+### Truy xuất trực tiếp
+
+Truy xuất trực tiếp sẽ nhanh hơn, và đơn giản hơn khi bạn không cần phải biết nhiều về quan hệ và vị trí của nút. Có 3 phương thức để bạn truy xuất trực tiếp được hỗ trợ ở mọi trình duyệt:
+
+- document.getElementById('id_cần_tìm')
+- document.getElementsByTagName('div')
+- document.getElementsByName('tên_cần_tìm'
+
+![Truy-xuat-DOM-truc-tiep.png]()
