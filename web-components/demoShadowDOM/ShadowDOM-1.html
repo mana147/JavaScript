@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Page Title</title>
+</head>
+
+<body>
+<style>
+    p {
+        color: green
+    }
+</style>
+
+<p id="sd-root">I am Shadow Root</p>
+
+<script>
+    const host = document.querySelector('#sd-root');
+    const root = host.createShadowRoot();
+    root.innerHTML = `
+    
+    <style> p { color: gray }</style>
+    
+    <p>Hello <strong>Shadow DOM</strong></p>
+    
+  `;
+</script>
+</body>
+
+</html>
