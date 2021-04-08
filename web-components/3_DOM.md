@@ -1,4 +1,4 @@
-# Shadow DOM :
+# DOM - Document Object Model :
 
 ## Định nghĩa DOM 
 DOM : là viết tắt của chữ Document Object Model ( mô hình các đối tượng trong tài liệu HTML)
@@ -100,4 +100,138 @@ Truy xuất trực tiếp sẽ nhanh hơn, và đơn giản hơn khi bạn khôn
 - document.getElementsByTagName('div')
 - document.getElementsByName('tên_cần_tìm'
 
-![Truy-xuat-DOM-truc-tiep.png]()
+![Truy-xuat-DOM-truc-tiep.png](https://github.com/mana147/JavaScript/blob/main/web-components/img/Truy-xuat-DOM-truc-tiep.png?raw=true)
+
+Các trình duyệt hiện đại sau này (IE8+) có hỗ trợ thêm các phương thức truy xuất mạnh mẽ và linh hoạt hơn nhiều, thậm chí hỗ trợ truy xuất theo vùng chọn CSS phức tạp như vùng chọn jQuery (một thư viện Javascript mạnh và đáng dùng để tối ưu hóa hiệu quả công việc cũng như tiết kiệm thời gian).
+
+- ```document.querySelector('#id p.class')```: truy xuất đến vùng chọn và trả về kết quả tham chiếu đầu tiên.
+- ```document.querySelectorAll('#id p[class^=test]')```: tương tự querySelector nhưng trả về mảng các tham chiếu.
+- ```document.getElementsByName('class1 class2')```: tham chiếu đến tất cả các nút có thuộc tính className chứa tất cả các tên lớp cần tìm.
+
+## Tạo thêm hoặc di chuyển DOM với appendChild
+
+Như bạn đã biết, mọi nút trên cây cấu trúc DOM đều bắt nguồn sâu xa từ nút gốc và bắt buộc phải có 1 nút cha. Do đó, về bản chất, khi 1 DOM mới được tạo ra, nó cô đơn 1 mình và không thể sử dụng được như các phần tử DOM thông thường. Chỉ sau khi bạn tìm 1 nút khác trên cây DOM để làm cha đứa bé (sử dụng nút_cha.appendChild(nút_con)) thì quá trình tạo thêm DOM hoàn tất. Nếu bạn đã sẵn sàng để tạo vài em bé thì hãy cùng nhau tạo vài nút mới với 2 phương thức sau:
+
+- document.createElement(tên_thẻ_html): tạo 1 nút phần tử từ nút gốc.
+- document.createTextNode(chuỗi_kí_tự): tạo 1 nút văn bản từ nút gốc.
+
+    Khi bạn tạo 1 nút mới nhưng chưa gán nút cha cho nó, nút đó sẽ tồn tại trong bộ nhớ đệm của máy tính. Bạn sẽ không thể truy xuất đến nút đó được, trừ khi bạn đã lưu tham chiếu đến nút đó bằng 1 biến.
+
+Một lưu ý khi tạo thêm DOM: nút mới được tạo sẽ vẫn có các thuộc tính và phương thức như 1 nút DOM thực thụ. Tuy nhiên, các thuộc tính của nút mới sẽ ở trạng thái rỗng hoặc mặc định, nên bạn sẽ phải thiết lập thêm các thuộc tính cần thiết.
+
+```js
+var babyDom = document.createElement('div');
+babyDom.id = 'Whatsapp';
+babyDom.class = 'OTP-Messenger';
+ 
+var fatherDom = document.getElementById('Facebook');
+fatherDom.appendChild(babyDom);
+```
+
+Phương thức appendChild còn được sử dụng để tổ chức “tái định cư” cho các nút DOM. Nếu như 1 nút DOM đang có 1 nút cha, nhưng lại được 1 nút cha khác “nhận nuôi” thông qua appendChild thì nó sẽ cắt đút quan hệ với nút cha cũ để về bên gia đình mới.
+
+```js
+var child = document.getElementById('Motorola');
+var oldFather = document.getElementById('Google');
+// Google mua Motorola
+oldFather.appendChild(child);
+ 
+var newFather = document.getElementById('Lenovo');
+// Lenovo mua lại Motorola
+fatherDom.appendChild(child);
+```
+
+## Loại bỏ DOM với removeChild
+
+    Khi bạn loại bỏ 1 nút, nút đó vẫn sẽ tồn tại trong bộ nhớ đệm của máy tính. Bạn sẽ không thể truy xuất đến nút đó được nữa, trừ khi bạn đã lưu tham chiếu đến nút đó bằng 1 biến.
+
+Khi loại bỏ DOM, nút cha sẽ sử dụng phương thức removeChild() để từ mặt 1 hoặc nhiều nút con.
+
+```js
+// Cách 1: Loại bỏ 1 nút con khi biết nút cha và nút con
+var google = document.getElementById('Google');
+var motorola = document.getElementById('Motorola');
+google.removeChild(motorola);
+ 
+// Cách 2: Loại bỏ 1 nút con khi chỉ biết nút con
+var whatsapp = document.getElementById('Whatsapp');
+if (whatsapp.parentNode) {
+  whatsapp.parentNode.removeChild(whatsapp);
+}
+ 
+// Cách 3: Loại bỏ toàn bộ nút con
+var body = document.getElementsByTagName('body')[0];
+while (body.firstChild) {
+  body.removeChild(body.firstChild);
+}
+```
+
+## DOM EVENT
+
+Sự kiện và các hàm xử lý sự kiện DOM là một phần quan trọng của Javascript. Sự kiện sẽ xảy ra khi có sự tương tác từ người dùng (như sự kiện onclick khi người dùng nhấn chuột , onmousemove khi chuột di chuyển..) hoặc từ chính trang web (sự kiện onload khi một phần tử DOM nào đó đã được tải xong hay khi cửa sổ bị thay đổi kích thước). Bạn có thể tham khảo thêm danh sách sự kiện rút gọn ở W3Schools hoặc danh sách đầy đủ của Mozilla.
+
+### Sử dụng sự kiện và hàm xử lý sự kiện 
+
+Cách 1: Chèn trực tiếp vào thẻ HTML
+```html
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>The onclick Event</h1>
+<p>The onclick event is used to trigger a function when an element is clicked on.</p>
+<p>Click the button to trigger a function that will output "Hello World" in a p element with id="demo".</p>
+<button onclick="myFunction()">Click me</button>
+<p id="demo"></p>
+<script>
+function myFunction() {
+  document.getElementById("demo").innerHTML = "Hello World";
+}
+</script>
+</body>
+</html>
+```
+Cách này nhanh chóng và dễ sử dụng với hầu hết lập trình viên, nhưng sẽ phức tạp hóa code, không tiện khi xây dựng các ứng dụng lớn. Do đó, mình khuyến khích bạn nên sử dụng 2 cách bên dưới hơn.
+
+Cách 2: Chèn vào thuộc tính sự kiện của DOM
+```html
+<!DOCTYPE html>
+<html>
+<body onload="myFunction()">
+
+<h1>Hello World!</h1>
+
+<script>
+function myFunction() {
+  alert("Page is loaded");
+}
+</script>
+
+</body>
+</html>
+
+```
+Lưu ý là, sau khi toàn bộ các phần tử DOM đã được xử lý thì sự kiện onload sẽ xảy ra, dẫn đến việc gọi hàm myFunction()
+
+Cách 3: Dùng phương thức addEventListener()
+
+Ví dụ 1: Xây dựng chức năng khi nhập dữ liệu vào ô input thì hiển thị giá trị của ô input đó ra bên ngoài
+Với bài này ta sử dụng sự kiện onkeyup và bỏ đi chữ on sẽ là keyup.
+```html
+<html>
+    <body>
+        <input type="text" id="txt-val" value="" />
+        <div id="result"></div>
+        <script language="javascript">
+            // Lấy đối tượng
+            var input = document.getElementById("txt-val");
+             
+            // Thêm sự kiện cho đối tượng
+            input.addEventListener('keyup', function(){
+                // Gán giá trị vào div
+                document.getElementById('result').innerHTML = input.value;
+            });
+        </script>
+    </body>
+</html>
+```

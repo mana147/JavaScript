@@ -19,3 +19,18 @@ nhươc điểm :
 
 - ý nghĩa của việc này nằm ở chỗ là chúng ta sẽ tách được nghiệp vụ ra không bị chồng chéo lên nhau 
 - ví dụ anh Toàn phía back-end sẽ thiết kế một bộ APIs , bộ APIs này có tính chất mở rộng , chỉ cân viết một lần thôi , bên phía bọn em là front-end sau này chỉ cần móc ra để sử dụng . sẽ đỡ 
+
+
+
+SpringBoot nâng cao chuyên về REST và Microservice 
+Nội dung học qua các problem - solution cho giải pháp nhỏ, rồi to hơn một và cuối cùng là hệ microservice triển khai trên Docker Swarm hoặc Kubernetes. Các công nghệ sẽ học
+- REST
+- JPA (MySQL, Postgresql và MongoDB)
+- JWT, OAuth2
+- JUnit 5 : unit test và integration test
+- Cache
+- Message Queue (Kafka Event Stream và Connector)
+- API Gateway: load balancing, rate limit
+- Saga pattern
+- Reactive Web Flux
+- Docker - Docker Swarm.
