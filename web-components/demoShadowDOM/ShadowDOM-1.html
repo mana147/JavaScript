@@ -1,30 +1,30 @@
 <!doctype html>
-<html>
-
-<head>
-    <title>Page Title</title>
-</head>
 
 <body>
-<style>
-    p {
-        color: green
-    }
-</style>
+    <style>
+        /* document style won't apply to the shadow tree inside #elem (1) */
+        p {
+            color: red;
+        }
+    </style>
 
-<p id="sd-root">I am Shadow Root</p>
+    <div id="elem"> </div>
+    <p> hello </p>
+    <script>
+        elem.attachShadow({ mode: 'open' });
+        // shadow tree has its own style (2)
+        elem.shadowRoot.innerHTML = `
+            <style> 
+                p { 
+                    font-weight: bold; 
+                } 
+            </style>
+            
+            <p> Hello, John! </p>
+        `;
 
-<script>
-    const host = document.querySelector('#sd-root');
-    const root = host.createShadowRoot();
-    root.innerHTML = `
-    
-    <style> p { color: gray }</style>
-    
-    <p>Hello <strong>Shadow DOM</strong></p>
-    
-  `;
-</script>
+        // <p> is only visible from queries inside the shadow tree (3)
+        console.log(document.querySelectorAll('p').length); // 0
+        console.log(elem.shadowRoot.querySelectorAll('p').length); // 1
+    </script>
 </body>
-
-</html>
