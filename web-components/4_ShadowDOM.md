@@ -9,7 +9,7 @@ API Shadow DOM là một phần quan trọng của điều này, cung cấp mộ
 
 Shadow DOM cho phép các cây DOM ẩn ( hidden DOM trees ) được gắn vào các phần tử ( elements ) trong cây DOM thông thường ( regular DOM tree ) - cây Shadow DOM này bắt đầu với một gốc (shadow root) , bên dưới có thể được gắn vào bất kỳ phần tử nào bạn muốn, theo cách giống như DOM thông thường.
 
-![shadowdom.jpg]()
+![shadowdom.jpg](https://github.com/mana147/JavaScript/blob/main/web-components/img/shadowdom.jpg?raw=true)
 
 - Shadow host: nút DOM thông thường mà shadow DOM đươc gắn vào
 - Shadow tree: The DOM tree inside the shadow DOM.
