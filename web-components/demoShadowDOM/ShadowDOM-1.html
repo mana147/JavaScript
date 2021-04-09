@@ -1,30 +1,36 @@
 <!doctype html>
 
-<body>
-    <style>
-        /* document style won't apply to the shadow tree inside #elem (1) */
-        p {
-            color: red;
-        }
-    </style>
-
-    <div id="elem"> </div>
-    <p> hello </p>
+<head>
+    <title>Page Title</title>
     <script>
-        elem.attachShadow({ mode: 'open' });
-        // shadow tree has its own style (2)
-        elem.shadowRoot.innerHTML = `
-            <style> 
-                p { 
-                    font-weight: bold; 
-                } 
-            </style>
-            
-            <p> Hello, John! </p>
-        `;
+        // khởi tạo class kế thừa từ HTML Element 
+        class ShowName extends HTMLElement { // (1)
+            constructor() {
+                //  kế thừa toàn bộ thuộc tính của HTMLElement
+                super();
+            };
 
-        // <p> is only visible from queries inside the shadow tree (3)
-        console.log(document.querySelectorAll('p').length); // 0
-        console.log(elem.shadowRoot.querySelectorAll('p').length); // 1
+            // trình duyệt gọi phương thức này khi phần tử được thêm vào document
+            connectedCallback() {
+                console.log(this);     
+                
+                let getA = this.getAttribute('name');
+                let shadow = this.attachShadow({mode:"open"});
+
+                shadow.innerHTML = `<h1>  Hello , customer name ${getA} </h1>`;
+                
+                // this.innerHTML =  this.getAttribute('name');    
+            };
+        };
+
+        // báo cho browser biết rằng <time-formatted> được cung cấp bởi class mới
+        customElements.define("show-name", ShowName); // (2)
     </script>
+
+</head>
+
+<body>
+    <!-- tạo một custom element  -->
+    <show-name name="Phạm Trung Hiếu"></show-name>
+    
 </body>
