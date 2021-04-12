@@ -233,3 +233,27 @@ class WordCount extends HTMLParagraphElement {
 
 ```
 ![WordCount](https://github.com/mana147/JavaScript/blob/main/web-components/img/demoWordCount.png?raw=true)
+
+## Custom element giải quyết vấn đề gì ?
+
+Xét ví dụ sau, trong các ứng dụng webapp hiện đại thì đây là kiểu kiến trúc rất phổ biến khi ta có rất nhiều các thẻ div lồng nhau như thế này.
+
+```html
+<div class="top-container">
+  <div class="middle-container">
+    <div class="inside-container">
+      <div class="inside-inside-container">
+        <div class="are-we-really-doing-this">
+          <div class="mariana-trench">
+            <p>to do something ... </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+```
+Kiểu kiến trúc như thế này thường được dùng vì nó bảo trình duyệt phải render những gì mà developer muốn. Nhưng nó lại làm cho code HTML khó đọc và rất khó bảo trì.
+
+
+Ví dụ chúng ta có 1 component trông như thế này:

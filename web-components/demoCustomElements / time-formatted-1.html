@@ -13,7 +13,7 @@
                 super();
                 // element created
 
-            };
+            }; 
 
             // trình duyệt gọi phương thức này khi phần tử được thêm vào document
             connectedCallback() {
@@ -29,12 +29,12 @@
                     let date = new Date(datetime);
 
                     console.log(`thời gian setup : ${date} `);
-
+                    
                     this.innerHTML = date;
 
                 } else {
                     let dateNow = Date.now();
-
+            
                     let date = new Date(dateNow);
 
                     this.innerHTML = `chưa có thời gian được setup , 
