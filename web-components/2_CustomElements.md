@@ -236,6 +236,8 @@ class WordCount extends HTMLParagraphElement {
 
 ## Custom element giải quyết vấn đề gì ?
 
+### > Vấn đề rút gọn : 
+
 Xét ví dụ sau, trong các ứng dụng webapp hiện đại thì đây là kiểu kiến trúc rất phổ biến khi ta có rất nhiều các thẻ div lồng nhau như thế này.
 
 ```html
@@ -255,5 +257,125 @@ Xét ví dụ sau, trong các ứng dụng webapp hiện đại thì đây là k
 ```
 Kiểu kiến trúc như thế này thường được dùng vì nó bảo trình duyệt phải render những gì mà developer muốn. Nhưng nó lại làm cho code HTML khó đọc và rất khó bảo trì.
 
+Ví dụ chúng ta có 1 component như sau :
 
-Ví dụ chúng ta có 1 component trông như thế này:
+![vidu1.png](https://github.com/mana147/JavaScript/blob/main/web-components/img/vidu1.png?raw=true);
+
+Vậy thì theo cách cũ, HTML sẽ như thế này:
+```html
+<div class="primary-toolbar toolbar">
+  <div class="toolbar">
+    <div class="toolbar-button">
+      <div class="toolbar-button-outer-box">
+        <div class="toolbar-button-inner-box">
+          <div class="icon">
+            <div class="icon-undo">&nbsp;</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="toolbar-button">
+      <div class="toolbar-button-outer-box">
+        <div class="toolbar-button-inner-box">
+          <div class="icon">
+            <div class="icon-redo">&nbsp;</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="toolbar-button">
+      <div class="toolbar-button-outer-box">
+        <div class="toolbar-button-inner-box">
+          <div class="icon">
+            <div class="icon-print">&nbsp;</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="toolbar-toggle-button toolbar-button">
+      <div class="toolbar-button-outer-box">
+        <div class="toolbar-button-inner-box">
+          <div class="icon">
+            <div class="icon-paint-format">&nbsp;</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+Tuy nhiên, khi sử dụng Custom Element , chúng ta có thể viết gọn lại rất nhiều :
+
+```html
+<primary-toolbar>
+  <toolbar-group>
+    <toolbar-button class="icon-undo"></toolbar-button>
+    <toolbar-button class="icon-redo"></toolbar-button>
+    <toolbar-button class="icon-print"></toolbar-button>
+    <toolbar-toggle-button class="icon-paint-format"></toolbar-toggle-button>
+  </toolbar-group>
+</primary-toolbar>
+```
+Rõ ràng ví dụ thứ 2 nhìn sạch sẽ và gọn hơn nhiều. Dễ bảo trì, dễ đọc cho cả trình duyệt và developer.
+
+### > Vấn đề khả năng tái sử dụng :
+
+Công việc của developer đòi hỏi không chỉ viết code hoạt động được mà còn phải bảo trì được. Và 1 điều làm cho code dễ bảo trì là nó có thể dễ dàng tái sử dụng 1 phần nào đó của code thay vì phải viết đi viết lại nhiều lần.
+
+Dưới đây là 1 ví dụ đơn giản nhưng bạn sẽ hiểu ý tưởng của nó. Giả sử ta có element sau:
+
+```html
+<div class="my-custom-element">
+  <input type="text" class="email" />
+  <button class="submit"></button>
+</div>
+```
+
+Nếu chúng ta cần sử dụng nó ở nơi nào khác thì ta sẽ phải viết lại đoạn HTML trên nhiều lần. Giả sử như ta cần thay đổi 1 phần nào đó và áp dụng cho mọi element. Ta sẽ phải đi tìm tất cả mọi nơi có đoạn code đó và chỉnh sửa chính xác cùng 1 thay đổi y chang nhau rất nhiều lần .....
+
+Vậy thì không tốt hơn nếu ta chỉ cần viết gọn lại trong 1 thẻ như này thôi 
+
+```html
+<my-custom-element></my-custom-element>
+```
+
+Nhưng webapp hiện đại không chỉ có HTML tĩnh. Bạn cần tương tác với nó nữa. Và đây là lúc ta cần Javascript. Thường thì bạn sẽ tạo ra 1 vài element, ghép chúng vào bất kỳ event listener nào mà bạn muốn để cho nó có thể tương tác phản hồi khi có input từ người dùng. Bất kể là click, kéo-thả, hover, nhấn bàn phím ...
+
+ví dụ làm theo cách cũ :
+```js
+var myDiv = document.querySelector('.my-custom-element');
+
+myDiv.addEventListener('click', _ => {
+  myDiv.innerHTML = '<b> I have been clicked </b>';
+});
+```
+```html
+<div class="my-custom-element">
+  I have not been clicked yet.
+</div>
+```
+
+Với API custom element, toàn bộ phần logic này có thể được đóng gói vào bên trong chính element đó.
+xem ví dụ sau. 
+```js
+class MyCustomElement extends HTMLElement {
+  constructor() {
+    super();
+    var self = this;
+    self.addEventListener('click', _ => {
+      self.innerHTML = '<b> I have been clicked </b>';
+    });
+  }
+}
+customElements.define('my-custom-element', MyCustomElement);
+```
+```html
+<my-custom-element>
+  I have not been clicked yet
+</my-custom-element>
+```
+
+Mới đầu nhìn vào thì có vẻ như giải pháp custom element này đòi hỏi nhiều Javascript. Tuy nhiên trong các ứng dụng thực tế thì bạn sẽ hiếm khi gặp phải trường hợp mà bạn tạo ra 1 element mà không phải tái sử dụng nó. 
+
+Một diều điển hình nữa trong các webapp hiện đại là đa số các element đều được tạo ra bằng code trong quá trình hoạt động (dynamic). Vì thế bạn cần phải xử lý các trường hợp riêng biệt khi element được thêm vào bằng Javascript hoặc nó được định nghĩa trước kia trong kiến trúc HTML. Bạn sẽ có toàn bộ những tính năng ấy nếu dùng custom element.
