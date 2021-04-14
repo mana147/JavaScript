@@ -18,11 +18,9 @@ shadow DOM của tag < video >
 Để làm được việc này, **Web components** bao gồm 3 công nghệ chính , có thể đc sử dụng cùng nhau để tạo các phần tử linh hoạt , với tính năng được đóng gói và sử dụng ở bất cứ đâu mà không sơ conflict :
 
 - **1 : Custom Elements** : các thành phần có thể tùy chỉnh đc
-- **2 : Shadow DOM** : cây DOM ẩn 
+- **2 : Shadow DOM** : tập hợp các API JavaScript để gắn một cây DOM "ẩn" được đóng gói vào một elements 
 - **3 : HTML templates** : bao gồm 2 element < template > và < slot >
 
 ý nghĩa của chúng : 
 
 **Custom Element và Shadow DOM đi đôi với nhau. Custom element được dùng để đóng gói logic Javascript vào bên trong 1 element trong khi shadow DOM được dùng để tạo ra 1 môi trường khép kín cho phần DOM không bị ảnh hưởng bởi các yếu tố bên ngoài.**
-
-Sau đây chúng ta sẽ đi xem chi tiết từng phần một qua các ví dụ cụ thể .

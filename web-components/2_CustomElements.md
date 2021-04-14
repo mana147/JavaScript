@@ -236,7 +236,7 @@ class WordCount extends HTMLParagraphElement {
 
 ## Custom element giải quyết vấn đề gì ?
 
-### > Vấn đề rút gọn : 
+### * Vấn đề rút gọn : 
 
 Xét ví dụ sau, trong các ứng dụng webapp hiện đại thì đây là kiểu kiến trúc rất phổ biến khi ta có rất nhiều các thẻ div lồng nhau như thế này.
 
@@ -319,7 +319,7 @@ Tuy nhiên, khi sử dụng Custom Element , chúng ta có thể viết gọn l�
 ```
 Rõ ràng ví dụ thứ 2 nhìn sạch sẽ và gọn hơn nhiều. Dễ bảo trì, dễ đọc cho cả trình duyệt và developer.
 
-### > Vấn đề khả năng tái sử dụng :
+### * Vấn đề khả năng tái sử dụng :
 
 Công việc của developer đòi hỏi không chỉ viết code hoạt động được mà còn phải bảo trì được. Và 1 điều làm cho code dễ bảo trì là nó có thể dễ dàng tái sử dụng 1 phần nào đó của code thay vì phải viết đi viết lại nhiều lần.
 
