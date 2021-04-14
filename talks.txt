@@ -21,7 +21,6 @@ nhươc điểm :
 - ví dụ anh Toàn phía back-end sẽ thiết kế một bộ APIs , bộ APIs này có tính chất mở rộng , chỉ cân viết một lần thôi , bên phía bọn em là front-end sau này chỉ cần móc ra để sử dụng . sẽ đỡ 
 
 
-
 SpringBoot nâng cao chuyên về REST và Microservice 
 Nội dung học qua các problem - solution cho giải pháp nhỏ, rồi to hơn một và cuối cùng là hệ microservice triển khai trên Docker Swarm hoặc Kubernetes. Các công nghệ sẽ học
 - REST
@@ -34,3 +33,15 @@ Nội dung học qua các problem - solution cho giải pháp nhỏ, rồi to h�
 - Saga pattern
 - Reactive Web Flux
 - Docker - Docker Swarm.
+
+
+
+Scheduler : các đầu mục công việc và kế hoạch tiếp theo 
+
+- thứ 7 giới thiệu về design patter
+- viết tiếp web-components shadow DOM
+- làm demo về lazy loading components javascript
+- tìm hiểu và demo gulp-template-html
+- làm web server cho anh Long
+- viết loạt bài về 8 cấu trúc dữ liệu cơ bản 
+- viết loạt bài về các giải thuật cơ bản
