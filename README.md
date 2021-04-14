@@ -2,7 +2,7 @@
 
 > Tổng hợp kiến thức và demo liên quan đến JavaScript 
 
-link các bài viết hay :
+<!-- link các bài viết hay :
 
 - https://soaica.dev/index.php/2020/02/14/ten-goi-va-truong-hop-su-dung-cac-web-component-hay-gap/
 
@@ -18,4 +18,4 @@ link các bài viết hay :
 
 - http://laptoplinhkien.vn/san-pham/1615-thay-man-hinh-laptop-dell-vostro-5460-v5460.html
 
-- https://4lap.vn/mua-ban-thay-the-man-hinh-laptop-dell-vostro-5460-5470.html
+- https://4lap.vn/mua-ban-thay-the-man-hinh-laptop-dell-vostro-5460-5470.html -->
