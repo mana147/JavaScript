@@ -15,7 +15,6 @@
 
 - https://itviec.com/blog/software-architect-la-gi/
 
-
 - http://laptoplinhkien.vn/san-pham/1615-thay-man-hinh-laptop-dell-vostro-5460-v5460.html
 
 - https://4lap.vn/mua-ban-thay-the-man-hinh-laptop-dell-vostro-5460-5470.html -->
