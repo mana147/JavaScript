@@ -19,7 +19,7 @@ Bên cạnh đó, bạn cũng có thể thêm bớt các phần tử tùy thích
 - Nút văn bản: mỗi đoạn kí tự trong tài liệu HTML, bên trong 1 thẻ HTML đều là 1 nút văn bản. Đó có thể là tên trang web trong thẻ ```<title>```, tên đề mục trong thẻ ```<h1>```, hay một đoạn văn trong thẻ ```<p>```.
 - Ngoài ra còn có nút thuộc tính (attribute node) và nút chú thích (comment node).
 
-![nodeDOM](https://github.com/mana147/JavaScript/blob/main/web-components/img/nodeDOM.png?raw=true)
+![nodeDOM](https://github.com/mana147/JavaScript/blob/main/js-web-components/img/nodeDOM.png?raw=true)
 
 ### Quan hệ giữa các nút
 
@@ -36,7 +36,7 @@ Ta hãy cùng xem ví dụ cây cấu trúc DOM bên dưới:
 - Nút ```<body>``` có 3 con, trong đó ```<h1>``` là con cả và thẻ ```<p>``` thứ 2 là con út.
 - Nút phần tử ```<a>``` có 2 con, trong đó có 1 nút văn bản và 1 nút thuộc tính.
 
-![TP-Phan-cap-DOM-Tree.png](https://github.com/mana147/JavaScript/blob/main/web-components/img/TP-Phan-cap-DOM-Tree.png?raw=true)
+![TP-Phan-cap-DOM-Tree.png](https://github.com/mana147/JavaScript/blob/main/js-web-components/img/TP-Phan-cap-DOM-Tree.png?raw=true)
 
 ### Thao tác với DOM
 
@@ -90,7 +90,7 @@ Mỗi nút trên cây DOM đều có 6 thuộc tính quan hệ để giúp bạn
 - **Node.lastChild**: tham chiếu đến nút con cuối cùng của nút hiện tại, và tương đương với việc gọi ```Node.childNodes[Element.childNodes.length-1]```.
 - **Node.nextSibling**: tham chiếu đến nút anh em nằm liền kề sau với nút hiện tại.
 - **Node.previousSibling**: tham chiếu đến nút anh em nằm liền kề trước với nút hiện tại.
-![tp_dom_tree_traversal.png](https://github.com/mana147/JavaScript/blob/main/web-components/img/tp_dom_tree_traversal.png?raw=true)
+![tp_dom_tree_traversal.png](https://github.com/mana147/JavaScript/blob/main/js-web-components/img/tp_dom_tree_traversal.png?raw=true)
 
 ### Truy xuất trực tiếp
 
@@ -100,7 +100,7 @@ Truy xuất trực tiếp sẽ nhanh hơn, và đơn giản hơn khi bạn khôn
 - document.getElementsByTagName('div')
 - document.getElementsByName('tên_cần_tìm'
 
-![Truy-xuat-DOM-truc-tiep.png](https://github.com/mana147/JavaScript/blob/main/web-components/img/Truy-xuat-DOM-truc-tiep.png?raw=true)
+![Truy-xuat-DOM-truc-tiep.png](https://github.com/mana147/JavaScript/blob/main/js-web-components/img/Truy-xuat-DOM-truc-tiep.png?raw=true)
 
 Các trình duyệt hiện đại sau này (IE8+) có hỗ trợ thêm các phương thức truy xuất mạnh mẽ và linh hoạt hơn nhiều, thậm chí hỗ trợ truy xuất theo vùng chọn CSS phức tạp như vùng chọn jQuery (một thư viện Javascript mạnh và đáng dùng để tối ưu hóa hiệu quả công việc cũng như tiết kiệm thời gian).
 
