@@ -4,15 +4,15 @@
 
 ví dụ :
 
-![webComponent](https://github.com/mana147/JavaScript/blob/main/web-components/img/webComponent.png?raw=true)
+![webComponent](https://github.com/mana147/JavaScript/blob/main/js-web-components/img/webComponent.png?raw=true)
 
 Ngoài ra chúng ta có ví dụ điển hình cho **Web components** là tag HTLM < video >
 
-![tagVideoHtml](https://github.com/mana147/JavaScript/blob/main/web-components/img/tagVideoHtml.png?raw=true)
+![tagVideoHtml](https://github.com/mana147/JavaScript/blob/main/js-web-components/img/tagVideoHtml.png?raw=true)
 
 shadow DOM của tag < video >
 
-![tagVideoHtmlDOM](https://github.com/mana147/JavaScript/blob/main/web-components/img/tagVideoHtmlDOM.png?raw=true)
+![tagVideoHtmlDOM](https://github.com/mana147/JavaScript/blob/main/js-web-components/img/tagVideoHtmlDOM.png?raw=true)
 
 
 Để làm được việc này, **Web components** bao gồm 3 công nghệ chính , có thể đc sử dụng cùng nhau để tạo các phần tử linh hoạt , với tính năng được đóng gói và sử dụng ở bất cứ đâu mà không sơ conflict :
