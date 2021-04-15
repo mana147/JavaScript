@@ -290,4 +290,4 @@ run();
 
 - Thứ tự thực hiện các câu lệnh trong js nói chung hay ```node.js``` nói riêng đều là chạy từ trên xuống dưới (nghĩa là chạy ```sync``` chứ không phải ```async``` ), trừ những hàm liên quan tới I/O thì mới được chạy ```async``` ( Tham khảo thêm ở bài viết event loop trong js )
 
-- Khi gặp ```await`` , nó sẽ **convert** hàm đó thành ```promise``` với ```callback``` là tất cả những phần code phía sau ```await``` đó. Bản chất ```await``` là một ```promise``` , phần code nằm sau ```await``` thực chất là code nằm trong ```callback``` của hàm ```await``` đó.
+- Khi gặp ```await``` , nó sẽ **convert** hàm đó thành ```promise``` với ```callback``` là tất cả những phần code phía sau ```await``` đó. Bản chất ```await``` là một ```promise``` , phần code nằm sau ```await``` thực chất là code nằm trong ```callback``` của hàm ```await``` đó.
