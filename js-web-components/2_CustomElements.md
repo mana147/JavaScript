@@ -2,11 +2,11 @@
 
 ## * Phần tử HTML (HTML element) là gì :
 
-![HTMLelements](https://github.com/mana147/JavaScript/blob/main/js-js-web-components/img/HTMLelements.png?raw=true)
+![HTMLelements](https://github.com/mana147/JavaScript/blob/main/js-web-components/img/HTMLelements.png?raw=true)
 
 HTMLElement đại diện cho mọi phần tử HTML. Một vài phần tử sử dụng trực tiếp interface này, một vài phần tử khác lại sử dụng nó thông qua các lớp khác kế thừa nó.
 
-![HTMLElement_inherits](https://github.com/mana147/JavaScript/blob/main/js-js-web-components/img/HTMLElement_inherits.png?raw=true)
+![HTMLElement_inherits](https://github.com/mana147/JavaScript/blob/main/js-web-components/img/HTMLElement_inherits.png?raw=true)
 
 
 ## * Phần tử HTML tùy chỉnh ( Custom HTML elements ) là gì :
