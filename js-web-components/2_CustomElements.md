@@ -2,11 +2,11 @@
 
 ## * Phần tử HTML (HTML element) là gì :
 
-![HTMLelements](https://github.com/mana147/JavaScript/blob/main/web-components/img/HTMLelements.png?raw=true)
+![HTMLelements](https://github.com/mana147/JavaScript/blob/main/js-js-web-components/img/HTMLelements.png?raw=true)
 
 HTMLElement đại diện cho mọi phần tử HTML. Một vài phần tử sử dụng trực tiếp interface này, một vài phần tử khác lại sử dụng nó thông qua các lớp khác kế thừa nó.
 
-![HTMLElement_inherits](https://github.com/mana147/JavaScript/blob/main/web-components/img/HTMLElement_inherits.png?raw=true)
+![HTMLElement_inherits](https://github.com/mana147/JavaScript/blob/main/js-js-web-components/img/HTMLElement_inherits.png?raw=true)
 
 
 ## * Phần tử HTML tùy chỉnh ( Custom HTML elements ) là gì :
@@ -128,7 +128,7 @@ customElements.define("time-format", TimeFormat); // (2)
 ```
 4: hiển thị 
 
-![tagTime.png](https://github.com/mana147/JavaScript/blob/main/web-components/img/tagTime.png?raw=true)
+![tagTime.png](https://github.com/mana147/JavaScript/blob/main/js-web-components/img/tagTime.png?raw=true)
 
 **DEMO 2** : 
 xét lại bài toán hiển thị thời gian trên, ngoài việc hiển thị chúng ta muốn thời gian đc tự động cập nhật và thay đổi 
@@ -232,7 +232,7 @@ class WordCount extends HTMLParagraphElement {
 }
 
 ```
-![WordCount](https://github.com/mana147/JavaScript/blob/main/web-components/img/demoWordCount.png?raw=true)
+![WordCount](https://github.com/mana147/JavaScript/blob/main/js-web-components/img/demoWordCount.png?raw=true)
 
 ## Custom element giải quyết vấn đề gì ?
 
@@ -259,7 +259,7 @@ Kiểu kiến trúc như thế này thường được dùng vì nó bảo trìn
 
 Ví dụ chúng ta có 1 component như sau :
 
-![vidu1.png](https://github.com/mana147/JavaScript/blob/main/web-components/img/vidu1.png?raw=true);
+![vidu1.png](https://github.com/mana147/JavaScript/blob/main/js-web-components/img/vidu1.png?raw=true);
 
 Vậy thì theo cách cũ, HTML sẽ như thế này:
 ```html
