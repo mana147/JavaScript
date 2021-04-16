@@ -33,8 +33,23 @@ Design pattern không phải là cách để giải quyết dứt điểm cho m�
 
 ![Structural-pattern.png](https://github.com/mana147/JavaScript/blob/main/js-advance/img/Structural-pattern.png?raw=true)
 
+- Adapter : Bộ chuyển đổi
+- Bridge : Cầu
+- Composite : Tổng hợp
+- Decorator : Người trang trí
+- Facade : Facade
+- Flyweight :
+- Proxy :
+
 ## Behavioral patterns : 
 
     Nhóm patterns liên quan tới hành vi, chúng sẽ giúp tăng sự kết nối giữa các đối tượng khác nhau.
 
 ![Behavioral-patterns.png](https://github.com/mana147/JavaScript/blob/main/js-advance/img/Behavioral-patterns.png?raw=true)
+
+- Chain of Responsibility :
+- Command :
+- Iterator : 
+- Mediator : 
+- Memento :
+- Observer :
