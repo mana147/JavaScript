@@ -37,9 +37,9 @@ Design pattern không phải là cách để giải quyết dứt điểm cho m�
 - Bridge : Cầu
 - Composite : Tổng hợp
 - Decorator : Người trang trí
-- Facade : Facade
-- Flyweight :
-- Proxy :
+- Facade : Mặt tiền
+- Flyweight : Khi nhiều objects phải được xử lý mà chương trình không thể chịu nổi một lượng dữ liệu khổng lồ, thì cần dùng flyweight.
+- Proxy : Proxy có nghĩa là “ủy quyền” hay “đại diện”. Mục đích xây dựng Proxy pattern cũng chính vì muốn tạo ra một đối tượng sẽ ủy quyền, thay thế cho một đối tượng khác.
 
 ## Behavioral patterns : 
 
@@ -47,7 +47,7 @@ Design pattern không phải là cách để giải quyết dứt điểm cho m�
 
 ![Behavioral-patterns.png](https://github.com/mana147/JavaScript/blob/main/js-advance/img/Behavioral-patterns.png?raw=true)
 
-- Chain of Responsibility :
+- Chain of Responsibility : Chuỗi trách nhiệm
 - Command :
 - Iterator : 
 - Mediator : 

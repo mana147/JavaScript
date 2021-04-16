@@ -8,7 +8,6 @@ _Tổng hợp kiến thức và demo liên quan đến JavaScript_
 
 - https://viblo.asia/p/tim-hieu-kien-thuc-co-ban-ve-api-maGK7A4Mlj2?fbclid=IwAR3fFepuj58hbZtVVpxWTG3afN9y-w21r1P_J0DU7d0NmNgTx_zdc4cl3AU
 
-
 - https://growupcareer.com/2020/04/14/10-mo-hinh-kien-%E2%80%8B%E2%80%8Btruc-phan-mem-pho-bien/
 
 - https://github.com/Asabeneh/30-Days-Of-Reac
@@ -17,4 +16,10 @@ _Tổng hợp kiến thức và demo liên quan đến JavaScript_
 
 - http://laptoplinhkien.vn/san-pham/1615-thay-man-hinh-laptop-dell-vostro-5460-v5460.html
 
-- https://4lap.vn/mua-ban-thay-the-man-hinh-laptop-dell-vostro-5460-5470.html -->
+- https://4lap.vn/mua-ban-thay-the-man-hinh-laptop-dell-vostro-5460-5470.html 
+
+- https://tapit.vn/huong-dan-viet-dac-ta-thiet-ke-qua-mot-du-nhung-don-gian/
+
+- https://developer.okta.com/blog/2018/05/08/build-video-chat-app-with-javascript-webrtc-and-okta
+
+-->
