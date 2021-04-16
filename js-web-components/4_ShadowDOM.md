@@ -16,7 +16,7 @@ Shadow DOM cũng chỉ là 1 DOM bình thường, ngoại trừ 2 điều sau:
 
 Shadow DOM cho phép các cây DOM "ẩn" ( hidden DOM trees ) được gắn vào các phần tử ( elements ) trong cây DOM thông thường ( regular DOM tree ) - cây Shadow DOM này bắt đầu với một gốc (shadow root) , bên dưới có thể được gắn vào bất kỳ phần tử nào bạn muốn, theo cách giống như DOM thông thường.
 
-![shadowdom.jpg](https://github.com/mana147/JavaScript/blob/main/web-components/img/shadowdom.jpg?raw=true)
+![shadowdom.jpg](https://github.com/mana147/JavaScript/blob/main/js-web-components/img/shadowdom.jpg?raw=true)
 
 Một số thuật ngữ cần lưu ý :
 
@@ -67,7 +67,7 @@ ví dụ :
 ```
 tất cả nội dung đều nằm dưới "#shadow-root":
 
-![demoShadowTree.png](https://github.com/mana147/JavaScript/blob/main/web-components/img/demoShadowTree.png?raw=true)
+![demoShadowTree.png](https://github.com/mana147/JavaScript/blob/main/js-web-components/img/demoShadowTree.png?raw=true)
 
 giải thích :
 - ```elem.attachShadow({mode: … })``` tạo một shadow tree, trong đó có 2 option:
@@ -87,7 +87,7 @@ Shadow DOM được thiết kế như 1 công cụ dùng để xây dựng các 
 
 
 
-
+# to continue ....
 <!-- ## Tạo Shadow DOM
 
 Một shadow root là 1 phần của document và được nối vào 1 element chủ (host element). Thời điểm bạn nối 1 shadow root chính là lúc element có được shadow DOM của nó. Để tạo shadow DOM cho 1 element, ta gọi element.attachShadow():

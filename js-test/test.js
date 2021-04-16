@@ -156,7 +156,7 @@
 // function getData () {
 //     let promise;
 //     let data = "123 !@# vcc"
-    
+
 //     promise = new Promise(function (res, rej) {
 //         setTimeout(function () {
 //             res(data);
@@ -204,7 +204,7 @@
 // const { PerformanceObserver, performance } = require('perf_hooks');
 
 // let promise = (numb, str) => new Promise(function (res, rej) {
-    
+
 //     setTimeout(function () {
 //         res(str);
 //     }, numb);
@@ -274,7 +274,7 @@
 //     console.time('time')
 
 //     await Promise.all([wait(1000), wait(2000)])
-    
+
 //     console.timeEnd('time')
 // }
 
