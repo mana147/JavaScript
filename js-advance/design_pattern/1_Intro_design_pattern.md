@@ -22,7 +22,7 @@ Design pattern không phải là cách để giải quyết dứt điểm cho m�
 - Factory Method : đúng nghĩa là một **nhà máy** ( factory ), và nhà máy này sẽ sản xuất các **đối tượng** (object) theo yêu cầu của chúng ta.
 - Abstract Factory : như là một nhà **máy lớn** chứa nhiều **nhà máy** nhỏ, trong các nhà máy đó có những xưởng sản xuất **đối tượng** ...
 - Builder : được tạo ra để xây dựng một **đối tượng** phức tạp bằng cách sử dụng các **đối tượng** đơn giản và sử dụng tiếp cận từng bước, xây dựng các **đối tượng** đôc lập với các **đối tượng** khác.
-- Prototype : nó có nhiệm vụ khởi tạo một **đối tượng** bằng cách **clone** một **đối tượng** đã tồn tại thay vì khởi tạo với từ khoá **new** .  
+- Prototype : ( y "nguyên" cái "mẫu" đấy) nó có nhiệm vụ khởi tạo một **đối tượng** bằng cách **clone** một **đối tượng** đã tồn tại thay vì khởi tạo với từ khoá **new** .  
 - Singleton : là một mẫu thiết kế cho phép bạn đảm bảo rằng một class chỉ có một trường hợp, đồng thời cung cấp một điểm truy cập toàn cục cho trường hợp này.
 
 ## Structural patterns :
