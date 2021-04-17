@@ -1,5 +1,19 @@
 # Singleton Pattern : 
+
+_Bài toán :_
+
+giải sử chúng ta có bài toán liên quan đến hiệu suất ( performance ) như sau:
+- hệ thống đang chạy rất chậm
+- mỗi database object có kích thước khoảng = 20mb 
+- khi hệ thống chạy thì có khoảng 200 object 
+- hệ thống đang sử dụng quá nhiều tài nguyên hệ thống.
+- Có cả trăm object với kích thước lớn (~20MB) được khởi tạo trong bộ nhớ RAM.
+- server chạy App chỉ có 4GB RAM 
+
+Trong bài này chúng ta sẽ nói về vấn đề việc kiểm soát số lượng đối tượng trong chương trình để tối ưu hóa việc sử dụng tài nguyên hệ thống sử dụng Singleton Pattern. Với một class theo Singleton Pattern, chỉ có tối đa một đối tượng cụ thể của class đó được khởi tạo xuyên suốt chương trình.
+
 _note:_
+
 -   Một class chỉ có thể là một đối tượng.
 -   Một class chỉ được instance một đối tượng.
 -   Thể hiện truy cập của một đối tượng dễ dàng.
@@ -12,6 +26,8 @@ _ý nghĩa :_
     suy ra dù có gọi hàm khởi tạo nhiều lần thì chúng ta cũng chỉ nhận được một object duy nhất, 
     giúp tránh lãng phí bộ nhớ.
 
+
+![singleton.png]()
 
 
 ## JavaScript đã xây dựng sẵn singleton như là một tính năng, được gọi là object literal :

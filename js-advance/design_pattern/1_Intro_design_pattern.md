@@ -52,4 +52,4 @@ Design pattern không phải là cách để giải quyết dứt điểm cho m�
 - Iterator : 
 - Mediator : 
 - Memento :
-- Observer :
+- Observer : 

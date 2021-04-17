@@ -23,7 +23,10 @@ Giới thiệu các kiến thức cơ bản về lập trình hướng đối t�
 - Phương thức: gọi điện, chụp ảnh, nhắn tin, ghi âm…
 
 ## Lớp (Class)
-Lớp là sự trừu tượng hóa của đối tượng. Những đối tượng có những đặc tính tương tự nhau sẽ được tập hợp thành một lớp. Lớp cũng sẽ bao gồm 2 thông tin là thuộc tính và phương thức.
+
+Lớp là sự trừu tượng hóa của đối tượng. Những đối tượng có những đặc tính tương tự nhau sẽ được tập hợp thành một lớp. 
+
+Lớp cũng sẽ bao gồm 2 thông tin là thuộc tính và phương thức.
 
 Một đối tượng sẽ được xem là một thực thể của lớp.
 
