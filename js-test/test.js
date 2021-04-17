@@ -399,47 +399,99 @@
 
 // viết 1 hàm promise đợi trong một khoảng thơi gian 
 
-// khai báo biến promise = hàm vô danh có 2 tham số (numb,str) và hàm này trả về một Promise  
-const { PerformanceObserver, performance } = require('perf_hooks');
+// // khai báo biến promise = hàm vô danh có 2 tham số (numb,str) và hàm này trả về một Promise  
+// const { PerformanceObserver, performance } = require('perf_hooks');
 
-let promise = (numb, str) => new Promise(function (res, rej) {
+// let promise = (numb, str) => new Promise(function (res, rej) {
 
-    setTimeout(function () {
-        res(str);
-    }, numb);
-});
+//     setTimeout(function () {
+//         res(str);
+//     }, numb);
+// });
 
-async function main() {
-    let t0 = performance.now();
+// async function main() {
+//     let t0 = performance.now();
 
-    // chạy bất tuần tự 2 promise này
-    let p1 = promise(1000, "1/2").then(val => console.log(val));
-    let p2 = promise(7000, "2/3").then(val => console.log(val));
+//     // chạy bất tuần tự 2 promise này
+//     let p1 = promise(1000, "1/2").then(val => console.log(val));
+//     let p2 = promise(7000, "2/3").then(val => console.log(val));
 
 
-    // đợi khi cả 2 promise trên chạy xong và được resolve
-    console.log('1');
-    await p1;
-    console.log('2');
-    await p2;
+//     // đợi khi cả 2 promise trên chạy xong và được resolve
+//     console.log('1');
+//     await p1;
+//     console.log('2');
+//     await p2;
 
-    let t1 = performance.now();
-    let timeExecute = t1 - t0;
-    if (timeExecute < 6100) {
-        return `Time Execute = ${timeExecute}`;
-    } else {
-        throw `Time Execute = ${timeExecute}`;
+//     let t1 = performance.now();
+//     let timeExecute = t1 - t0;
+//     if (timeExecute < 6100) {
+//         return `Time Execute = ${timeExecute}`;
+//     } else {
+//         throw `Time Execute = ${timeExecute}`;
+//     }
+
+// }
+
+// async function tryCath() {
+//     try {
+//         await main().then(function (val) { console.log(val) });
+//         console.log('chạy không lỗi')
+//     } catch (e) {
+//         console.log(` error ${e} `)
+//     }
+// }
+
+// tryCath();
+
+
+const mySingleton = (function () {
+
+    let instance;
+
+    function init() {
+        // private Method
+
+        let private_Random_Number = Math.random();
+        let private_String_text = 'public method';
+        let private_String_name = 'Peter';
+        let private_Number_age = 24;
+
+        return {
+            public_String_Name: private_String_name,
+            public_Number_age: private_Number_age,
+
+            public_String_text: function () {
+                return private_String_text;
+            },
+
+            public_Random_Number: function () {
+                return private_Random_Number;
+            }
+        }
+    };
+
+    return {
+        getInstance: function () {
+            if (!instance) {
+                instance = init();
+            }
+            console.log(instance);
+            return instance;
+        }
     }
+})();
 
-}
+console.log(mySingleton.getInstance);
 
-async function tryCath() {
-    try {
-        await main().then(function (val) { console.log(val) });
-        console.log('chạy không lỗi')
-    } catch (e) {
-        console.log(` error ${e} `)
-    }
-}
+var myInstance_1 = mySingleton.getInstance();
+var myInstance_2 = mySingleton.getInstance();
 
-tryCath();
+console.log(`myInstance_1 name =  ${myInstance_1.public_String_Name} `);
+console.log(`myInstance_1 age = ${myInstance_1.public_Number_age} `);
+
+console.log(`myInstance_2 name =  ${myInstance_1.public_String_Name = 'hieu' } `);
+console.log(`myInstance_2 age = ${myInstance_1.public_Number_age = 20 } `);
+
+console.log(`myInstance_1 Random_Number = ${myInstance_1.public_Random_Number()} `);
+console.log(`myInstance_2 Random_Number = ${myInstance_2.public_Random_Number()} `);

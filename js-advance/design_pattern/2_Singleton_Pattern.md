@@ -11,13 +11,6 @@ giải sử chúng ta có bài toán liên quan đến hiệu suất ( performan
 - server chạy App chỉ có 4GB RAM 
 
 Trong bài này chúng ta sẽ nói về vấn đề việc kiểm soát số lượng đối tượng trong chương trình để tối ưu hóa việc sử dụng tài nguyên hệ thống sử dụng Singleton Pattern. Với một class theo Singleton Pattern, chỉ có tối đa một đối tượng cụ thể của class đó được khởi tạo xuyên suốt chương trình.
-
-_note:_
-
--   Một class chỉ có thể là một đối tượng.
--   Một class chỉ được instance một đối tượng.
--   Thể hiện truy cập của một đối tượng dễ dàng.
--   Kiểm soát được khởi tạo của chúng nó.
     
 _ý nghĩa :_
 
@@ -26,8 +19,17 @@ _ý nghĩa :_
     suy ra dù có gọi hàm khởi tạo nhiều lần thì chúng ta cũng chỉ nhận được một object duy nhất, 
     giúp tránh lãng phí bộ nhớ.
 
+_Solution :_
 
-![singleton.png]()
+Tất cả các triển khai của Singleton đều có hai bước chung sau:
+
+- private constructor để hạn chế truy cập từ class bên ngoài.
+- Đặt private static final variable đảm bảo biến chỉ được khởi tạo trong class.
+- Có một method public static để return instance được khởi tạo ở trên.
+
+
+
+![singleton.png](https://github.com/mana147/JavaScript/blob/main/js-advance/img/singleton.png?raw=true)
 
 
 ## JavaScript đã xây dựng sẵn singleton như là một tính năng, được gọi là object literal :
@@ -100,7 +102,6 @@ const mySingleton = (function () {
             if (!instance) {
                 instance = init();
             }
-            // instance = init();
             // console.log(instance);
             return instance;
         }
@@ -111,23 +112,33 @@ console.log(mySingleton.getInstance);
 
 var myInstance_1 = mySingleton.getInstance();
 var myInstance_2 = mySingleton.getInstance();
-// var myInstance_3 = mySingleton.getInstance();
 
-console.log(myInstance_1.public_String_Name);           
-console.log(myInstance_1.public_Number_age);           
+console.log(`myInstance_1 name =  ${myInstance_1.public_String_Name} `);
+console.log(`myInstance_1 age = ${myInstance_1.public_Number_age} `);
 
-console.log(myInstance_2.public_String_Name = 'hieu' );
-console.log(myInstance_2.public_Number_age = 20 );     
+console.log(`myInstance_2 name =  ${myInstance_1.public_String_Name = 'hieu' } `);
+console.log(`myInstance_2 age = ${myInstance_1.public_Number_age = 20 } `);
 
-console.log(myInstance_1.public_Random_Number());       
-console.log(myInstance_2.public_Random_Number());
+console.log(`myInstance_1 Random_Number = ${myInstance_1.public_Random_Number()} `);
+console.log(`myInstance_2 Random_Number = ${myInstance_2.public_Random_Number()} `);
 
 //  giải thích  : 
 //  Chúng ta tạo một instance mới bằng cách gọi hàm singleton.getInstance 
 //  Nếu một instance đã tồn tại, hàm này đơn giản chỉ trả về instance đó, 
 //  Nếu instance chưa tồn tại, nó tạo một instance mới bằng hàm init()
-
 ```
+```console
+myInstance_1 name =  Peter 
+myInstance_1 age = 24 
+myInstance_2 name =  hieu 
+myInstance_2 age = 20 
+myInstance_1 Random_Number = 0.5928398242929471 
+myInstance_2 Random_Number = 0.5928398242929471 
+```
+
+client thậm chí có thể không nhận ra rằng họ luôn làm việc với cùng một đối tượng.
+
+![singleton-comic-1-en.png](https://github.com/mana147/JavaScript/blob/main/js-advance/img/singleton-comic-1-en.png?raw=true)
 
 
 vd: mẫu singleton không tốt 
