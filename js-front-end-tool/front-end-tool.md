@@ -57,8 +57,8 @@ _(Nếu bạn nghĩ chia các file dễ nhầm lẫn hơn một file lớn, th�
 
 **Nhưng khi bạn muốn phát hành sản phẩm, có nhiều file JavaScript hoặc CSS không phải là một ý tưởng hay. Khi người dùng nghé thăm trang web của bạn, mỗi file sẽ yêu cầu một reques HTTP, điều này làm giảm tốc độ tải trang.**
 
-Chú ý: điều này sẽ không còn đúng trong HTTP2.  
-https://blog.cloudflare.com/http-2-for-web-developers/
+    Chú ý: điều này sẽ không còn đúng trong HTTP2.  
+    https://blog.cloudflare.com/http-2-for-web-developers/
 
 Để giải quyết vấn đề này, bạn có thể tạo ra một bản "build" của ứng dựng, trộn tất cả các file CSS thành một file, và tương tự với JavaScript.
 
