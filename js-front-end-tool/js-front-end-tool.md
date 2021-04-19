@@ -32,6 +32,8 @@ Giống như Grunt, Webpack, Require.js, Brunch và Gulp phức tạp hơn nhi�
 - Minify các file JavaScript và CSS đã được nối
 - Chỉnh sửa vị trí của các thẻ ```<script>``` trên trang html
 
-Khi bạn hiểu công cụ nào dùng để cài đặt, cái nào dùng để làm một thứ gì đó, việc phân loại chúng trở lên dễ dàng hơn:
+Khi đã hiểu công cụ nào dùng để cài đặt, cái nào dùng để làm một thứ gì đó, việc phân loại chúng trở lên dễ dàng hơn:
+
+![installing-doing.png]()
 
 
