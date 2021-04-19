@@ -48,7 +48,7 @@ Design pattern không phải là cách để giải quyết dứt điểm cho m�
 ![Behavioral-patterns.png](https://github.com/mana147/JavaScript/blob/main/js-advance/img/Behavioral-patterns.png?raw=true)
 
 - Chain of Responsibility : Chuỗi trách nhiệm
-- Command :
+- Command : 
 - Iterator : 
 - Mediator : 
 - Memento :
