@@ -34,6 +34,6 @@ Giống như Grunt, Webpack, Require.js, Brunch và Gulp phức tạp hơn nhi�
 
 Khi đã hiểu công cụ nào dùng để cài đặt, cái nào dùng để làm một thứ gì đó, việc phân loại chúng trở lên dễ dàng hơn:
 
-![installing-doing.png]()
+![installing-doing.png](/js-front-end-tool/img/installing-doing.png)
 
 
