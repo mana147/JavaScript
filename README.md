@@ -25,4 +25,6 @@ _Tổng hợp kiến thức và demo liên quan đến JavaScript_
 
 - https://techmaster.vn/posts?author=188
 
+- https://kipalog.com/posts/Co-ban-ve-async-await-trong-javascript
+
 -->
