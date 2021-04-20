@@ -1,5 +1,7 @@
 # Các công cụ front end .
 
+_copy from :  https://www.freecodecamp.org/news/making-sense-of-front-end-build-tools-3a1b3a87043b/#.dinmrek7v_ 
+
 Bài viết này thể hiện ý kiến của tôi về cách tiếp cận để hiểu ý nghĩa của các công cụ front end.
 
 # Có thể chia các công cụ ra làm 2 loại chính là: "installing" và "doing"
