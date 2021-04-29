@@ -17,8 +17,9 @@ yêu cầu :  khi user chạy lệnh node runBuild.js
 // khai báo các biến cần thiết
 var fs = require('fs');
 var path = require('path');
-var Templator = require('../template-html/index');
+var Templator = require('../template-html-tool/index.js');
 var { exec } = require("child_process");
+
 
 let build_index = './build/index.html';
 // // command returns the current directory:
