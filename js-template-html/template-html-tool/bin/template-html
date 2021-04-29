@@ -1,0 +1,44 @@
+#!/usr/bin/env node
+
+var cli = require('../cli'),
+    pkg = require('../package'),
+    argv = require('minimist')(process.argv.slice(2));
+
+
+var USAGE = 'Usage: ' + pkg.name + ' content.html -t template.html [options]';
+
+if (argv.v || argv.version) {
+
+  console.log(pkg.name + '@' + pkg.version);
+
+} else if (argv.h || argv.help) {
+
+  console.log(USAGE + '\n');
+  console.log('-h|--help        display this help message');
+  console.log('-v|--version     display the version number');
+  console.log('-o|--output      directory to output processed HTML');
+  console.log('-t|--template    template file to use');
+  console.log('--tag            keyword to use be used in HTML placeholder define and build comments');
+  console.log('--build-tag      keyword to use be used in HTML placeholder build comments (overrides --tag)');
+  console.log('--define-tag     keyword to use be used in HTML placeholder define comments (overrides --tag)');
+  console.log('--preserve-tree  output files will keep the same directory structure as the source files');
+
+} else if (argv._.length && (argv.t || argv.template)) {
+
+  var options = {
+    output: argv.o || argv.output || './',
+    templateFile: argv.t || argv.template,
+    preserveTree: argv['preserve-tree'],
+    tag: argv.tag,
+    buildTag: argv['build-tag'],
+    defineTag: argv['define-tag'],
+    files: argv._,
+  };
+
+  cli(options);
+
+} else {
+
+  console.log(USAGE);
+
+}
