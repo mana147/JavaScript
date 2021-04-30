@@ -1,5 +1,6 @@
 var path = require('path');
 var fs = require('fs');
+var path = require('path');
 var ul = require('ul');
 
 /**
@@ -40,6 +41,10 @@ var Templator = function (options) {
 
   this.template = fs.readFileSync(options.templateFile).toString();
   this.options = options;
+
+  this.BuildTags = null;
+  this.NameBuildTags = null;
+  this.JsonDirTree = null;
 };
 
 /**
@@ -88,35 +93,48 @@ Templator.prototype.processContent = function (content) {
  * @return 
  */
 
-Templator.prototype.processCheckTag = function (Path) {
-  let build_index = './build/index.html';
+Templator.prototype.processCheckBuildTag = function () {
 
   let buildTag = this.options.buildTag;
   let regMark = new RegExp('<!--\\s*' + buildTag + ':([^\\s]+)\\s*-->', 'g');
-  let regMark1 = new RegExp('<!--\\s*' + buildTag + ':([\\w\-]+)', '');
+  let regMark1 = new RegExp('<!--\\s*' + buildTag + ':([\\w\-]+)\\s*-->', '');
 
   // lấy tất cả các TAG trong file theo key build
   let tags = this.template.match(regMark);
-  console.log(tags);
-  //  luu tam vao build_index 
-  fs.writeFileSync(build_index, tags);
-
-  // trong các TAG đã lấy đc , cắt lấy tên và lưu vào 1 mảng 
-
-  // lấy chiều dài của mảng
-  let lengthTags = tags.length;
-  console.log(lengthTags);
-
-  tags.forEach(function (value) {
-    let name = regMark1.exec(value);
-    console.log(name);
-  })
+  // console.log(tags);
 
   // viết hàm cắt chuỗi lấy tên sau từ khóa build
+  // function cutNameTag(str) {
+  //   if (typeof str === 'string') {
+  //     let name;
+  //     name = str.slice(11, -3);
+  //     return name;
+  //   } else {
+  //     return 'error';
+  //   }
+  // };
+
+  // lấy đc tên tag sau từ khóa build 
+  // viết vòng for lặp lại tất cả các phần tử trong mảng
+  // let namesTags = new Array();
+  // for (i = 0; i < tags.length; i++) {
+  //   namesTags[i] = cutNameTag(tags[i]);
+  // };
+  this.BuildTags = tags;
+  return this;
+}
+
+Templator.prototype.processCheckNameBuildTag = function () {
+  // let buildTag = this.options.buildTag;
+  // let regMark1 = new RegExp('<!--\\s*' + buildTag + ':([\\w\-]+)\\s*-->', '');
+
+  let buildTags = this.BuildTags;
+
+  //viết hàm cắt chuỗi lấy tên sau từ khóa build
   function cutNameTag(str) {
     if (typeof str === 'string') {
       let name;
-      name = str.slice(11, -3);
+      name = str.slice(11, -4);
       return name;
     } else {
       return 'error';
@@ -126,20 +144,31 @@ Templator.prototype.processCheckTag = function (Path) {
   // lấy đc tên tag sau từ khóa build 
   // viết vòng for lặp lại tất cả các phần tử trong mảng
   let namesTags = new Array();
-  for (i = 0; i < tags.length; i++) {
-    namesTags[i] = cutNameTag(tags[i]);
+  for (i = 0; i < buildTags.length; i++) {
+    namesTags[i] = cutNameTag(buildTags[i]);
   };
 
-  console.log(namesTags);
-  fs.writeFileSync(build_index, namesTags);
-
-
-
-  //  viết hàm xử lý directory  
-
-
-  return '>>> done >>>';
+  this.nameBuildTags = namesTags;
+  return this;
 }
 
+Templator.prototype.processDirTree = function (filename) {
+  let stats = fs.lstatSync(filename);
+  let info = {
+      path: filename,
+      name: path.basename(filename)
+    };
+
+  if (stats.isDirectory()) {
+    info.type = "folder";
+    info.children = fs.readdirSync(filename).map(function (child) {
+      return dirTree(filename + '/' + child);
+    });
+  } else {
+    info.type = "file";
+  }
+
+  return stats;
+};
 
 module.exports = Templator;

@@ -7,18 +7,18 @@ yêu cầu :  khi user chạy lệnh node runBuild.js
 
 ý tưởng xử lý : 
 - tạo file buffer.html 
-- đọc file index.html check tất cả các TAG build .
-- đưa tất cả các string < TAG build > vào trong một file  
-- 
-	    
+- đọc file index.html check tất cả các TAG build (done)
+- lấy đc các <!-- build:nameTags --> đưa vào một mảng (done)
+- lấy đc các nameTags đưa vào một mảng (done)
+- lấy đc cấu trúc cây thư mục template dưới dạng json (done)
 */
 
 
 // khai báo các biến cần thiết
 var fs = require('fs');
 var path = require('path');
-var Templator = require('../template-html-tool/index.js');
-var { exec } = require("child_process");
+var Templator = require('../template-html/index.js');
+var { exec } = require('child_process');
 
 
 let build_index = './build/index.html';
@@ -31,35 +31,40 @@ let build_index = './build/index.html';
 // // path
 // var path = require('path');
 // console.log(path.resolve())
+// viết hàm xử lý khi cho đường dẫn file index vào 
+let indexHtml = new Templator('./index.html');
+// console.log(indexHtml);
 
-let index = new Templator('./index.html').processCheckTag('./template/');
-console.log(index);
+let getBuildTags = indexHtml.processCheckBuildTag();
+console.log(getBuildTags.BuildTags);
 
+let getNameBuildTags = indexHtml.processCheckBuildTag().processCheckNameBuildTag();
+console.log(getNameBuildTags.NameBuildTags);
 
-function dirTree(filename) {
-	var stats = fs.lstatSync(filename),
-		info = {
-			path: filename,
-			name: path.basename(filename)
-		};
+let jsonDirTemplate = indexHtml.processDirTree('template');
+console.log(jsonDirTemplate);
 
-	if (stats.isDirectory()) {
-		info.type = "folder";
-		info.children = fs.readdirSync(filename).map(function (child) {
-			return dirTree(filename + '/' + child);
-		});
-	} else {
-		// Assuming it's a file. In real life it could be a symlink or
-		// something else!
-		info.type = "file";
-	}
+// function dirTree(filename) {
+// 	var stats = fs.lstatSync(filename),
+// 		info = {
+// 			path: filename,
+// 			name: path.basename(filename)
+// 		};
 
-	return info;
-}
+// 	if (stats.isDirectory()) {
+// 		info.type = "folder";
+// 		info.children = fs.readdirSync(filename).map(function (child) {
+// 			return dirTree(filename + '/' + child);
+// 		});
+// 	} else {
+// 		info.type = "file";
+// 	}
+
+// 	return info;
+// }
 
 // let dir_tree_template = dirTree('template');
-var dir_tree_template = JSON.stringify(dirTree('template'));
-
-console.log(dir_tree_template);
-
-fs.writeFileSync(build_index, dir_tree_template);
+// let dir_tree_template = dirTree('template');
+// let dir_tree_template_JSON = JSON.stringify(dir_tree_template);
+// console.log(dir_tree_template_JSON);
+// fs.writeFileSync(build_index, dir_tree_template_JSON);

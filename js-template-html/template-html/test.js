@@ -1,6 +1,6 @@
-var test = require('tape'),
+var test = require('t'),
     fs = require('fs'),
-    Templator = require('./'),
+    Templator = require('.'),
     cli = require('./cli');
 
 
