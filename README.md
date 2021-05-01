@@ -29,4 +29,12 @@ _Tổng hợp kiến thức và demo liên quan đến JavaScript_
 
 - https://viblo.asia/p/oauth2-nhung-dieu-chung-ta-khong-nen-bo-qua-WAyK8AooZxX?fbclid=IwAR02cyvZDWWs1GirIzPq_ULSW3AtOREJf20CFpzUGDTYVzH7JFIBJ8w-XKI
 
+- https://viblo.asia/p/cac-cau-hinh-can-thiet-cho-mot-du-an-react-native-vyDZOAkQ5wj
+
+- https://code.visualstudio.com/docs/languages/jsconfig
+
+- https://kipalog.com/posts/Config-alias-chuan-trong-webpack
+
+- https://morioh.com/p/2b2f35b7c7b8
+
 -->
