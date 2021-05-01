@@ -16,35 +16,35 @@ var ul = require('ul');
  */
 
 var Templator = function (options) {
-  if (typeof options === 'string') {
-    options = {
-      templateFile: options,
-    };
-  }
+    if (typeof options === 'string') {
+        options = {
+            templateFile: options,
+        };
+    }
 
-  // default tag
-  options = ul.merge(options, {
-    tag: 'build',
-  });
+    // default tag
+    options = ul.merge(options, {
+        tag: 'build',
+    });
 
-  // default build tag and define tag
-  options = ul.merge(options, {
-    buildTag: options.tag,
-    defineTag: options.tag,
-  });
+    // default build tag and define tag
+    options = ul.merge(options, {
+        buildTag: options.tag,
+        defineTag: options.tag,
+    });
 
-  if (typeof options.templateFile !== 'string') {
-    throw new Error('No template file provided');
-  }
+    if (typeof options.templateFile !== 'string') {
+        throw new Error('No template file provided');
+    }
 
-  options.templateFile = path.resolve(options.templateFile);
+    options.templateFile = path.resolve(options.templateFile);
 
-  this.template = fs.readFileSync(options.templateFile).toString();
-  this.options = options;
+    this.template = fs.readFileSync(options.templateFile).toString();
+    this.options = options;
 
-  this.BuildTags = null;
-  this.NameBuildTags = null;
-  this.JsonDirTree = null;
+    this.BuildTags = null;
+    this.NameBuildTags = null;
+    this.JsonDirTree = null;
 };
 
 /**
@@ -56,7 +56,7 @@ var Templator = function (options) {
  */
 
 Templator.prototype.processFile = function (contentFile) {
-  return this.processContent(fs.readFileSync(contentFile).toString());
+    return this.processContent(fs.readFileSync(contentFile).toString());
 };
 
 /**
@@ -68,22 +68,22 @@ Templator.prototype.processFile = function (contentFile) {
  */
 
 Templator.prototype.processContent = function (content) {
-  var buildTag = this.options.buildTag;
-  var defineTag = this.options.defineTag;
-  var regMark = new RegExp('<!--\\s*' + buildTag + ':([^\\s]+)\\s*-->', 'g');
+    var buildTag = this.options.buildTag;
+    var defineTag = this.options.defineTag;
+    var regMark = new RegExp('<!--\\s*' + buildTag + ':([^\\s]+)\\s*-->', 'g');
 
-  function genRegex(name) {
-    return new RegExp(
-      '<!--\\s*' + defineTag + ':' + name + '\\s*-->' +
-      '((.|[\\r\\n])+)' +
-      '<!--\\s*\\/' + defineTag + ':' + name + '\\s*-->'
-    );
-  }
+    function genRegex(name) {
+        return new RegExp(
+            '<!--\\s*' + defineTag + ':' + name + '\\s*-->' +
+            '((.|[\\r\\n])+)' +
+            '<!--\\s*\\/' + defineTag + ':' + name + '\\s*-->'
+        );
+    }
 
-  return this.template.replace(regMark, function (match, name) {
-    var find = content.match(genRegex(name));
-    return find ? find[1] : match;
-  });
+    return this.template.replace(regMark, function (match, name) {
+        var find = content.match(genRegex(name));
+        return find ? find[1] : match;
+    });
 };
 
 /**
@@ -95,80 +95,64 @@ Templator.prototype.processContent = function (content) {
 
 Templator.prototype.processCheckBuildTag = function () {
 
-  let buildTag = this.options.buildTag;
-  let regMark = new RegExp('<!--\\s*' + buildTag + ':([^\\s]+)\\s*-->', 'g');
-  let regMark1 = new RegExp('<!--\\s*' + buildTag + ':([\\w\-]+)\\s*-->', '');
+    let buildTag = this.options.buildTag;
+    let regMark = new RegExp('<!--\\s*' + buildTag + ':([^\\s]+)\\s*-->', 'g');
+    let regMark1 = new RegExp('<!--\\s*' + buildTag + ':([\\w\-]+)\\s*-->', '');
 
-  // lấy tất cả các TAG trong file theo key build
-  let tags = this.template.match(regMark);
-  // console.log(tags);
+    // lấy tất cả các TAG trong file theo key build
+    let tags = this.template.match(regMark);
+    // console.log(tags);
 
-  // viết hàm cắt chuỗi lấy tên sau từ khóa build
-  // function cutNameTag(str) {
-  //   if (typeof str === 'string') {
-  //     let name;
-  //     name = str.slice(11, -3);
-  //     return name;
-  //   } else {
-  //     return 'error';
-  //   }
-  // };
-
-  // lấy đc tên tag sau từ khóa build 
-  // viết vòng for lặp lại tất cả các phần tử trong mảng
-  // let namesTags = new Array();
-  // for (i = 0; i < tags.length; i++) {
-  //   namesTags[i] = cutNameTag(tags[i]);
-  // };
-  this.BuildTags = tags;
-  return this;
+    this.BuildTags = tags;
+    return this;
 }
 
 Templator.prototype.processCheckNameBuildTag = function () {
-  // let buildTag = this.options.buildTag;
-  // let regMark1 = new RegExp('<!--\\s*' + buildTag + ':([\\w\-]+)\\s*-->', '');
+    // let buildTag = this.options.buildTag;
+    // let regMark1 = new RegExp('<!--\\s*' + buildTag + ':([\\w\-]+)\\s*-->', '');
 
-  let buildTags = this.BuildTags;
+    let buildTags = this.BuildTags;
 
-  //viết hàm cắt chuỗi lấy tên sau từ khóa build
-  function cutNameTag(str) {
-    if (typeof str === 'string') {
-      let name;
-      name = str.slice(11, -4);
-      return name;
-    } else {
-      return 'error';
-    }
-  };
+    //viết hàm cắt chuỗi lấy tên sau từ khóa build
+    function cutNameTag(str) {
+        if (typeof str === 'string') {
+            let name;
+            name = str.slice(11, -4);
+            return name.replace(/\s/g, '');
+        } else {
+            return 'error';
+        }
+    };
 
-  // lấy đc tên tag sau từ khóa build 
-  // viết vòng for lặp lại tất cả các phần tử trong mảng
-  let namesTags = new Array();
-  for (i = 0; i < buildTags.length; i++) {
-    namesTags[i] = cutNameTag(buildTags[i]);
-  };
+    // lấy đc tên tag sau từ khóa build 
+    // viết vòng for lặp lại tất cả các phần tử trong mảng
+    let namesTags = new Array();
+    for (i = 0; i < buildTags.length; i++) {
+        namesTags[i] = cutNameTag(buildTags[i]);
+    };
 
-  this.nameBuildTags = namesTags;
-  return this;
+    this.NameBuildTags = namesTags;
+    return this;
 }
 
 Templator.prototype.processDirTree = function (filename) {
-  let stats = fs.lstatSync(filename);
-  let info = {
-      path: filename,
-      name: path.basename(filename)
+    let stats = fs.lstatSync(filename);
+
+    let info = {
+        path: filename,
+        name: path.basename(filename)
     };
 
-  if (stats.isDirectory()) {
-    info.type = "folder";
-    info.children = fs.readdirSync(filename).map(function (child) {
-      return dirTree(filename + '/' + child);
-    });
-  } else {
-    info.type = "file";
-  }
+    if (stats.isDirectory()) {
+        info.type = "folder";
+        info.children = fs.readdirSync(filename).map(function (child) {
+            return Templator.prototype.processDirTree(filename + '/' + child);
+        });
+    } else {
+        info.type = "file";
+    }
 
-  return stats;
+    return info;
 };
 
 module.exports = Templator;

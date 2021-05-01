@@ -11,6 +11,8 @@ yêu cầu :  khi user chạy lệnh node runBuild.js
 - lấy đc các <!-- build:nameTags --> đưa vào một mảng (done)
 - lấy đc các nameTags đưa vào một mảng (done)
 - lấy đc cấu trúc cây thư mục template dưới dạng json (done)
+- tìm kiếm path thư mục chứa file .html theo key name tags trong file template
+
 */
 
 
@@ -21,7 +23,8 @@ var Templator = require('../template-html/index.js');
 var { exec } = require('child_process');
 
 
-let build_index = './build/index.html';
+let build_index_html = './build/index.html';
+let build_index_json = './build/index.json';
 // // command returns the current directory:
 // let currentPath = process.cwd();
 // let PATH_template = currentPath + '/template/';
@@ -41,30 +44,9 @@ console.log(getBuildTags.BuildTags);
 let getNameBuildTags = indexHtml.processCheckBuildTag().processCheckNameBuildTag();
 console.log(getNameBuildTags.NameBuildTags);
 
-let jsonDirTemplate = indexHtml.processDirTree('template');
-console.log(jsonDirTemplate);
+let DirTemplate = indexHtml.processDirTree('template');
+let JsonDirTemplate = JSON.stringify(DirTemplate);
 
-// function dirTree(filename) {
-// 	var stats = fs.lstatSync(filename),
-// 		info = {
-// 			path: filename,
-// 			name: path.basename(filename)
-// 		};
+console.log(DirTemplate.children[1]);
+// fs.writeFileSync(build_index_json, JsonDirTemplate);
 
-// 	if (stats.isDirectory()) {
-// 		info.type = "folder";
-// 		info.children = fs.readdirSync(filename).map(function (child) {
-// 			return dirTree(filename + '/' + child);
-// 		});
-// 	} else {
-// 		info.type = "file";
-// 	}
-
-// 	return info;
-// }
-
-// let dir_tree_template = dirTree('template');
-// let dir_tree_template = dirTree('template');
-// let dir_tree_template_JSON = JSON.stringify(dir_tree_template);
-// console.log(dir_tree_template_JSON);
-// fs.writeFileSync(build_index, dir_tree_template_JSON);
