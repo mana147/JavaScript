@@ -11,42 +11,92 @@ yêu cầu :  khi user chạy lệnh node runBuild.js
 - lấy đc các <!-- build:nameTags --> đưa vào một mảng (done)
 - lấy đc các nameTags đưa vào một mảng (done)
 - lấy đc cấu trúc cây thư mục template dưới dạng json (done)
+- từ cấu trúc thư mục lấy đc đường dẫn đến các file.html (done)
 - tìm kiếm path thư mục chứa file .html theo key name tags trong file template
-
 */
 
-
 // khai báo các biến cần thiết
+var Templator = require('../template-html/teamplate.js');
 var fs = require('fs');
-var path = require('path');
-var Templator = require('../template-html/index.js');
-var { exec } = require('child_process');
-
 
 let build_index_html = './build/index.html';
-let build_index_json = './build/index.json';
-// // command returns the current directory:
-// let currentPath = process.cwd();
-// let PATH_template = currentPath + '/template/';
-// console.log(PATH_template);
+
+let index_html = 'index.html';
+let folder_template = 'template';
+
+let indexHtml = new Templator(index_html);
 
 
-// // path
-// var path = require('path');
-// console.log(path.resolve())
-// viết hàm xử lý khi cho đường dẫn file index vào 
-let indexHtml = new Templator('./index.html');
+// main
+// check xem trong file index.htmnl có thẻ nào là builf tag không
+
+if (indexHtml.processCheckBuildTag() == true) {
+	// lấy tất cả các build tag bên trong  file index.html
+	indexHtml.processGetBuildTag();
+	// lấy tên của keyname sau từ khóa build và lưu vào mảng 
+	indexHtml.processGetNameBuildTag();
+	// lấy cấu trúc thư mục của thư mục template và lưu vào biến .PathFileHtml 
+	indexHtml.processDirTree(folder_template);
+}
 // console.log(indexHtml);
 
-let getBuildTags = indexHtml.processCheckBuildTag();
-console.log(getBuildTags.BuildTags);
+let numbCheck = 0;
 
-let getNameBuildTags = indexHtml.processCheckBuildTag().processCheckNameBuildTag();
-console.log(getNameBuildTags.NameBuildTags);
+while (1) {
 
-let DirTemplate = indexHtml.processDirTree('template');
-let JsonDirTemplate = JSON.stringify(DirTemplate);
+	// lấy tên build tag đầu tiên trong mảng 
+	let keyName = indexHtml.NameBuildTags[0];
+	// lấy path đến file theo keyname đã có bên trên trong mảng các Path file đã chuẩn bị trước
+	const path_ = indexHtml.getPathViaName(keyName , indexHtml.PathFileHtml);
+	// show pathfile
+	// console.log(path_); if (typeof path_ == "undefined") break;
+	// check path file nếu không có thì break khỏi vòng while 1 
 
-console.log(DirTemplate.children[1]);
-// fs.writeFileSync(build_index_json, JsonDirTemplate);
+	// đọc file , replace các build tag bằng các content đã đọc qua file
+	const value = indexHtml.processFile(path_);
+	
+	if (value.length === indexHtml.template.length) {
+		break;
+	} else {		
+		// cập nhật lại data trong template
+		indexHtml.template = value;
+	}
+
+	// check xem trong template còn build tag không
+
+	// console.log(indexHtml);
+	
+	indexHtml.NameBuildTags.shift();
+
+	if (indexHtml.processCheckBuildTag() === true) {
+		
+		// console.log('true');
+	
+		// console.log(indexHtml.NameBuildTags.length);
+
+		if (indexHtml.NameBuildTags.length === 0) {
+
+			indexHtml.processGetBuildTag();
+
+			indexHtml.processGetNameBuildTag();
+
+			console.log(indexHtml.NameBuildTags);
+		}
+
+	} else {
+		// console.log('false');
+		// fs.writeFileSync(build_index_html, indexHtml.template);
+		break;
+	}
+
+	// numbCheck++; if (numbCheck == 8) break;
+}
+
+console.log(indexHtml);
+
+fs.writeFileSync(build_index_html, indexHtml.template);
+
+
+
+
 

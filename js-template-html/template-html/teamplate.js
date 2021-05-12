@@ -1,7 +1,9 @@
 var path = require('path');
 var fs = require('fs');
-var path = require('path');
-var ul = require('ul');
+var ul = require('/root/.nvm/versions/node/v12.18.4/lib/node_modules/ul');
+
+let indexNumb = 0;
+let arrayPath = [];
 
 /**
  * Creates a new `Templator` instance.
@@ -40,11 +42,14 @@ var Templator = function (options) {
     options.templateFile = path.resolve(options.templateFile);
 
     this.template = fs.readFileSync(options.templateFile).toString();
+
     this.options = options;
 
-    this.BuildTags = null;
-    this.NameBuildTags = null;
-    this.JsonDirTree = null;
+    this.BuildTags = [];
+    this.NameBuildTags = [];
+    this.PathFileHtml = [];
+
+    this.TemplateDirTree = null;
 };
 
 /**
@@ -56,7 +61,9 @@ var Templator = function (options) {
  */
 
 Templator.prototype.processFile = function (contentFile) {
-    return this.processContent(fs.readFileSync(contentFile).toString());
+    const dataFile = fs.readFileSync(contentFile).toString();
+    // console.log(dataFile);
+    return this.processContent(dataFile);
 };
 
 /**
@@ -97,17 +104,29 @@ Templator.prototype.processCheckBuildTag = function () {
 
     let buildTag = this.options.buildTag;
     let regMark = new RegExp('<!--\\s*' + buildTag + ':([^\\s]+)\\s*-->', 'g');
-    let regMark1 = new RegExp('<!--\\s*' + buildTag + ':([\\w\-]+)\\s*-->', '');
+    // let regMark1 = new RegExp('<!--\\s*' + buildTag + ':([\\w\-]+)\\s*-->', '');
 
     // lấy tất cả các TAG trong file theo key build
     let tags = this.template.match(regMark);
-    // console.log(tags);
 
+    if (tags === null) {
+        return false;
+    } else {
+        return true;
+    };
+}
+
+Templator.prototype.processGetBuildTag = function () {
+    let buildTag = this.options.buildTag;
+    let regMark = new RegExp('<!--\\s*' + buildTag + ':([^\\s]+)\\s*-->', 'g');
+
+    // lấy tất cả các TAG trong file theo key build
+    let tags = this.template.match(regMark);
     this.BuildTags = tags;
     return this;
 }
 
-Templator.prototype.processCheckNameBuildTag = function () {
+Templator.prototype.processGetNameBuildTag = function () {
     // let buildTag = this.options.buildTag;
     // let regMark1 = new RegExp('<!--\\s*' + buildTag + ':([\\w\-]+)\\s*-->', '');
 
@@ -126,12 +145,16 @@ Templator.prototype.processCheckNameBuildTag = function () {
 
     // lấy đc tên tag sau từ khóa build 
     // viết vòng for lặp lại tất cả các phần tử trong mảng
-    let namesTags = new Array();
-    for (i = 0; i < buildTags.length; i++) {
-        namesTags[i] = cutNameTag(buildTags[i]);
-    };
 
-    this.NameBuildTags = namesTags;
+    if (buildTags !== null) {
+        let namesTags = new Array();
+        for (i = 0; i < buildTags.length; i++) {
+            namesTags[i] = cutNameTag(buildTags[i]);
+        };
+
+        this.NameBuildTags = namesTags;
+    }
+
     return this;
 }
 
@@ -143,6 +166,8 @@ Templator.prototype.processDirTree = function (filename) {
         name: path.basename(filename)
     };
 
+    // console.log(` index : ${indexNumb++} >>  ${stats.isDirectory()}`);
+
     if (stats.isDirectory()) {
         info.type = "folder";
         info.children = fs.readdirSync(filename).map(function (child) {
@@ -150,9 +175,39 @@ Templator.prototype.processDirTree = function (filename) {
         });
     } else {
         info.type = "file";
+
+        // console.log(` index : ${indexNumb++} >  ${info.name} > \t ${info.path}`);
+
+        let obj = { name: 'null', path: 'null' }
+
+        obj.name = info.name;
+        obj.path = info.path;
+
+        arrayPath[indexNumb++] = obj;
     }
 
-    return info;
+    // this.TemplateDirTree = JSON.stringify(info);
+
+    this.TemplateDirTree = info;
+    this.PathFileHtml = arrayPath;
+    return this;
 };
+
+Templator.prototype.getPathViaName = function (namehtml, arrayObj) {
+    let path;
+    if (typeof namehtml === 'string' || typeof arrayObj === 'object') {
+        let lengArrayPath = arrayObj.length;
+        for (i = 0; i < lengArrayPath; i++) {
+            if (arrayObj[i].name === namehtml + '.html') {
+                // console.log(arrayObj[i].name);
+                // console.log(arrayObj[i].path);
+                path = arrayObj[i].path;
+            }
+        }
+    } else {
+        path = 'error';
+    }
+    return path;
+}
 
 module.exports = Templator;
