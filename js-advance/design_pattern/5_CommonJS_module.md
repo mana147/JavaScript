@@ -102,3 +102,5 @@ hello from two.js
 ```
 
 Execution order could be critical in some applications, and what would happen if ES2015 and CommonJS modules were mixed in the same file? To resolve this problem, Node.js will only permit ES6 modules in files with the extension .mjs. Files with a .js extension will default to CommonJS. It’s a simple option which removes much of the complexity and should aid code editors and linters.
+
+> link : https://www.sitepoint.com/understanding-es6-modules/
