@@ -3,24 +3,32 @@
 
 <body>
 
-    <h2>My Heading</h2>
+    <h1>The Window Object</h1>
+    <h2>The prompt() Method</h2>
 
-    <p>Play around with the code and click on the "Run" button to view the result.</p>
+    <p>Click the button to demonstrate the prompt box.</p>
 
-    <p id="demo"></p>
+    <button onclick="myFunction()">Try it</button>
+
+    <p id="1"></p>
+    <p id="2"></p>
+    <p id="3"></p>
+    <p id="4"></p>
 
     <script>
-        fetch('https://api.github.com/users/octocat')
-                .then((response) => {
-                    return response.json()
-                })
-                .then((data) => {
-                    console.log(data)
-                })
-                .catch((error) => {
-                    console.error(error)
-                })
+        // document tim kiem trong troàn bộ thẻ 
+        // khi nào gặp thẻ có id = demo 
+        // thì nó sẽ , set cho value trong thẻ bằng 1 chuỗi  = ádsadasd
 
+        // document.getElementById(id_demo).innerHTML = value;
+
+        function _id(i, v) {
+            return document.getElementById(i).innerHTML = v;
+        }
+
+        for (let index = 1; index < 5; index++) {
+            _id(index, `${index} a `);
+        }
     </script>
 
 </body>

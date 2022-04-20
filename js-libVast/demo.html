@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="lib/core-player-outstream.css"> </link>
+    <script src="lib/corejsplayer-outstream.min.js"></script>
+</head>
+
+<body>
+
+    <h2>My Heading</h2>
+
+    <div id="test"> </div>
+
+    <script>
+        /*data gồm có link html, url click, toạ độ video, kích thước video poster video.*/
+
+        function tnDrawBannerTvc(obj) {
+            var divid = 'bannervideo-' + Math.floor(Math.random() * 100000);
+            var div = document.getElementById(obj.id);
+            var html = '', video = '';
+
+            if (obj.vast) {
+                video = `<div style=" width:${obj.width}px; height:${obj.height}px;"> <div id="${divid}"> </div> </div>`;
+            }
+
+            div.innerHTML = `<div style="margin: 0 auto;overflow: hidden;  width:100%; max-width:${obj.width}px; height:${obj.height}px; position:relative;">${video}</div>`;
+
+            if (obj.vast) {
+
+                function PlayerInit(data) {
+                    window.setTimeout(function () {
+                        var initPlayer = function () {
+                            var id = document.getElementById(divid);
+                            if (typeof (CoreJSPlayer) != 'undefined' && id) {
+                                window.playerInstance = new CoreJSPlayer(divid);
+                                playerInstance.initialize({
+                                    width: obj.width,
+                                    height: obj.height,
+                                    controls: false,
+                                    loop: false,
+                                    muted: true,
+                                    poster: obj.poster,
+                                    template: {
+                                        name: '',
+                                        // timeout: 10, // timout tá»± táº¯t video, bá» Ä‘i thĂ¬ cháº¡y theo duration video.
+                                        timeToShowSkip: 100 // thá»i gian hiá»‡n nĂºt skip
+                                    },
+                                    logo: {
+                                        // img: 'https://adi.admicro.vn/adt/cpc/ssvimg/mobile/bg/logo-admicro.png',
+                                        // redirectUrl: getQuery('linkproduct'),
+                                        // position: 'top-right'
+                                    },
+                                    ads: {
+                                        adTagUrl: obj.vast,
+                                        //adTagUrl: getQuery('vast_banner_video'),
+                                        //'https://media1.admicro.vn/cms/vast-example.xml',
+                                        //vastXml: decodeURIComponent(vast),
+                                        backupImg: obj.poster,
+                                        repeatClick: true,
+                                        disableAdControls: true,
+                                        disableSkipAdButton: true,
+                                        showCountdown: true,
+                                        viewable: { // Ä‘á»‹nh nghÄ©a trueview
+                                            percent: 0.5, // tá»‰ lá»‡ náº±m trong trueview
+                                            timeIn: 15 // thá»i gian trong trueview
+                                        }
+                                    }
+                                });
+                            } else {
+                                setTimeout(function () {
+                                    initPlayer();
+                                }, 500)
+                            }
+                        };
+                        initPlayer();
+                    }, 500);
+                }
+
+                PlayerInit();
+            }
+        }
+
+        tnDrawBannerTvc({
+            id: 'test',
+            width: 300,
+            height: 250,
+            poster: '',
+            vast: 'https://media1.admicro.vn/cms/vast-example.xml'
+        });
+
+    </script>
+
+</body>
+
+</html>
