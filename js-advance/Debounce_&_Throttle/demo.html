@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+</head>
+
+<body>
+
+    <style>
+        body,
+        html,
+        .area {
+            width: 100%;
+            height: 100%;
+        }
+
+        .label {
+            display: inline-block;
+            width: 8rem;
+        }
+    </style>
+
+    <div id="area" class="area">
+        <span class="label">real-time coords:</span>
+        <span id="rx">(initial)</span>,
+        <span id="ry">(initial)</span>
+        <br>
+        <span class="label">throttled coords:</span>
+        <span id="tx">(initial)</span>,
+        <span id="ty">(initial)</span>
+        <br>
+        <span class="label">debounced coords:</span>
+        <span id="dx">(initial)</span>,
+        <span id="dy">(initial)</span>
+    </div>
+
+</body>
+
+<script>
+
+
+    const area = document.getElementById("area");
+
+    const state = {
+        throttled: {
+            x: 0,
+            y: 0,
+        },
+        debounced: {
+            x: 0,
+            y: 0,
+        }
+    }
+
+    area.addEventListener("mousemove", coordUpdater("r"));
+    area.addEventListener("mousemove", throttled(200, coordUpdater("t")));
+    area.addEventListener("mousemove", debounced(200, coordUpdater("d")));
+
+    function handler(e) {
+        mouseToState(e);
+        updateDisp(e);
+    }
+
+    function coordUpdater(prefix) {
+        const x = document.getElementById(`${prefix}x`);
+        const y = document.getElementById(`${prefix}y`);
+        return function (e) {
+            x.innerText = e.clientX;
+            y.innerText = e.clientY;
+        }
+    }
+
+    function throttled(delay, fn) {
+        let lastCall = 0;
+        return function (...args) {
+            const now = (new Date).getTime();
+            if (now - lastCall < delay) {
+                return;
+            }
+            lastCall = now;
+            return fn(...args);
+        }
+    }
+
+    function debounced(delay, fn) {
+        let timerId;
+        return function (...args) {
+            if (timerId) {
+                clearTimeout(timerId);
+            }
+            timerId = setTimeout(() => {
+                fn(...args);
+                timerId = null;
+            }, delay);
+        }
+    }
+
+
+</script>
+
+</html>
