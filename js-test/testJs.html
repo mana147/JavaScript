@@ -1,36 +1,220 @@
 <!DOCTYPE html>
 <html>
 
+<head>
+    <!-- include lib  Socket.IO v3.1.3 -->
+    <script type="text/javascript" src="http://adx2016.vn/js/v2022/socket.io.min.js"> </script>
+    <script type="text/javascript" src="http://adx2016.vn/js/v2022/jquery-1.11.3.min.js"></script>
+
+</head>
+
+
 <body>
+    <input type="hidden" id="hd1" name="hd1"
+        value="KddXPskImMv7z5wBGy1jzSz9WrHL63ryfrux0NVSjJqg-oXWrrxsaKLbtHD68NZwUHO101g9YDMGX4dNiqvxfQ==">
+    <input type="hidden" id="hd2" name="hd2"
+        value="9DkmbBUkgFuayS0fR6ZwzjJkkE4HfbtDiTXomtpQC2Q_FJUSbUyN22mik0xGHWoc-1XB1XBgaRFwKTa4CFaUHiZKJoypIUH0x3r8Vzmhy2G2Lz5eXe2Mb9mPqMSI-WrxzxpGZj7zcWCP-ZVVzfa0Bz6vng-TBq4aBHK9ynBhoWjV1aVTj6yvIx4uy0ddEv5x3r7yWiho2w0tzH6Ch9LQsyeRRJwgi9fh5r7NCImGdeHQhL19dlXiNcTpCalqB5ym">
 
-    <h1>The Window Object</h1>
-    <h2>The prompt() Method</h2>
 
-    <p>Click the button to demonstrate the prompt box.</p>
-
-    <button onclick="myFunction()">Try it</button>
-
-    <p id="1"></p>
-    <p id="2"></p>
-    <p id="3"></p>
-    <p id="4"></p>
-
-    <script>
-        // document tim kiem trong troàn bộ thẻ 
-        // khi nào gặp thẻ có id = demo 
-        // thì nó sẽ , set cho value trong thẻ bằng 1 chuỗi  = ádsadasd
-
-        // document.getElementById(id_demo).innerHTML = value;
-
-        function _id(i, v) {
-            return document.getElementById(i).innerHTML = v;
-        }
-
-        for (let index = 1; index < 5; index++) {
-            _id(index, `${index} a `);
-        }
-    </script>
-
+    <h1 id="test"></h1>
 </body>
+
+
+<!-- include func / value -->
+<script async type="text/javascript">
+    let socket = null;
+
+    // function connect socket
+    function socket_connectServer(host_url, pathHandle, tokenAuth) {
+        let option_server = {
+            path: pathHandle,
+            transports: ["websocket"],
+            withCredentials: true,
+            autoConnect: false,
+            auth: {
+                'token': tokenAuth,
+                'access_token': ''
+            },
+            'timeout': 5000,
+            'connect timeout': 50000
+        };
+
+        socket = io(host_url, option_server);
+        socket.on('connect', function () {
+            socket.on('act', (actToken) => {
+                socket.auth.access_token = actToken;
+            });
+        }).on("disconnect", function () {
+            setTimeout(function () {
+                socket.disconnect();
+            }, 6000);
+        }).on("login", (data) => {
+            socket.disconnect();
+            window.location.reload(true);
+        });
+
+        socket.connect();
+    }
+
+</script>
+
+<script>
+
+    // brptTotal
+    function socket_brptTotal() {
+        // send
+        socket.emit('brptDateTotal', {
+            'k1': $('#hd1').val(),
+            'k2': $('#hd2').val()
+        });
+        // receive            
+        socket.on('brptDateTotal', function (data) {
+            try {
+                let brptDateTotal = jQuery.parseJSON(data);
+                dataView.brptDateTotal = brptDateTotal;
+            } catch (err) {
+                console.log('err :>> ', err);
+            }
+        });
+    }
+
+    //socket_brptDate
+    function socket_brptDate() {
+        // send
+        socket.emit('brptDate', {
+            'k1': $('#hd1').val(),
+            'k2': $('#hd2').val()
+        });
+        // receive
+        socket.once('brptDate', function (data) {
+            try {
+                let brptDate = jQuery.parseJSON(data);
+                dataView.brptDate = brptDate;
+            } catch (err) {
+                console.log('err :>> ', err);
+            }
+        });
+    }
+
+    // brptUv
+    function socket_brptUv() {
+        // send
+        socket.emit('brptUv', {
+            'k1': $('#hd1').val(),
+            'k2': $('#hd2').val()
+        });
+
+        // receive
+        socket.on('brptUv', function (data) {
+            try {
+                let brptUv = jQuery.parseJSON(data);
+                dataView.brptUv = brptUv;
+            } catch (err) {
+                console.log('err :>> ', err);
+            }
+        });
+    }
+
+    // cpa
+    function socket_brptCpa() {
+        // send
+        socket.emit('brptCpa', {
+            'k1': $('#hd1').val(),
+            'k2': $('#hd2').val()
+        });
+        // receive
+        socket.on('brptCpa', function (data) {
+            try {
+                let brptCpa = jQuery.parseJSON(data);
+                dataView.brptCpa = brptCpa;
+            } catch (err) {
+                console.log('err :>> ', err);
+            }
+        });
+    }
+
+    // reach 
+    function socket_brptRreach() {
+
+        socket.emit('brptReach', {
+            'k1': $('#hd1').val(),
+            'k2': $('#hd2').val(),
+            'reach': "9BDgmp1nDr7XIdwg41XaA_l-SPbJYk5Bi3ua37EdINx3i9h2204XvozvouXx8_DPYqg9vhSHukZunGSP5FOCoJbt6jqVeRcNJ5jAQ3pCpZpjU9MG2mPiBi6IDcxC982G9_SZ2GO1lxX0X4YXCs1JrkNf2Pj_B7jLQC2J51P4laIOzqga6bq4UeYptrjHROrevGmGFZddUIyiGq0yb9-Mpx8mx1gI1t_0fETCdGnwXzWNdKq8J9AGBEy38KN5eiYN7kckhn3Lhmeip1p2gVtr_wZGzh7LKWipdx8fs_9NM5VUkwbESMdg34UWWLTBuz_Xu2LrLoQmE_bQ3O6D2vb_3GQsTO-oKwyXq33tcFRRVLeOW4yeL7v8RxHBvbShLiHTHN_GFWHS_aaqzl25Ygk0dDcLgBRWDrArBkvhTTPjkq_qGSKr3wkxk7ZCaVjD334eX-R4owBbGmHditjfliXffjk1ZXvAAbquzr0gVakFvMyQypf-d-Nu97OPAyyGWaNd29hY3u4jnfeQgrnzJYZu2Z23Iqthx8ziqbh-yxkkQ7yQykXkqrcpIuCIUjpT4x8Z090vy2kYyO4b-UXVcRmi0z1-sOBO84LDeNTR51EQQaAHzmgQiMr7L2dypd-W9KEgrEsjO4YCqtzo9FyK1DEwa7QBbCjsYPcw4PVqVzmcTh55g2NbjVAAOWSasaRO22Nf7WrSEJ4eXSbp_9KX9aLUyxeIu454dLSHMCXUkezzfhk9h721cLFaeHD6H00bg6lvtmwfYaJxKoq_MHSzQyINdiz1g2aqNw_Sobaes5xfrT5Icb5denyXD0L572xmcq5Ecguzu00KvixAXXsui2WCUkuJTYqysVgfgS9IjFvYM2rKIHM1yDUQIFscEciCBtCAcOyNrvyqwBnf43tO5hlwEagGSGRB5Z-F6UTIuj2c0tmx89wQUKE7R3F2NkmX-dgdOtgNWOkR0DF0nGbLLw0qnV_FCbE7XiHSGxwI0yQvrI2lu1fWKH8etyYnGxHl3iasuUVJUA9EjoC-C3olcfenMJ7iQlszR3mgMYMp9B943tZIGe_y-zcjh8-1FTrLw19gcR2O6mojXNqf6JpxvifFF_qu3c39mKtDPLVVQ_SD-wIl8scSMyVfg2ChN61X5axkY1dC6QvptrjUtFsYQ7pn5As7jThsKUpUFtokhJ9XyeSc_14TkJUCQLZRlZNPZ5Vf_ymvpCmux53Ky_mTxswdPA=="
+        });
+
+        // receive
+        socket.once('brptReach', function (data) {
+            try {
+                let brptReach = jQuery.parseJSON(data);
+
+                dataView.brptReach = brptReach['numEstimate'];
+
+            } catch (err) {
+                $('#ttr').html("N/A");
+            }
+        });
+    }
+
+</script>
+
+<script>
+    let hd1 = $("#hd1").val();
+    let hd2 = $("#hd2").val();
+
+    let dataView = new Proxy({
+        brptDate: null,
+        brptUv: null,
+        brptCpa: null,
+        brptReach: null,
+        brptDateTotal: null,
+        sdate: null,
+        edate: null,
+        test: 0
+    }, {
+        get: function (target, property, receiver) {
+            console.log('get property :', property);
+            return target[property];
+        },
+        set: function (target, property, value, receiver) {
+            target[property] = value;
+
+            if (property == 'test') {
+                $("#test").html(dataView.test);
+            }
+
+        },
+        has: function (target, prop) {
+        }
+    });
+
+
+
+
+
+
+    // load : init func
+    $(window).load(function () {
+        // call socket server
+        socket_connectServer('0.0.0.0:8443/pc/bannerdetail', '/pc/bannerdetail', '9E39QtTmfc_duLbg9U_BmeMmlEJ3eD8clWf3rU4al_tInf4n8JMfFWapjFZRG3nzAkr3sTjEbTDC44VjTKYwFg==');
+
+        // // emmit + on : message data from server socket 
+        socket_brptTotal();
+        // socket_brptDate();
+        // socket_brptUv();
+        // socket_brptCpa();
+        // socket_brptRreach();
+
+
+        let NUMB = 0;
+        setInterval (function () {
+            dataView.test = NUMB++;
+        },1000);
+
+        
+
+
+    });
+
+</script>
 
 </html>
