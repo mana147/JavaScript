@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>🤖 Robot Game — OOP với TypeScript</title>
+    <style>
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        padding: 24px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+        background: #0f172a;
+        color: #e2e8f0;
+        line-height: 1.5;
+      }
+      h1 { margin: 0 0 4px; font-size: 24px; }
+      h2 { font-size: 16px; text-transform: uppercase; letter-spacing: .06em; color: #94a3b8; margin: 0 0 12px; }
+      .phu { color: #64748b; font-size: 13px; margin-bottom: 24px; }
+
+      .luoi { display: grid; grid-template-columns: 320px 1fr 300px; gap: 20px; align-items: start; }
+      @media (max-width: 1100px) { .luoi { grid-template-columns: 1fr; } }
+
+      .khung {
+        background: #1e293b;
+        border: 1px solid #334155;
+        border-radius: 10px;
+        padding: 16px;
+        margin-bottom: 16px;
+      }
+
+      label { display: block; font-size: 13px; color: #94a3b8; margin: 10px 0 4px; }
+      input, select {
+        width: 100%; padding: 8px 10px; border-radius: 6px;
+        border: 1px solid #475569; background: #0f172a; color: #e2e8f0; font-size: 14px;
+      }
+      button {
+        cursor: pointer; border: none; border-radius: 6px; padding: 8px 12px;
+        font-size: 13px; font-weight: 600; color: #fff; background: #3b82f6;
+      }
+      button:hover { filter: brightness(1.15); }
+      button:disabled { opacity: .4; cursor: not-allowed; }
+      button.phu2 { background: #475569; }
+      button.xanh { background: #10b981; }
+      button.do { background: #ef4444; }
+      .rong { width: 100%; margin-top: 14px; padding: 10px; }
+
+      .the {
+        background: #0f172a; border: 1px solid #334155; border-radius: 8px;
+        padding: 12px; margin-bottom: 10px;
+      }
+      .the-dau { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+      .ten { font-weight: 700; }
+      .nhan {
+        font-size: 11px; padding: 2px 8px; border-radius: 999px;
+        background: #334155; color: #cbd5e1;
+      }
+      .nhan.dang-lam { background: #064e3b; color: #6ee7b7; }
+      .nhan.het-pin { background: #7f1d1d; color: #fca5a5; }
+
+      .thanh-pin { height: 8px; background: #334155; border-radius: 999px; margin: 8px 0; overflow: hidden; }
+      .thanh-pin i { display: block; height: 100%; transition: width .3s; }
+      .meta { font-size: 12px; color: #64748b; margin-bottom: 8px; }
+      .nut-nhom { display: flex; gap: 6px; flex-wrap: wrap; }
+
+      .log { font-family: ui-monospace, Menlo, monospace; font-size: 12px; max-height: 260px; overflow-y: auto; }
+      .log div { padding: 3px 0; border-bottom: 1px solid #1e293b; }
+
+      table { width: 100%; border-collapse: collapse; font-size: 13px; }
+      th, td { text-align: left; padding: 6px 4px; border-bottom: 1px solid #334155; }
+      th { color: #94a3b8; font-weight: 600; font-size: 11px; text-transform: uppercase; }
+
+      .bao { padding: 8px 12px; border-radius: 6px; margin-bottom: 12px; font-size: 13px; display: none; }
+      .bao.loi { background: #7f1d1d; color: #fecaca; display: block; }
+      .bao.ok { background: #064e3b; color: #a7f3d0; display: block; }
+      .trong { color: #64748b; font-size: 13px; text-align: center; padding: 20px 0; }
+    </style>
+  </head>
+  <body>
+    <h1>🤖 Robot Game</h1>
+    <p class="phu">
+      Backend dùng lại chính các class OOP trong <code>ts-basic/oop/</code> — dữ liệu lưu xuống SQLite.
+      Mỗi lần bấm nút: <em>đọc DB → Factory hồi sinh thành object → gọi method → lưu lại</em>.
+    </p>
+
+    <div id="bao" class="bao"></div>
+
+    <div class="luoi">
+      <!-- CỘT TRÁI: tạo robot + đấu trường -->
+      <div>
+        <div class="khung">
+          <h2>Tạo robot</h2>
+          <label>Loại robot</label>
+          <select id="loai">
+            <option value="chien-dau">⚔️ Chiến đấu</option>
+            <option value="y-te">🏥 Y tế</option>
+            <option value="ve-sinh">🧹 Vệ sinh</option>
+          </select>
+
+          <label>Tên</label>
+          <input id="ten" placeholder="VD: Optimus" />
+
+          <div id="field-chien-dau">
+            <label>Sức tấn công (1–100)</label>
+            <input id="sucTanCong" type="number" value="80" min="1" max="100" />
+            <label>Độ cao tối đa (m)</label>
+            <input id="doCaoToiDa" type="number" value="500" min="0" max="10000" />
+          </div>
+
+          <div id="field-y-te" style="display: none">
+            <label>Chuyên khoa</label>
+            <input id="chuyenKhoa" value="Noi tong quat" />
+          </div>
+
+          <div id="field-ve-sinh" style="display: none">
+            <label>Khu vực</label>
+            <input id="khuVuc" value="toan nha" />
+          </div>
+
+          <button class="rong" onclick="taoRobot()">Tạo robot</button>
+        </div>
+
+        <div class="khung">
+          <h2>⚔️ Đấu trường</h2>
+          <p class="phu" style="margin: 0 0 8px">Chỉ robot chiến đấu mới tham gia được.</p>
+          <label>Robot A</label>
+          <select id="dauA"></select>
+          <label>Robot B</label>
+          <select id="dauB"></select>
+          <button class="rong do" onclick="dau()">Bắt đầu đấu</button>
+          <div id="ketQuaDau" class="log" style="margin-top: 12px"></div>
+        </div>
+      </div>
+
+      <!-- CỘT GIỮA: danh sách robot -->
+      <div>
+        <div class="khung">
+          <h2>Đội robot (<span id="soLuong">0</span>)</h2>
+          <div id="dsRobot"><div class="trong">Chưa có robot nào. Tạo một con ở bên trái.</div></div>
+        </div>
+      </div>
+
+      <!-- CỘT PHẢI: BXH + nhật ký -->
+      <div>
+        <div class="khung">
+          <h2>🏆 Bảng xếp hạng</h2>
+          <table>
+            <thead>
+              <tr><th>Robot</th><th>Việc</th><th>T/B</th><th>Điểm</th></tr>
+            </thead>
+            <tbody id="bxh"></tbody>
+          </table>
+        </div>
+
+        <div class="khung">
+          <h2>⏱️ Nhật ký (tick 3s)</h2>
+          <div id="nhatKy" class="log"></div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // ================================================================
+      // Gọi API — mọi thay đổi state đều đi qua server
+      // ================================================================
+      async function api(duongDan, tuyChon) {
+        const res = await fetch('/api' + duongDan, {
+          headers: { 'Content-Type': 'application/json' },
+          ...tuyChon,
+        });
+        const duLieu = await res.json();
+        if (!res.ok) throw new Error(duLieu.loi || 'Loi khong ro');
+        return duLieu;
+      }
+
+      function baoTin(noiDung, laLoi) {
+        const el = document.getElementById('bao');
+        el.className = 'bao ' + (laLoi ? 'loi' : 'ok');
+        el.textContent = noiDung;
+        setTimeout(() => (el.className = 'bao'), 3000);
+      }
+
+      // Đổi loại robot thì hiện field riêng của loại đó
+      document.getElementById('loai').addEventListener('change', (e) => {
+        ['chien-dau', 'y-te', 've-sinh'].forEach((l) => {
+          document.getElementById('field-' + l).style.display =
+            l === e.target.value ? 'block' : 'none';
+        });
+      });
+
+      async function taoRobot() {
+        const loai = document.getElementById('loai').value;
+        const than = { loai, ten: document.getElementById('ten').value };
+
+        if (loai === 'chien-dau') {
+          than.sucTanCong = Number(document.getElementById('sucTanCong').value);
+          than.doCaoToiDa = Number(document.getElementById('doCaoToiDa').value);
+        } else if (loai === 'y-te') {
+          than.chuyenKhoa = document.getElementById('chuyenKhoa').value;
+        } else {
+          than.khuVuc = document.getElementById('khuVuc').value;
+        }
+
+        try {
+          const r = await api('/robots', { method: 'POST', body: JSON.stringify(than) });
+          baoTin('Đã tạo ' + r.ten + ' (' + r.serial + ')');
+          document.getElementById('ten').value = '';
+          veLai();
+        } catch (err) {
+          baoTin(err.message, true);
+        }
+      }
+
+      async function hanhDong(serial, viec) {
+        try {
+          const kq = await api('/robots/' + serial + '/' + viec, { method: 'POST', body: '{}' });
+          baoTin(kq.ketQua);
+          veLai();
+        } catch (err) {
+          baoTin(err.message, true);
+        }
+      }
+
+      async function xoaRobot(serial) {
+        try {
+          await api('/robots/' + serial, { method: 'DELETE' });
+          baoTin('Đã xoá robot');
+          veLai();
+        } catch (err) {
+          baoTin(err.message, true);
+        }
+      }
+
+      async function dau() {
+        const serialA = document.getElementById('dauA').value;
+        const serialB = document.getElementById('dauB').value;
+        if (!serialA || !serialB) return baoTin('Phải chọn đủ 2 robot', true);
+        if (serialA === serialB) return baoTin('Không thể tự đấu với chính mình', true);
+
+        try {
+          const kq = await api('/dau-truong', {
+            method: 'POST',
+            body: JSON.stringify({ serialA, serialB }),
+          });
+          document.getElementById('ketQuaDau').innerHTML = kq.nhatKy
+            .map((d) => '<div>' + d + '</div>')
+            .join('');
+          veLai();
+        } catch (err) {
+          baoTin(err.message, true);
+        }
+      }
+
+      function mauPin(pin) {
+        if (pin > 60) return '#10b981';
+        if (pin > 25) return '#f59e0b';
+        return '#ef4444';
+      }
+
+      // ================================================================
+      // Vẽ lại giao diện từ dữ liệu server
+      // ================================================================
+      async function veLai() {
+        const [dsRobot, bxh, nhatKy] = await Promise.all([
+          api('/robots'),
+          api('/bang-xep-hang'),
+          api('/nhat-ky'),
+        ]);
+
+        document.getElementById('soLuong').textContent = dsRobot.length;
+
+        // --- danh sách robot ---
+        const oDs = document.getElementById('dsRobot');
+        if (dsRobot.length === 0) {
+          oDs.innerHTML = '<div class="trong">Chưa có robot nào. Tạo một con ở bên trái.</div>';
+        } else {
+          oDs.innerHTML = dsRobot
+            .map(
+              (r) => `
+              <div class="the">
+                <div class="the-dau">
+                  <span class="ten">${r.ten}</span>
+                  <span class="nhan ${r.trangThai}">${r.trangThai}</span>
+                </div>
+                <div class="thanh-pin">
+                  <i style="width:${r.pin}%;background:${mauPin(r.pin)}"></i>
+                </div>
+                <div class="meta">${r.loaiHienThi} · pin ${r.pin}% · ${r.serial}</div>
+                <div class="nut-nhom">
+                  <button class="xanh" onclick="hanhDong('${r.serial}','lam-viec')">Làm việc</button>
+                  <button onclick="hanhDong('${r.serial}','charge')">Sạc +20</button>
+                  <button class="phu2" onclick="hanhDong('${r.serial}','dung')">Dừng</button>
+                  <button class="do" onclick="xoaRobot('${r.serial}')">Xoá</button>
+                </div>
+              </div>`,
+            )
+            .join('');
+        }
+
+        // --- dropdown đấu trường: chỉ robot chiến đấu ---
+        const dsDau = dsRobot.filter((r) => r.coTheChienDau);
+        ['dauA', 'dauB'].forEach((id) => {
+          const sel = document.getElementById(id);
+          const dangChon = sel.value;
+          sel.innerHTML = dsDau
+            .map((r) => `<option value="${r.serial}">${r.ten} (pin ${r.pin}%)</option>`)
+            .join('');
+          if (dangChon) sel.value = dangChon;
+        });
+
+        // --- bảng xếp hạng ---
+        document.getElementById('bxh').innerHTML =
+          bxh.length === 0
+            ? '<tr><td colspan="4" class="trong">Chưa có dữ liệu</td></tr>'
+            : bxh
+                .map(
+                  (d) => `<tr>
+                    <td>${d.ten}</td>
+                    <td>${d.soViecLam}</td>
+                    <td>${d.soTranThang}/${d.soTranThua}</td>
+                    <td><b>${d.diem}</b></td>
+                  </tr>`,
+                )
+                .join('');
+
+        // --- nhật ký tick ---
+        document.getElementById('nhatKy').innerHTML =
+          nhatKy.length === 0
+            ? '<div class="trong">Cho robot làm việc để thấy tick</div>'
+            : nhatKy
+                .map((t) => `<div><b>${t.luc}</b><br>${t.noiDung.join('<br>')}</div>`)
+                .join('');
+      }
+
+      veLai();
+      // Tự làm mới để thấy vòng tick của server tụt pin
+      setInterval(veLai, 2000);
+    </script>
+  </body>
+</html>
